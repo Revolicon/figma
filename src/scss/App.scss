@@ -4,6 +4,7 @@ body {
   font-family: 'Inter', sans-serif;
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -155,6 +156,7 @@ sup {
 
 img {
   border-style: none;
+  pointer-events: none;
 }
 
 /* Forms
