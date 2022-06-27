@@ -5,5 +5,19 @@
   "editorType": ["figma", "figjam"],
   "permissions": [],
   "main": "dist/code.js",
-  "ui": "dist/index.html"
+  "ui": "dist/index.html",
+  "parameterOnly": false,
+  "parameters": [
+    {
+      "name": "Name",
+      "key": "icon",
+      "description": "Enter the name of the icon you want to insert."
+    },
+    {
+      "name": "Style",
+      "key": "style",
+      "description": "Select the style of the icon you want to insert. If you don't choose any style, it will be line.",
+      "optional": true
+    }
+  ]
 }
