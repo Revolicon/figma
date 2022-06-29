@@ -96,13 +96,14 @@ export default function App() {
   let test = () => {
     // console.log(parent);
     // parent.close()
-    parent.postMessage({ pluginMessage: { type: "s" } }, "*");
+    parent.postMessage({ pluginMessage: { type: "create-icon" } }, "*");
   };
 
   return (
     <div className={styles.welcome}>
       <div className={styles.content}>
         <Logo />
+        <button onClick={() => test()}>Test Icon</button>
       </div>
       <Feature />
     </div>

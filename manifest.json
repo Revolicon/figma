@@ -2,11 +2,12 @@
   "name": "Revolicon",
   "id": "1123149718450481437",
   "api": "1.0.0",
-  "editorType": ["figma", "figjam"],
+  "editorType": ["figma"],
   "permissions": [],
   "main": "dist/code.js",
   "ui": "dist/index.html",
   "parameterOnly": false,
+  "enableProposedApi": true,
   "parameters": [
     {
       "name": "Name",
@@ -18,6 +19,12 @@
       "key": "style",
       "description": "Select the style of the icon you want to insert. If you don't choose any style, it will be line.",
       "optional": true
+    }
+  ],
+  "relaunchButtons": [
+    {
+      "command": "open",
+      "name": "Open In Revolicon"
     }
   ]
 }

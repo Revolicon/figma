@@ -1,3 +1,4 @@
+import createIcon from "./methods/createIcon";
 import Icons from "./icons";
 
 interface IconSvg {
@@ -26,20 +27,25 @@ figma.on("run", ({ parameters }) => {
     // @ts-ignore
     let iconObject: object = Icons?.[iconSlug]
 
-    let frame = figma.createNodeFromSvg(createIconSvg({
-      color: "black",
-      // @ts-ignore
-      ...iconObject?.svgs[iconStyle],
-      width: 24,
-      height: 24,
-    }))
-    frame.name = "Revolicon/" + iconObject.label;
+    createIcon({
+      slug: iconSlug,
+      style: "line",
+      overlay: 1.5,
+      version: "1.0.0"
+    });
     return figma.closePlugin();
   }
   figma.showUI(__html__, { themeColors: true, height: 512, width: 280 });
 
   figma.ui.onmessage = (message) => {
-    console.log(message);
+    if (message.type === "create-icon") {
+      createIcon({
+        slug: "test",
+        style: "line",
+        overlay: 1.5,
+        version: "1.0.0"
+      });
+    }
   };
 });
 
