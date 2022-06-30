@@ -42,9 +42,19 @@ figma.on("run", ({ parameters }) => {
       createIcon({
         slug: "test",
         style: "line",
-        overlay: 1.5,
+        overlay: 2,
         version: "1.0.0"
       });
+    }
+    if (message.type === "used-icon-list") {
+      const nodes = figma.root.findAll(n => {
+        let nodeType = n.type === "COMPONENT";
+        let nodeData = n.getPluginDataKeys().includes("revolicon");
+
+        return nodeType && nodeData;
+      })
+      // console.log(nodes);
+      console.log(nodes.map(l => l.getPluginData("icon_slug")));
     }
   };
 });

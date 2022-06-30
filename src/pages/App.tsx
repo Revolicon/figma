@@ -93,17 +93,21 @@ function Feature() {
 }
 
 export default function App() {
-  let test = () => {
-    // console.log(parent);
-    // parent.close()
+  let CreateIcon = () => {
     parent.postMessage({ pluginMessage: { type: "create-icon" } }, "*");
   };
+  let UsedIcons = () => {
+    parent.postMessage({ pluginMessage: { type: "used-icon-list" } }, "*");
+  }
 
   return (
     <div className={styles.welcome}>
       <div className={styles.content}>
         <Logo />
-        <button onClick={() => test()}>Test Icon</button>
+        <div>
+          <button onClick={() => CreateIcon()}>Create Test Icon</button>
+          <button onClick={() => UsedIcons()}>Used Icons List</button>
+        </div>
       </div>
       <Feature />
     </div>

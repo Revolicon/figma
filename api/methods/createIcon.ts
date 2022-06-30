@@ -1,17 +1,3 @@
-type IconStyle =
-  | 'line'
-  | 'fill'
-  | 'brand'
-
-interface IconProps {
-  slug: string;
-  style: IconStyle;
-  version: string;
-  size?: number;
-  color?: string;
-  overlay?: number;
-}
-
 function createIcon({
   slug,
   style,
@@ -47,16 +33,6 @@ function createIcon({
   component.setPluginData("icon_version", version)
   component.setPluginData("icon_slug", slug)
   component.setPluginData("icon_style", style)
-
-  // Test
-  const nodes = figma.root.findAll(n => {
-    let nodeType = n.type === "COMPONENT";
-    let nodeData = n.getPluginDataKeys().includes("revolicon");
-
-    return nodeType && nodeData;
-  })
-  // console.log(nodes);
-  console.log(nodes.map(l => l.getPluginData("icon_slug")));
 }
 
 export default createIcon;
