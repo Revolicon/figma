@@ -23,15 +23,19 @@ function createIconSvg(props: IconSvg) {
 figma.on("run", ({ parameters }) => {
   if (parameters) {
     let iconSlug: string = parameters?.icon.slug;
-    let iconStyle: string = parameters?.style?.slug ?? "line";
+    let iconStyle: IconStyle = parameters?.style?.slug ?? "line";
     // @ts-ignore
     let iconObject: object = Icons?.[iconSlug]
 
+    console.log(iconObject);
+
     createIcon({
       slug: iconSlug,
-      style: "line",
-      overlay: 1.5,
-      version: "1.0.0"
+      style: iconStyle,
+      overlay: 2,
+      version: "1.0.0",
+      // @ts-ignore
+      svg: iconObject.svgs?.[iconStyle]?.raw,
     });
     return figma.closePlugin();
   }

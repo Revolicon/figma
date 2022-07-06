@@ -17,4 +17,5 @@ interface IconProps {
   size?: number;
   color?: string;
   overlay?: number;
+  svg?: string;
 }
