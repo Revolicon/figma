@@ -17,8 +17,6 @@ export default function Icons() {
         <button onClick={() => CreateIcon()}>Create Test Icon</button>
         <button onClick={() => UsedIcons()}>Used Icons List</button>
       </div>
-
-      <Link to="/categories">Categories</Link>
     </div>
   )
 }

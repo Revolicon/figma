@@ -1,12 +1,17 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      App Page:
-
-      <Outlet />
-    </div>
+    <>
+      <div style={{ display: "flex", gap: 16, padding: 12, borderBottom: "1px solid #E5E5E5" }}>
+        <Link to="/">Icons</Link>
+        <Link to="/categories">Categories</Link>
+        <Link to="/settings" style={{ marginLeft: "auto" }}>Settings</Link>
+      </div>
+      <div>
+        <Outlet />
+      </div>
+    </>
   )
 }
