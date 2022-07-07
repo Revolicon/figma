@@ -21,21 +21,22 @@ function createIconSvg(props: IconSvg) {
 }
 function setUIType(type: string) {
   type UiTypes =
-    | "large"
-    | "small"
+    | "default"
+    | "wide"
 
   let uiType = {
-    large: {
+    wide: {
       width: 560,
       height: 512,
     },
-    small: {
+    default: {
       width: 280,
       height: 512,
     }
   };
+  let uiTypeSelected = uiType[type as UiTypes];
 
-  figma.ui.resize(uiType[type as UiTypes].width, uiType[type as UiTypes].height);
+  figma.ui.resize(uiTypeSelected.width, uiTypeSelected.height);
 }
 
 figma.on("run", ({ parameters }) => {
@@ -64,7 +65,7 @@ figma.on("run", ({ parameters }) => {
     themeColors: false
   });
 
-  setUIType("small")
+  setUIType("default")
 
   figma.ui.onmessage = (message) => {
     if (message.type === "create-icon") {
@@ -95,7 +96,7 @@ figma.on("run", ({ parameters }) => {
   if (figma.command === "open") {
     // Open In Revolicon Button
 
-    setUIType("large")
+    setUIType("wide")
     for (const node of figma.currentPage.selection) {
       const nodeData = node.getPluginData("icon_slug");
       console.log(nodeData);
