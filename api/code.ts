@@ -19,6 +19,24 @@ function createIconSvg(props: IconSvg) {
     <path d="${props.path}" fill="${props.color}"/>
   </svg>`;
 }
+function setUIType(type: string) {
+  type UiTypes =
+    | "large"
+    | "small"
+
+  let uiType = {
+    large: {
+      width: 560,
+      height: 512,
+    },
+    small: {
+      width: 280,
+      height: 512,
+    }
+  };
+
+  figma.ui.resize(uiType[type as UiTypes].width, uiType[type as UiTypes].height);
+}
 
 figma.on("run", ({ parameters }) => {
   if (parameters) {
@@ -27,7 +45,7 @@ figma.on("run", ({ parameters }) => {
     // @ts-ignore
     let iconObject: object = Icons?.[iconSlug]
 
-    console.log(iconObject);
+    // console.log(iconObject);
 
     createIcon({
       slug: iconSlug,
@@ -39,7 +57,14 @@ figma.on("run", ({ parameters }) => {
     });
     return figma.closePlugin();
   }
-  figma.showUI(__html__, { themeColors: true, height: 512, width: 280 });
+  figma.showUI(__html__, {
+    title: "Revolicon",
+    height: 512,
+    width: 280,
+    themeColors: false
+  });
+
+  setUIType("small")
 
   figma.ui.onmessage = (message) => {
     if (message.type === "create-icon") {
@@ -58,10 +83,25 @@ figma.on("run", ({ parameters }) => {
         return nodeType && nodeData;
       })
       // console.log(nodes);
-      console.log(nodes.map(l => l.getPluginData("icon_slug")));
+      // console.log(nodes.map(l => l.getPluginData("icon_slug")));
     }
   };
 });
+
+figma.on("run", ({ parameters }) => {
+  if (parameters) return;
+
+  // UI detect is click relaunch button
+  if (figma.command === "open") {
+    // Open In Revolicon Button
+
+    setUIType("large")
+    for (const node of figma.currentPage.selection) {
+      const nodeData = node.getPluginData("icon_slug");
+      console.log(nodeData);
+    }
+  }
+})
 
 figma.parameters.on("input", ({ key, query, result }) => {
   switch (key) {
