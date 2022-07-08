@@ -72,7 +72,7 @@ figma.on("run", ({ parameters }) => {
       createIcon({
         slug: "test",
         style: "line",
-        overlay: 2,
+        overlay: 1.5,
         version: "1.0.0"
       });
     }
@@ -84,7 +84,7 @@ figma.on("run", ({ parameters }) => {
         return nodeType && nodeData;
       })
       // console.log(nodes);
-      // console.log(nodes.map(l => l.getPluginData("icon_slug")));
+      console.log(nodes.map(l => l.getPluginData("icon_slug")));
     }
   };
 });
@@ -110,16 +110,17 @@ figma.parameters.on("input", ({ key, query, result }) => {
       let iconList: Array<any> = [];
 
       for (const [key, value] of Object.entries(Icons)) {
-        iconList.push({
-          name: value.label,
-          icon: createIconSvg({
-            color: "white",
-            ...value.svgs.line
-          }),
-          data: {
-            slug: key,
-          }
-        });
+        if (key.toLowerCase().indexOf(query.toLowerCase()) > -1)
+          iconList.push({
+            name: value.label,
+            icon: createIconSvg({
+              color: "white",
+              ...((value as any).svgs?.line || (value as any).svgs?.brands)
+            }),
+            data: {
+              slug: key,
+            }
+          });
       }
 
       result.setSuggestions(iconList);
