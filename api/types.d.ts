@@ -19,3 +19,9 @@ interface IconProps {
   overlay?: number;
   svg?: string;
 }
+
+interface ParameterObject {
+  name: string
+  data?: any
+  icon?: string
+}

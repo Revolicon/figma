@@ -1,11 +1,6 @@
 import Icons from "../icons";
 
-// Parameters Types
-interface ParameterObject {
-  name: string
-  data?: any
-  icon?: string
-}
+let icons: any = Icons;
 
 // Parameters Functions
 const iconSearch = (data: any) => {
@@ -13,10 +8,31 @@ const iconSearch = (data: any) => {
     return {
       name: item.label,
       data: item,
-    }
+      icon: createIconSvg({
+        ...icons[item.name]?.svgs?.[item.style],
+        color: '#818181',
+      })
+    } as ParameterObject
   })
 }
 const uppercaseFirstLetter = ([ first, ...rest ]: any) => first.toUpperCase() + rest.join('')
+const createIconSvg = (props: {
+  path: string;
+  viewBox: string[];
+  width: string;
+  height: string;
+  color?: string;
+}) => {
+  return `<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="${props.width}"
+    height="${props.height}"
+    viewBox="${props.viewBox.join(" ")}"
+  >
+    <path d="${props.path}" fill="${props.color}"/>
+  </svg>`;
+}
+
 
 // Parameters Actions
 const iconParameters = ({ query, result }: ParameterInputEvent) => {
@@ -71,9 +87,13 @@ const styleParameters = ({ parameters, result }: ParameterInputEvent) => {
     return {
       name: uppercaseFirstLetter(style),
       data: {
-        name: style
-      }
-    }
+        name: style,
+      },
+      icon: createIconSvg({
+        ...icons[parameters.icon.name]?.svgs?.[style],
+        color: '#818181',
+      })
+    } as ParameterObject
   })
 
   return result.setSuggestions(styleList)

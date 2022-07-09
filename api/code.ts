@@ -1,24 +1,6 @@
 import createIcon from "./methods/createIcon";
 import Icons from "./icons";
 
-interface IconSvg {
-  path: string;
-  viewBox: string[];
-  width: string;
-  height: string;
-  color?: string;
-}
-
-function createIconSvg(props: IconSvg) {
-  return `<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="${props.width}"
-    height="${props.height}"
-    viewBox="${props.viewBox.join(" ")}"
-  >
-    <path d="${props.path}" fill="${props.color}"/>
-  </svg>`;
-}
 function setUIType(type: string) {
   type UiTypes =
     | "default"
