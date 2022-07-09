@@ -11,6 +11,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__logo {
+    margin-bottom: 16px;
+  }
+  &__title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.006em;
+    color: rgba(0, 0, 0, 0.9);
+    margin-bottom: 4px;
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.005em;
+    color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+  }
 }
 .feature {
   padding: 24px;
@@ -39,7 +61,7 @@
       font-size: 11px;
       line-height: 16px;
       text-align: center;
-      color: var(--figma-color-text-tertiary);
+      color: rgba(0, 0, 0, 0.4);
     }
   }
   &__effect {
@@ -52,5 +74,17 @@
     display: flex;
     z-index: -1;
     pointer-events: none;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 }

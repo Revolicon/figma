@@ -11,6 +11,7 @@ import Button from "../ui/Button";
 function Logo() {
   return (
     <svg
+      className={styles.content__logo}
       width="32"
       height="32"
       viewBox="0 0 32 32"
@@ -52,6 +53,51 @@ function Logo() {
     </svg>
   );
 }
+function Texts() {
+  return (
+    <>
+      <div className={styles.content__title}>Welcome to Revolicon</div>
+      <div className={styles.content__text}>
+        Enter your private beta key to continue
+      </div>
+    </>
+  )
+}
+function Form() {
+  return (
+    <form className={styles.form}>
+      <div className={styles.form__input}>
+        <input type="text" placeholder="Private beta key" style={{
+          height: 32,
+          border: "1px solid #F5F5F5",
+          borderRadius: 6,
+          textAlign: "center",
+          fontWeight: 400,
+          fontSize: 11,
+          lineHeight: 16,
+          color: "rgba(0, 0, 0, 0.4)",
+          width: "100%"
+        }} />
+      </div>
+      <div className={styles.form__actions}>
+        <Button
+          variant="primary"
+          type="solid"
+          full={true}
+        >
+          Continue
+        </Button>
+        <Button
+          variant="secondary"
+          type="outline"
+          full={true}
+        >
+          Join the waitlist
+        </Button>
+      </div>
+    </form>
+  );
+}
 
 function Feature() {
   let list = [
@@ -62,7 +108,7 @@ function Feature() {
     },
     {
       icon: FeatureIcon2,
-      title: "Easy to use",
+      title: "Easy to Use",
       link: "https://revolicon.com",
     },
     {
@@ -99,20 +145,8 @@ export default function Welcome() {
     <div className={styles.welcome}>
       <div className={styles.content}>
         <Logo />
-        <Button
-          variant="primary"
-          type="solid"
-          full={true}
-        >
-          Continue
-        </Button>
-        <Button
-          variant="secondary"
-          type="outline"
-          full={true}
-        >
-          Join the waitlist
-        </Button>
+        <Texts />
+        <Form />
       </div>
       <Feature />
     </div>
