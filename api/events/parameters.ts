@@ -10,7 +10,7 @@ const iconSearch = (data: any) => {
       data: item,
       icon: createIconSvg({
         ...icons[item.name]?.svgs?.[item.style],
-        color: '#818181',
+        color: '#909090',
       })
     } as ParameterObject
   })
@@ -91,7 +91,7 @@ const styleParameters = ({ parameters, result }: ParameterInputEvent) => {
       },
       icon: createIconSvg({
         ...icons[parameters.icon.name]?.svgs?.[style],
-        color: '#818181',
+        color: '#909090',
       })
     } as ParameterObject
   })
