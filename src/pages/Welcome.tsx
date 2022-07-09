@@ -1,12 +1,12 @@
 import React from "react";
-import "../scss/App.scss";
 import styles from "../scss/Welcome.module.scss";
 
 import FeatureIcon1 from "../assets/feature/beautiful.png";
 import FeatureIcon2 from "../assets/feature/easy-to-use.png";
 import FeatureIcon3 from "../assets/feature/open-source.png";
 import FeatureEffect from "../assets/feature/effect.png";
-import Button from "../ui/Buttons";
+
+import Button from "../ui/Button";
 
 function Logo() {
   return (
@@ -99,8 +99,20 @@ export default function Welcome() {
     <div className={styles.welcome}>
       <div className={styles.content}>
         <Logo />
-        <Button variant="primary" type="solid">Continue</Button>
-        <Button variant="secondary" type="outline">Join the waitlist</Button>
+        <Button
+          variant="primary"
+          type="solid"
+          full={true}
+        >
+          Continue
+        </Button>
+        <Button
+          variant="secondary"
+          type="outline"
+          full={true}
+        >
+          Join the waitlist
+        </Button>
       </div>
       <Feature />
     </div>

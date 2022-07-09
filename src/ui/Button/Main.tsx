@@ -15,6 +15,7 @@ interface ButtonProps {
   type?: ButtonType
   variant?: ButtonVariant
   disabled?: boolean
+  full?: boolean
   className?: string
 }
 
@@ -23,6 +24,7 @@ const Main = ({
   type = "solid",
   variant = "primary",
   disabled,
+  full,
   className
 }: ButtonProps) => {
   return (
@@ -30,7 +32,10 @@ const Main = ({
       "button",
       `button--${type}`,
       `button--${variant}`,
-      { "button--disabled": disabled },
+      {
+        "button--disabled": disabled,
+        "button--full": full
+      },
       className
     )}>
       {children}

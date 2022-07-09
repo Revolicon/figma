@@ -2,6 +2,9 @@ import * as React from "react";
 import ReactDOM from "react-dom/client";
 import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
 
+// Main Style
+import "./scss/main.scss";
+
 // Router Pages
 import Welcome from "./pages/Welcome";
 import App from "./pages/App";
