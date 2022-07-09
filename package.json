@@ -18,6 +18,7 @@
   "author": "Revolicon",
   "license": "MIT License",
   "dependencies": {
+    "algoliasearch": "^4.13.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
