@@ -127,7 +127,7 @@ function Feature() {
           className={styles.feature__item}
           key={index}
         >
-          <img src={item.icon} alt={item.title} />
+          <img src={item.icon} alt={item.title} draggable={false} />
           <span>{item.title}</span>
         </a>
       ))}
