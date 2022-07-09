@@ -23,17 +23,15 @@ function setUIType(type: string) {
 
 figma.on("run", ({ parameters }) => {
   if (parameters) {
-    let iconSlug: string = parameters?.icon.slug;
-    let iconStyle: IconStyle = parameters?.style?.slug ?? "line";
+    let iconSlug: string = parameters?.icon.name;
+    let iconStyle: IconStyle = parameters?.style?.name ?? "line";
     // @ts-ignore
     let iconObject: object = Icons?.[iconSlug]
-
-    // console.log(iconObject);
 
     createIcon({
       slug: iconSlug,
       style: iconStyle,
-      overlay: 2,
+      overlay: 1,
       version: "1.0.0",
       // @ts-ignore
       svg: iconObject.svgs?.[iconStyle]?.raw,
