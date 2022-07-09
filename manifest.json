@@ -3,7 +3,7 @@
   "id": "1123149718450481437",
   "api": "1.0.0",
   "editorType": ["figma"],
-  "permissions": [],
+  "permissions": ["currentuser"],
   "main": "dist/code.js",
   "ui": "dist/index.html",
   "parameterOnly": false,
