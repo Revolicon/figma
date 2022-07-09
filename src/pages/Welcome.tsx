@@ -6,6 +6,7 @@ import FeatureIcon1 from "../assets/feature/beautiful.png";
 import FeatureIcon2 from "../assets/feature/easy-to-use.png";
 import FeatureIcon3 from "../assets/feature/open-source.png";
 import FeatureEffect from "../assets/feature/effect.png";
+import Button from "../ui/Buttons";
 
 function Logo() {
   return (
@@ -70,6 +71,7 @@ function Feature() {
       link: "https://github.com/revolicon",
     },
   ];
+
   return (
     <div className={styles.feature}>
       {list.map((item, index) => (
@@ -97,6 +99,8 @@ export default function Welcome() {
     <div className={styles.welcome}>
       <div className={styles.content}>
         <Logo />
+        <Button variant="primary" type="solid">Continue</Button>
+        <Button variant="secondary" type="outline">Join the waitlist</Button>
       </div>
       <Feature />
     </div>

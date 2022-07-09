@@ -9,7 +9,7 @@ import Icons from "./pages/Icons";
 import Categories from "./pages/Categories";
 import Settings from "./pages/Settings";
 
-let isSingedIn = true;
+let isSingedIn = false;
 
 const root = ReactDOM.createRoot(
   document.getElementById("app") as HTMLElement
