@@ -53,7 +53,6 @@ const iconParameters = ({ query, result }: ParameterInputEvent) => {
             facetFilters: [["style:line", "style:brands"]],
           })
           .then(({ hits }) => {
-            console.log(hits);
             window.parent.postMessage({
               pluginMessage: {
                 type: "algoliaSearch",
