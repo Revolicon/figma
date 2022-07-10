@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {createRef, useRef, useState} from "react";
 import styles from "../scss/Welcome.module.scss";
 
 import FeatureIcon1 from "../assets/feature/beautiful.png";
@@ -8,6 +8,7 @@ import FeatureEffect from "../assets/feature/effect.png";
 
 import Button from "../ui/Button";
 import Input from "../ui/Input";
+import { Loading } from "../ui/Icons";
 
 function Logo() {
   return (
@@ -65,31 +66,45 @@ function Texts() {
   )
 }
 function Form() {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState({});
   const [key, setKey] = useState("");
+
+  const keyRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(`Key: ${key}`)
+    console.log(keyRef);
+    if (!key) return keyRef?.current?.focus();
+    setLoading(true);
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        name="key"
-        placeholder="Private Beta Key"
-        full={true}
-        center={true}
-        autoFocus={true}
-        onChange={(e) => setKey(e.target.value)}
-      />
+      <label htmlFor="key">
+        <Input
+          ref={keyRef}
+          type="text"
+          name="key"
+          id="key"
+          placeholder="Private Beta Key"
+          autoFocus={true}
+          full={true}
+          center={true}
+          onChange={(e) => setKey(e.target.value)}
+        />
+      </label>
       <div className={styles.form__actions}>
         <Button
           variant="primary"
           type="solid"
           full={true}
+          loading={loading}
         >
-          Continue
+          {!loading && "Continue"}
+          {loading && (
+            <Loading height={16} width={16} />
+          )}
         </Button>
         <Button
           variant="secondary"

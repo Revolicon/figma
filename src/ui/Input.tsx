@@ -1,13 +1,14 @@
-import React, {InputHTMLAttributes, HTMLInputTypeAttribute} from "react";
+import React from "react";
 import classNames from "classnames"
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  [key: string]: any
   className?: string
   center?: boolean
   full?: boolean
 }
 
-const Input: React.FC<Props> = (props) => {
+const Input = (props, ref) => {
   const {
     className,
     center,
@@ -17,6 +18,7 @@ const Input: React.FC<Props> = (props) => {
   return (
     <input
       {...props}
+      ref={ref}
       className={classNames(
         "input",
         {
@@ -27,6 +29,6 @@ const Input: React.FC<Props> = (props) => {
       )}
     />
   )
-}
+};
 
-export default Input;
+export default React.forwardRef<HTMLInputElement, Props>(Input);
