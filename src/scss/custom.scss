@@ -5,3 +5,7 @@ body {
   user-select: none;
   font-feature-settings: "ss02" on, "liga" on, "calt" on;
 }
+
+html, body, #app {
+  height: 100%;
+}
