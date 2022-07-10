@@ -1,16 +1,14 @@
 import React, {createRef, useRef, useState} from "react";
 import styles from "../scss/Welcome.module.scss";
 
-import FeatureIcon1 from "../assets/feature/beautiful.png";
-import FeatureIcon2 from "../assets/feature/easy-to-use.png";
-import FeatureIcon3 from "../assets/feature/open-source.png";
-import FeatureEffect from "../assets/feature/effect.png";
+import FeatureIcon1 from "../assets/welcome/beautiful.png";
+import FeatureIcon2 from "../assets/welcome/easy-to-use.png";
+import FeatureIcon3 from "../assets/welcome/open-source.png";
+import FeatureEffect from "../assets/welcome/effect.png";
 
 import { Loading } from "../ui/Icons";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-
-import Alert from "../utils/Alert";
 
 function Logo() {
   return (
@@ -69,7 +67,6 @@ function Texts() {
 }
 function Form() {
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState({});
   const [key, setKey] = useState("");
 
   const keyRef = useRef<HTMLInputElement>(null);
@@ -79,9 +76,9 @@ function Form() {
     if (!key) return keyRef?.current?.focus();
     setLoading(true);
 
-    Alert("info", {
-      error: true
-    });
+    // Alert("info", {
+    //   error: true
+    // });
   }
 
   return (
@@ -96,6 +93,7 @@ function Form() {
           autoFocus={true}
           full={true}
           center={true}
+          disabled={loading}
           onChange={(e) => setKey(e.target.value)}
         />
       </label>
