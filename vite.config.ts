@@ -1,6 +1,6 @@
-import { defineConfig } from "vite";
-import reactRefresh from "@vitejs/plugin-react-refresh";
-import { viteSingleFile } from "vite-plugin-singlefile";
+import { defineConfig } from "vite"
+import reactRefresh from "@vitejs/plugin-react-refresh"
+import { viteSingleFile } from "vite-plugin-singlefile"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,4 +20,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

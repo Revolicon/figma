@@ -1,14 +1,9 @@
-import React from "react";
+import React from "react"
 import classNames from "classnames"
 
-type Type =
-  | "solid"
-  | "outline"
+type Type = "solid" | "outline"
 
-type Variant =
-  | "primary"
-  | "secondary"
-  | "destructive"
+type Variant = "primary" | "secondary" | "destructive"
 
 interface Props {
   children: React.ReactNode | string
@@ -29,7 +24,7 @@ const Main: React.FC<Props> = ({
   full,
   className,
   loading,
-  onClick
+  onClick,
 }) => {
   return (
     <button
@@ -41,7 +36,7 @@ const Main: React.FC<Props> = ({
         {
           "button--disabled": disabled,
           "button--full": full,
-          "button--loading": loading
+          "button--loading": loading,
         },
         className
       )}
@@ -51,4 +46,4 @@ const Main: React.FC<Props> = ({
   )
 }
 
-export default Main;
+export default Main

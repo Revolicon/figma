@@ -1,6 +1,6 @@
-import Icons from "../icons";
+import Icons from "../icons"
 
-let icons: any = Icons;
+let icons: any = Icons
 
 // Parameters Functions
 const iconSearch = (data: any) => {
@@ -10,18 +10,19 @@ const iconSearch = (data: any) => {
       data: item,
       icon: createIconSvg({
         ...icons[item.name]?.svgs?.[item.style],
-        color: '#909090',
-      })
+        color: "#909090",
+      }),
     } as ParameterObject
   })
 }
-const uppercaseFirstLetter = ([ first, ...rest ]: any) => first.toUpperCase() + rest.join('')
+const uppercaseFirstLetter = ([first, ...rest]: any) =>
+  first.toUpperCase() + rest.join("")
 const createIconSvg = (props: {
-  path: string;
-  viewBox: string[];
-  width: string;
-  height: string;
-  color?: string;
+  path: string
+  viewBox: string[]
+  width: string
+  height: string
+  color?: string
 }) => {
   return `<svg
     xmlns="http://www.w3.org/2000/svg"
@@ -30,13 +31,12 @@ const createIconSvg = (props: {
     viewBox="${props.viewBox.join(" ")}"
   >
     <path d="${props.path}" fill="${props.color}"/>
-  </svg>`;
+  </svg>`
 }
-
 
 // Parameters Actions
 const iconParameters = ({ query, result }: ParameterInputEvent) => {
-  if (!query) result.setLoadingMessage('Loading icons...');
+  if (!query) result.setLoadingMessage("Loading icons...")
 
   figma.showUI(
     `
@@ -71,17 +71,17 @@ const iconParameters = ({ query, result }: ParameterInputEvent) => {
       </script>
     `,
     { visible: false }
-  );
+  )
 
   figma.ui.onmessage = (message) => {
-    if (message.type === "algoliaSearch") result.setSuggestions(iconSearch(message.result))
+    if (message.type === "algoliaSearch")
+      result.setSuggestions(iconSearch(message.result))
     if (message.type === "algoliaError") {
       result.setError("An unexpected error has occurred!")
     }
-  };
+  }
 }
 const styleParameters = ({ parameters, result }: ParameterInputEvent) => {
-
   let styleList = parameters.icon.available.map((style: string) => {
     return {
       name: uppercaseFirstLetter(style),
@@ -90,8 +90,8 @@ const styleParameters = ({ parameters, result }: ParameterInputEvent) => {
       },
       icon: createIconSvg({
         ...icons[parameters.icon.name]?.svgs?.[style],
-        color: '#909090',
-      })
+        color: "#909090",
+      }),
     } as ParameterObject
   })
 
@@ -100,8 +100,8 @@ const styleParameters = ({ parameters, result }: ParameterInputEvent) => {
 
 // Parameters Loader
 figma.parameters.on("input", (event) => {
-  const { key } = event;
+  const { key } = event
 
-  if (key === "icon") iconParameters(event);
-  if (key === "style") styleParameters(event);
-});
+  if (key === "icon") iconParameters(event)
+  if (key === "style") styleParameters(event)
+})

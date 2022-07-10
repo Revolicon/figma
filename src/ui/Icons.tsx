@@ -1,6 +1,8 @@
-import React from "react";
+import React from "react"
 
-export function Loading(props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+export function Loading(
+  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

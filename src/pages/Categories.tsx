@@ -1,10 +1,6 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 export default function Categories() {
-  return (
-    <div>
-      Categories Page
-    </div>
-  )
+  return <div>Categories Page</div>
 }

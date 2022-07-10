@@ -15,21 +15,21 @@
 
   // Variants
   &--primary {
-    --solid-background: #18A0FB;
+    --solid-background: #18a0fb;
 
-    --outline-border: #18A0FB;
+    --outline-border: #18a0fb;
     --outline-border-focus: var(--outline-border);
   }
   &--secondary {
     --solid-background: rgba(0, 0, 0, 0.8);
 
     --outline-border: rgba(0, 0, 0, 0.8);
-    --outline-border-focus: #18A0FB;
+    --outline-border-focus: #18a0fb;
   }
   &--destructive {
-    --solid-background: #F24822;
+    --solid-background: #f24822;
 
-    --outline-border: #F24822;
+    --outline-border: #f24822;
     --outline-border-focus: var(--outline-border);
   }
 
@@ -61,7 +61,7 @@
     --outline-border: #000;
     --outline-border-focus: var(--outline-border);
     --outline-color: #000;
-    opacity: .3;
+    opacity: 0.3;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -69,8 +69,12 @@
     pointer-events: none;
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     svg {

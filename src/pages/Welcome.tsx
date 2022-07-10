@@ -1,14 +1,14 @@
-import React, {createRef, useRef, useState} from "react";
-import styles from "../scss/Welcome.module.scss";
+import React, { createRef, useRef, useState } from "react"
+import styles from "../scss/Welcome.module.scss"
 
-import FeatureIcon1 from "../assets/welcome/beautiful.png";
-import FeatureIcon2 from "../assets/welcome/easy-to-use.png";
-import FeatureIcon3 from "../assets/welcome/open-source.png";
-import FeatureEffect from "../assets/welcome/effect.png";
+import FeatureIcon1 from "../assets/welcome/beautiful.png"
+import FeatureIcon2 from "../assets/welcome/easy-to-use.png"
+import FeatureIcon3 from "../assets/welcome/open-source.png"
+import FeatureEffect from "../assets/welcome/effect.png"
 
-import { Loading } from "../ui/Icons";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
+import { Loading } from "../ui/Icons"
+import Button from "../ui/Button"
+import Input from "../ui/Input"
 
 function Logo() {
   return (
@@ -53,7 +53,7 @@ function Logo() {
         fill="#1696FF"
       />
     </svg>
-  );
+  )
 }
 function Texts() {
   return (
@@ -66,15 +66,15 @@ function Texts() {
   )
 }
 function Form() {
-  const [loading, setLoading] = useState(false);
-  const [key, setKey] = useState("");
+  const [loading, setLoading] = useState(false)
+  const [key, setKey] = useState("")
 
-  const keyRef = useRef<HTMLInputElement>(null);
+  const keyRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!key) return keyRef?.current?.focus();
-    setLoading(true);
+    event.preventDefault()
+    if (!key) return keyRef?.current?.focus()
+    setLoading(true)
 
     // Alert("info", {
     //   error: true
@@ -98,31 +98,24 @@ function Form() {
         />
       </label>
       <div className={styles.form__actions}>
-        <Button
-          variant="primary"
-          type="solid"
-          full={true}
-          loading={loading}
-        >
+        <Button variant="primary" type="solid" full={true} loading={loading}>
           {!loading && "Continue"}
-          {loading && (
-            <Loading height={16} width={16} />
-          )}
+          {loading && <Loading height={16} width={16} />}
         </Button>
         <Button
           variant="secondary"
           type="outline"
           full={true}
           onClick={(e) => {
-            e.preventDefault();
-            window.open("https://revolicon.com", "_blank");
+            e.preventDefault()
+            window.open("https://revolicon.com", "_blank")
           }}
         >
           Join the waitlist
         </Button>
       </div>
     </form>
-  );
+  )
 }
 
 function Feature() {
@@ -142,7 +135,7 @@ function Feature() {
       title: "Open Source",
       link: "https://github.com/revolicon",
     },
-  ];
+  ]
 
   return (
     <div className={styles.feature}>
@@ -163,7 +156,7 @@ function Feature() {
         alt="Effect"
       />
     </div>
-  );
+  )
 }
 
 export default function Welcome() {
@@ -176,5 +169,5 @@ export default function Welcome() {
       </div>
       <Feature />
     </div>
-  );
+  )
 }

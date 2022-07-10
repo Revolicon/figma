@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import classNames from "classnames"
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -9,11 +9,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = (props, ref) => {
-  const {
-    className,
-    center,
-    full,
-  } = props;
+  const { className, center, full } = props
 
   return (
     <input
@@ -29,6 +25,6 @@ const Input = (props, ref) => {
       )}
     />
   )
-};
+}
 
-export default React.forwardRef<HTMLInputElement, Props>(Input);
+export default React.forwardRef<HTMLInputElement, Props>(Input)

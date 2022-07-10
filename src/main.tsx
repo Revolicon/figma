@@ -1,22 +1,20 @@
-import * as React from "react";
-import ReactDOM from "react-dom/client";
-import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
+import * as React from "react"
+import ReactDOM from "react-dom/client"
+import { MemoryRouter as Router, Routes, Route } from "react-router-dom"
 
 // Main Style
-import "./scss/main.scss";
+import "./scss/main.scss"
 
 // Router Pages
-import Welcome from "./pages/Welcome";
-import App from "./pages/App";
-import Icons from "./pages/Icons";
-import Categories from "./pages/Categories";
-import Settings from "./pages/Settings";
+import Welcome from "./pages/Welcome"
+import App from "./pages/App"
+import Icons from "./pages/Icons"
+import Categories from "./pages/Categories"
+import Settings from "./pages/Settings"
 
-let isSingedIn = false;
+let isSingedIn = false
 
-const root = ReactDOM.createRoot(
-  document.getElementById("app") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement)
 root.render(
   <React.StrictMode>
     <Router>
@@ -36,4 +34,4 @@ root.render(
       )}
     </Router>
   </React.StrictMode>
-);
+)
