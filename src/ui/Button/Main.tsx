@@ -18,6 +18,7 @@ interface Props {
   full?: boolean
   className?: string
   onClick?: (e: React.MouseEvent) => void
+  loading?: boolean
 }
 
 const Main: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const Main: React.FC<Props> = ({
   disabled,
   full,
   className,
+  loading,
   onClick
 }) => {
   return (
@@ -38,7 +40,8 @@ const Main: React.FC<Props> = ({
         `button--${variant}`,
         {
           "button--disabled": disabled,
-          "button--full": full
+          "button--full": full,
+          "button--loading": loading
         },
         className
       )}

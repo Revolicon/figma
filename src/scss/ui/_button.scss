@@ -33,21 +33,6 @@
     --outline-border-focus: var(--outline-border);
   }
 
-  // States
-  &--full {
-    width: 100%;
-  }
-  &--disabled {
-    --solid-background: #000;
-
-    --outline-border: #000;
-    --outline-border-focus: var(--outline-border);
-    --outline-color: #000;
-    opacity: .3;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
   // Types
   &--solid {
     background: var(--solid-background);
@@ -63,6 +48,36 @@
 
     &:focus {
       box-shadow: inset 0 0 0 2px var(--outline-border-focus);
+    }
+  }
+
+  // States
+  &--full {
+    width: 100%;
+  }
+  &--disabled {
+    --solid-background: #000;
+
+    --outline-border: #000;
+    --outline-border-focus: var(--outline-border);
+    --outline-color: #000;
+    opacity: .3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  &--loading {
+    pointer-events: none;
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    svg {
+      animation: spin 1s linear infinite;
+    }
+    &:focus {
+      box-shadow: inherit;
     }
   }
 }
