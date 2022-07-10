@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../scss/Welcome.module.scss";
 
 import FeatureIcon1 from "../assets/feature/beautiful.png";
@@ -7,6 +7,7 @@ import FeatureIcon3 from "../assets/feature/open-source.png";
 import FeatureEffect from "../assets/feature/effect.png";
 
 import Button from "../ui/Button";
+import Input from "../ui/Input";
 
 function Logo() {
   return (
@@ -64,21 +65,24 @@ function Texts() {
   )
 }
 function Form() {
+  const [key, setKey] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    alert(`Key: ${key}`)
+  }
+
   return (
-    <form className={styles.form}>
-      <div className={styles.form__input}>
-        <input type="text" placeholder="Private beta key" style={{
-          height: 32,
-          border: "1px solid #F5F5F5",
-          borderRadius: 6,
-          textAlign: "center",
-          fontWeight: 400,
-          fontSize: 11,
-          lineHeight: 16,
-          color: "rgba(0, 0, 0, 0.4)",
-          width: "100%"
-        }} />
-      </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <Input
+        type="text"
+        name="key"
+        placeholder="Private Beta Key"
+        full={true}
+        center={true}
+        autoFocus={true}
+        onChange={(e) => setKey(e.target.value)}
+      />
       <div className={styles.form__actions}>
         <Button
           variant="primary"
@@ -91,6 +95,10 @@ function Form() {
           variant="secondary"
           type="outline"
           full={true}
+          onClick={(e) => {
+            e.preventDefault();
+            window.open("https://revolicon.com", "_blank");
+          }}
         >
           Join the waitlist
         </Button>

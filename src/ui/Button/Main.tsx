@@ -1,43 +1,48 @@
 import React from "react";
 import classNames from "classnames"
 
-type ButtonType =
+type Type =
   | "solid"
   | "outline"
 
-type ButtonVariant =
+type Variant =
   | "primary"
   | "secondary"
   | "destructive"
 
-interface ButtonProps {
+interface Props {
   children: React.ReactNode | string
-  type?: ButtonType
-  variant?: ButtonVariant
+  type?: Type
+  variant?: Variant
   disabled?: boolean
   full?: boolean
   className?: string
+  onClick?: (e: React.MouseEvent) => void
 }
 
-const Main = ({
+const Main: React.FC<Props> = ({
   children,
   type = "solid",
   variant = "primary",
   disabled,
   full,
-  className
-}: ButtonProps) => {
+  className,
+  onClick
+}) => {
   return (
-    <button className={classNames(
-      "button",
-      `button--${type}`,
-      `button--${variant}`,
-      {
-        "button--disabled": disabled,
-        "button--full": full
-      },
-      className
-    )}>
+    <button
+      onClick={onClick}
+      className={classNames(
+        "button",
+        `button--${type}`,
+        `button--${variant}`,
+        {
+          "button--disabled": disabled,
+          "button--full": full
+        },
+        className
+      )}
+    >
       {children}
     </button>
   )

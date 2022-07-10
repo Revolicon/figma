@@ -1,0 +1,38 @@
+.input {
+  --border-width: 1px;
+  --border-color: #F5F5F5;
+
+  width: fit-content;
+  display: flex;
+  padding: 8px;
+  transition: all .1s ease-in-out;
+  height: 32px;
+  background: #FFFFFF;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
+  border: 0;
+  outline: none;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  &:hover {
+    --border-color: #EBEBEB;
+  }
+  &:focus {
+    --border-width: 2px;
+    --border-color: #18A0FB;
+  }
+
+  &--center {
+    justify-content: center;
+    text-align: center;
+  }
+  &--full {
+    width: 100%;
+  }
+}

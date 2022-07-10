@@ -42,7 +42,7 @@ figma.on("run", ({ parameters }) => {
     title: "Revolicon",
     height: 512,
     width: 280,
-    themeColors: true
+    themeColors: false
   });
 
   setUIType("default")
