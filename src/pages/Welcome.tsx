@@ -6,9 +6,11 @@ import FeatureIcon2 from "../assets/feature/easy-to-use.png";
 import FeatureIcon3 from "../assets/feature/open-source.png";
 import FeatureEffect from "../assets/feature/effect.png";
 
+import { Loading } from "../ui/Icons";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-import { Loading } from "../ui/Icons";
+
+import Alert from "../utils/Alert";
 
 function Logo() {
   return (
@@ -74,9 +76,12 @@ function Form() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(keyRef);
     if (!key) return keyRef?.current?.focus();
     setLoading(true);
+
+    Alert("info", {
+      error: true
+    });
   }
 
   return (
