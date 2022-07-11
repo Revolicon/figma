@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
 import styles from "./styles.module.scss"
 
-import Feature from "@/pages/Welcome/Feature";
-import Form from "@/pages/Welcome/Form";
+import Feature from "@/pages/Welcome/Feature"
+import Form from "@/pages/Welcome/Form"
 
 function Logo() {
   return (
@@ -61,7 +61,7 @@ function Texts() {
   )
 }
 
-const Welcome : React.FC = () => {
+const Welcome: React.FC = () => {
   return (
     <div className={styles.welcome}>
       <div className={styles.content}>

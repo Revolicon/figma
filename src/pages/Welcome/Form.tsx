@@ -1,10 +1,10 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react"
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.scss"
 
-import Input from "@/components/Input";
-import Button from "@/components/Button";
-import {Loading} from "@/components/Icons";
+import Input from "@/components/Input"
+import Button from "@/components/Button"
+import { Loading } from "@/components/Icons"
 
 const Form: React.FC = () => {
   const [loading, setLoading] = useState(false)

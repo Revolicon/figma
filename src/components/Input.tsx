@@ -1,4 +1,4 @@
-import React, {RefObject} from "react"
+import React, { RefObject } from "react"
 import classNames from "classnames"
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -8,7 +8,6 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   center?: boolean
   full?: boolean
 }
-
 
 const Input: React.FC<Props> = (props) => {
   const { innerRef, className, center, full } = props

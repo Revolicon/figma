@@ -1,7 +1,7 @@
 import { MemoryRouter as RouterProvider, Routes, Route } from "react-router-dom"
 
 // Pages
-import Welcome from "@/pages/Welcome";
+import Welcome from "@/pages/Welcome"
 
 // Auth
 let isSingedIn = false
@@ -14,11 +14,7 @@ const Router = () => {
           <Route path="/" element={<Welcome />} />
         </Routes>
       )}
-      {isSingedIn && (
-        <Routes>
-
-        </Routes>
-      )}
+      {isSingedIn && <Routes></Routes>}
     </RouterProvider>
   )
 }

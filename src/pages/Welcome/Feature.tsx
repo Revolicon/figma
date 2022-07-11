@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.scss"
 
 import FeatureIcon1 from "@/images/welcome/beautiful.png"
 import FeatureIcon2 from "@/images/welcome/easy-to-use.png"
