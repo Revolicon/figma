@@ -5,6 +5,6 @@ import "./styles/main.scss"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <div>testa sadfasdg</div>
+    <div>Hello World!</div>
   </React.StrictMode>
 )
