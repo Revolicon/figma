@@ -51,6 +51,7 @@
     flex: 1;
     position: relative;
     z-index: 1;
+    outline: none;
 
     img {
       height: 36px;
@@ -63,6 +64,12 @@
       line-height: 16px;
       text-align: center;
       color: var(--figma-color-text-secondary);
+    }
+
+    &:focus-within {
+      span {
+        color: var(--figma-color-text);
+      }
     }
   }
   &__effect {

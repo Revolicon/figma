@@ -20,7 +20,7 @@
   &::placeholder {
     color: var(--figma-color-text-secondary);
   }
-  &:hover {
+  &:not([disabled]):hover {
     --border-color: var(--figma-color-bg-tertiary);
   }
   &:focus {
