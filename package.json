@@ -15,6 +15,7 @@
     "dev": "concurrently -n tsc,build,vite 'npm:tsc:watch' 'npm:build:watch' 'vite'"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0"
