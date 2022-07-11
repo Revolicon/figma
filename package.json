@@ -1,7 +1,6 @@
 {
   "name": "revolicon-figma",
   "version": "1.0.0",
-  "license": "MIT",
   "scripts": {
     "format": "prettier --write .",
     "tsc": "yarn tsc:main && yarn tsc:ui",
