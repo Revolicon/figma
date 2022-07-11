@@ -4,6 +4,8 @@ body {
   margin: 0;
   user-select: none;
   font-feature-settings: "ss02" on, "liga" on, "calt" on;
+  background: var(--figma-color-bg, #ffffff);
+  color: var(--figma-color-text, #000000);
 }
 
 html, body, #app {

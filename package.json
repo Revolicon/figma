@@ -1,41 +1,34 @@
 {
   "name": "revolicon-figma",
   "version": "1.0.0",
-  "description": "Revolicon Figma Plugin",
+  "license": "MIT",
   "scripts": {
-    "test": "npm run tsc && npm run build",
     "format": "prettier --write .",
-    "tsc": "npm run tsc:main && npm run tsc:ui",
+    "tsc": "yarn tsc:main && yarn tsc:ui",
     "tsc:main": "tsc --noEmit -p api",
     "tsc:ui": "tsc --noEmit -p src",
-    "tsc:watch": "concurrently -n widget,iframe \"npm run tsc:main -- --watch --preserveWatchOutput\" \"npm run tsc:ui -- --watch --preserveWatchOutput\"",
-    "build": "npm run build:ui && npm run build:main -- --minify",
-    "build:main": "esbuild api/code.ts --bundle --outfile=dist/code.js",
+    "tsc:watch": "concurrently -n widget,iframe \"yarn tsc:main --watch --preserveWatchOutput\" \"yarn tsc:ui --watch --preserveWatchOutput\"",
+    "build": "yarn build:ui && yarn build:main",
+    "build:main": "esbuild api/index.ts --bundle --minify --outfile=dist/code.js",
     "build:ui": "npx vite build --minify esbuild --emptyOutDir=false",
-    "build:watch": "concurrently -n widget,iframe \"npm run build:main -- --watch\" \"npm run build:ui -- --watch\"",
+    "build:watch": "concurrently -n widget,iframe \"yarn build:main --watch\" \"yarn build:ui --watch\"",
     "dev": "concurrently -n tsc,build,vite 'npm:tsc:watch' 'npm:build:watch' 'vite'"
   },
-  "author": "Revolicon",
-  "license": "MIT License",
   "dependencies": {
-    "algoliasearch": "^4.13.1",
-    "classnames": "^2.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
-    "sass": "^1.53.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@figma/plugin-typings": "*",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "@figma/plugin-typings": "^1.49.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
     "concurrently": "^7.2.2",
-    "esbuild": "^0.14.47",
-    "prettier": "^2.3.2",
-    "typescript": "^4.4.2",
-    "vite": "^2.5.2",
-    "vite-plugin-singlefile": "^0.5.1",
-    "vite-svg-loader": "^3.3.0"
+    "esbuild": "^0.14.49",
+    "prettier": "^2.7.1",
+    "sass": "^1.53.0",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9",
+    "vite-plugin-singlefile": "^0.10.0"
   }
 }

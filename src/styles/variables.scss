@@ -1,0 +1,27 @@
+:root {
+  --figma-color-bg-brand: #0070f3;
+  --figma-color-bg-component: #7B61FF;
+  --figma-color-bg-success: #14AE5C;
+  --figma-color-bg-danger: #F24822;
+
+  --figma-color-text: #{rgba(#000000, .9)};
+  --figma-color-text-secondary: #{rgba(#000000, .4)};
+
+  --figma-color-bg: #ffffff;
+  --figma-color-bg-secondary: #F5F5F5;
+  --figma-color-bg-tertiary: #EBEBEB;
+}
+
+.figma-dark:root {
+  --figma-color-bg-brand: #0c8ce9;
+  --figma-color-bg-component: #8A38F5;
+  --figma-color-bg-success: #198F51;
+  --figma-color-bg-danger: #e03e1a;
+
+  --figma-color-text: #{rgba(#ffffff, .9)};
+  --figma-color-text-secondary: #{rgba(#ffffff, .4)};
+
+  --figma-color-bg: #2C2C2C;
+  --figma-color-bg-secondary: #383838;
+  --figma-color-bg-tertiary: #444444;
+}

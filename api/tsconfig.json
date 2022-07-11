@@ -5,6 +5,7 @@
     "strict": true,
     "typeRoots": ["../node_modules/@figma"],
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "isolatedModules": false
   }
 }
