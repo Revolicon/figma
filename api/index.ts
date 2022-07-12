@@ -4,3 +4,5 @@ figma.showUI(__html__, {
   width: 280,
   themeColors: true,
 })
+
+console.log(figma.currentUser);
