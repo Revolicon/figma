@@ -1,4 +1,4 @@
-const Notify = ({ data, callback }: ListenerOptions) => {
+const Notify = ({ data }: ListenerOptions) => {
   let { message, timeout = 4000, error = false } = data
 
   figma.notify("[Revolicon] " + message, {
