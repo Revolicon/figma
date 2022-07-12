@@ -8,7 +8,8 @@ import Button from "@/components/Button"
 
 import { Loading } from "@/components/Icons"
 
-import notify from "@/utils/notify";
+import setNotify from "@/utils/notify";
+import getUser from "@/utils/user";
 
 type messagesType = {
   [key: string]: string
@@ -32,22 +33,25 @@ const Form: React.FC = () => {
     if (!key || key.length !== 19) return keyRef?.current?.focus()
     setLoading(true)
 
-    axios
-      .post("https://api.revolicon.com/invite", {
-        key,
-        figmaId: "0000000000",
-        figmaName: "John Doe",
-        figmaData: {},
-      })
-      .then((response) => {
-        notify(messages[response.data.message])
-      })
-      .catch((error) => {
-        notify(messages[error.response.data.message], {
-          error: true,
+    getUser((userData: any) => {
+      axios
+        .post("https://api.revolicon.com/invite", {
+          key,
+          figmaId: userData.id,
+          figmaName: userData.name,
+          figmaData: userData,
         })
-      })
-      .finally(() => setLoading(false))
+        .then((response) => {
+          console.log(messages[response.data.message]);
+          // setNotify(messages[response.data.message])
+        })
+        .catch((error) => {
+          setNotify(messages[error.response.data.message], {
+            error: true,
+          })
+        })
+        .finally(() => setLoading(false))
+    })
   }
 
   return (
