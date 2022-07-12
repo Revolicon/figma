@@ -6,6 +6,7 @@ import styles from "./styles.module.scss"
 import Input from "@/components/Input"
 import Button from "@/components/Button"
 import { Loading } from "@/components/Icons"
+import notify from "@/utils/notify";
 
 const Form: React.FC = () => {
   const [loading, setLoading] = useState(false)
