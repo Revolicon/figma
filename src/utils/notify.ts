@@ -3,7 +3,17 @@ interface NotificationOptions {
   error?: boolean
 }
 
-const notify = (message: string, { error, timeout }: NotificationOptions = {}) => {
-  return alert(`[${error ? "Error" : "Alert"}] ${message}`)
+const notify = (message: string, { error = false, timeout = 3000 }: NotificationOptions = {}) => {
+  if (!message) return;
+  parent.postMessage({
+    pluginMessage: {
+      event: "notify",
+      data: {
+        message: message,
+        error,
+        timeout,
+      }
+    }
+  }, '*')
 }
 export default notify
