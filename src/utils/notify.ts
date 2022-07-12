@@ -3,7 +3,7 @@ interface NotificationOptions {
   error?: boolean
 }
 
-const notify = (message: string, { error = false, timeout = 3000 }: NotificationOptions = {}) => {
+const notify = (message: string, { error = false, timeout = 4000 }: NotificationOptions = {}) => {
   if (!message) return;
   parent.postMessage({
     pluginMessage: {

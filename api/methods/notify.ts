@@ -1,11 +1,11 @@
 const Notify = ({ data, callback }: ListenerOptions) => {
   let {
     message,
-    timeout = 3000,
+    timeout = 4000,
     error = false
   } = data
 
-  figma.notify(message, {
+  figma.notify("[Revolicon] " + message, {
     timeout,
     error
   })
