@@ -5,8 +5,21 @@ import styles from "./styles.module.scss"
 
 import Input from "@/components/Input"
 import Button from "@/components/Button"
+
 import { Loading } from "@/components/Icons"
+
 import notify from "@/utils/notify";
+
+type messagesType = {
+  [key: string]: string
+}
+
+const messages: messagesType = {
+  KEY_NOT_FOUND: "Your key is invalid, please try again.",
+  FORM_NOT_VALIDATE: "An error occurred while submitting your data.",
+  DATABASE_ERROR: "An unexpected error occurred in the database.",
+  LOGIN_SUCCESS: "Beta key activation was successful."
+}
 
 const Form: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -16,12 +29,25 @@ const Form: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!key) return keyRef?.current?.focus()
+    if (!key || key.length !== 19) return keyRef?.current?.focus()
     setLoading(true)
 
-    // Alert("info", {
-    //   error: true
-    // });
+    axios
+      .post("https://api.revolicon.com/invite", {
+        key,
+        figmaId: "0000000000",
+        figmaName: "John Doe",
+        figmaData: {},
+      })
+      .then((response) => {
+        notify(messages[response.data.message])
+      })
+      .catch((error) => {
+        notify(messages[error.response.data.message], {
+          error: true,
+        })
+      })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -37,6 +63,8 @@ const Form: React.FC = () => {
           full={true}
           center={true}
           disabled={loading}
+          maxLength={19}
+          minLength={19}
           onChange={(e) => setKey(e.target.value)}
         />
       </label>
