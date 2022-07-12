@@ -1,7 +1,7 @@
 const User = ({}: ListenerOptions) => {
   figma.ui.postMessage({
     event: "user",
-    data: figma.currentUser
+    data: figma.currentUser,
   })
 }
 

@@ -3,17 +3,23 @@ interface NotificationOptions {
   error?: boolean
 }
 
-const setNotify = (message: string, { error = false, timeout = 4000 }: NotificationOptions = {}) => {
-  if (!message) return;
-  parent.postMessage({
-    pluginMessage: {
-      event: "notify",
-      data: {
-        message: message,
-        error,
-        timeout,
-      }
-    }
-  }, '*')
+const setNotify = (
+  message: string,
+  { error = false, timeout = 4000 }: NotificationOptions = {}
+) => {
+  if (!message) return
+  parent.postMessage(
+    {
+      pluginMessage: {
+        event: "notify",
+        data: {
+          message: message,
+          error,
+          timeout,
+        },
+      },
+    },
+    "*"
+  )
 }
 export default setNotify

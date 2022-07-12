@@ -8,8 +8,8 @@ import Button from "@/components/Button"
 
 import { Loading } from "@/components/Icons"
 
-import setNotify from "@/utils/notify";
-import getUser from "@/utils/user";
+import setNotify from "@/utils/notify"
+import getUser from "@/utils/user"
 
 type messagesType = {
   [key: string]: string
@@ -19,7 +19,7 @@ const messages: messagesType = {
   KEY_NOT_FOUND: "Your key is invalid, please try again.",
   FORM_NOT_VALIDATE: "An error occurred while submitting your data.",
   DATABASE_ERROR: "An unexpected error occurred in the database.",
-  LOGIN_SUCCESS: "Beta key activation was successful."
+  LOGIN_SUCCESS: "Beta key activation was successful.",
 }
 
 const Form: React.FC = () => {
@@ -42,7 +42,7 @@ const Form: React.FC = () => {
           figmaData: userData,
         })
         .then((response) => {
-          console.log(messages[response.data.message]);
+          console.log(messages[response.data.message])
           // setNotify(messages[response.data.message])
         })
         .catch((error) => {

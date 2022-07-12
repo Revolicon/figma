@@ -1,5 +1,5 @@
-import Notify from "../methods/notify";
-import User from "../methods/user";
+import Notify from "../methods/notify"
+import User from "../methods/user"
 
 figma.ui.onmessage = (options: ListenerOptions) => {
   const { event } = options

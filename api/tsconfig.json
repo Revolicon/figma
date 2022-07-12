@@ -4,10 +4,7 @@
     "target": "es6",
     "lib": ["es6", "ESNext"],
     "strict": true,
-    "typeRoots": [
-      "../node_modules/@figma",
-      "../node_modules/@types"
-    ],
+    "typeRoots": ["../node_modules/@figma", "../node_modules/@types"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": false

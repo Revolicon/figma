@@ -1,9 +1,12 @@
 const getUser = (callback: Function) => {
-  parent.postMessage({
-    pluginMessage: {
-      event: "user"
-    }
-  }, '*')
+  parent.postMessage(
+    {
+      pluginMessage: {
+        event: "user",
+      },
+    },
+    "*"
+  )
 
   onmessage = (result) => {
     let { event, data } = result.data.pluginMessage
