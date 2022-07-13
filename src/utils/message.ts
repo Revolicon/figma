@@ -1,14 +1,27 @@
-export const postMessage = (event: string, data?: any) => {
+interface postMessageOptions {
+  (event: string, callback?: Function): void
+  (event: string, data?: Object, callback?: Function): void
+}
+
+export const postMessage: postMessageOptions = (
+  event: string,
+  data?: Object | Function,
+  callback?: Function
+) => {
   if (!event) return
+
   parent.postMessage(
     {
       pluginMessage: {
         event,
-        data,
+        data: (typeof data !== "function" && data) || {},
       },
     },
     "*"
   )
+
+  if (typeof data === "function") callback = data
+  if (callback) getMessage(event, callback)
 }
 export const getMessage = (event: string, callback: Function) => {
   onmessage = (result) => {
