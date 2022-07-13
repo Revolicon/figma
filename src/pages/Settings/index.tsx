@@ -27,6 +27,30 @@ const Settings: React.FC = () => {
       console.log(data)
     })
   }
+  const setMultipleDataFunction = () => {
+    postMessage("settings/setMultipleData", [
+      { key: "setMultipleDataTest1", value: "TEST-1-!" },
+      { key: "setMultipleDataTest2", value: "TEST-2-!" },
+      { key: "setMultipleDataTest3", value: [1, 2, 3, 4, 5] },
+      { key: "setMultipleDataTest4", value: true },
+      { key: "setMultipleDataTest5", value: false },
+      { key: "setMultipleDataTest6", value: 23462364 },
+      { key: "setMultipleDataTest7", value: 1.4151 },
+      { key: "setMultipleDataTest8", value: { test: "a", test2: 2 } },
+    ])
+  }
+  const removeMultipleDataFunction = () => {
+    postMessage("settings/removeMultipleData", [
+      "setMultipleDataTest1",
+      "setMultipleDataTest2",
+      "setMultipleDataTest3",
+      "setMultipleDataTest4",
+      "setMultipleDataTest5",
+      "setMultipleDataTest6",
+      "setMultipleDataTest7",
+      "setMultipleDataTest8",
+    ])
+  }
 
   return (
     <div
@@ -34,7 +58,7 @@ const Settings: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         gap: 10,
-        padding: 20,
+        padding: 12,
       }}
     >
       <Button full={true} onClick={() => setTestDataFunction()}>
@@ -46,9 +70,17 @@ const Settings: React.FC = () => {
       <Button full={true} onClick={() => removeTestDataFunction()}>
         Remove Test Data
       </Button>
-      <hr />
+
+      <hr style={{ margin: "10px 0" }} />
+
+      <Button full={true} onClick={() => setMultipleDataFunction()}>
+        Set Multiple Data
+      </Button>
       <Button full={true} onClick={() => getMultipleDataFunction()}>
         Get Multiple Data
+      </Button>
+      <Button full={true} onClick={() => removeMultipleDataFunction()}>
+        Remove Multiple Data
       </Button>
     </div>
   )

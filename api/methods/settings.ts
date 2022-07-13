@@ -1,18 +1,15 @@
-interface Settings {
-  [key: string]: SettingsItem | string
-}
 interface SettingsItem {
   key: string
-  value: SettingsValue | string
+  value: SettingsValue | any
 }
 interface SettingsValue {
   data: string
   type?: string
 }
 
-const setMultipleData = (settings: Settings) => {
-  Object.keys(settings).map((key) => {
-    figma.root.setPluginData(key, settings[key].toString())
+const setMultipleData = (settings: Array<SettingsItem>) => {
+  settings.map((value) => {
+    setData(value)
   })
 }
 const getMultipleData = () => {
@@ -20,7 +17,7 @@ const getMultipleData = () => {
 
   let dataValueList = {}
   dataKeyList.map((key) => {
-    ;(dataValueList as any)[key] = figma.root.getPluginData(key)
+    ;(dataValueList as any)[key] = getItem(key)
   })
 
   figma.ui.postMessage({
@@ -29,6 +26,10 @@ const getMultipleData = () => {
   })
 
   return dataValueList
+}
+const removeMultipleData = (keys: Array<string>) => {
+  if (!keys) return
+  keys.map((key) => removeData(key))
 }
 
 const setData = ({ key, value }: SettingsItem) => {
@@ -45,6 +46,20 @@ const setData = ({ key, value }: SettingsItem) => {
   )
 }
 const getData = (key: any) => {
+  if (!key) return
+  let data = getItem(key)
+
+  figma.ui.postMessage({
+    event: "settings/getData",
+    data: data ?? null,
+  })
+}
+const removeData = (key: any) => {
+  if (!key) return
+  figma.root.setPluginData(key, "")
+}
+
+const getItem = (key: any) => {
   let data = figma.root.getPluginData(key)
   if (!data) return
 
@@ -64,34 +79,22 @@ const getData = (key: any) => {
         break
     }
 
-    figma.ui.postMessage({
-      event: "settings/getData",
-      data: dataValue ?? null,
-    })
-
-    return dataValue
-  } catch (err) {
-    figma.ui.postMessage({
-      event: "settings/getData",
-      data: data ?? null,
-    })
-
+    return dataValue ?? dataObject
+  } catch (error) {
     return data
   }
-}
-const removeData = (key: any) => {
-  if (!key) return
-  figma.root.setPluginData(key, "")
 }
 
 const Settings = ({ event, data }: ListenerOptions) => {
   let runnerName = event.split("/")[1]
   let runnerList: any = {
+    getItem,
     setData,
     getData,
     removeData,
     setMultipleData,
     getMultipleData,
+    removeMultipleData,
   }
 
   ;(runnerList[runnerName] as any)(data)
