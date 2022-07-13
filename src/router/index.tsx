@@ -1,8 +1,10 @@
 import { MemoryRouter as RouterProvider, Routes, Route } from "react-router-dom"
 
+import { useStore } from "@/store"
+
 // Pages
 import Welcome from "@/pages/Welcome"
-import { useStore } from "@/store"
+import Settings from "@/pages/Settings"
 
 // Auth
 let isSingedIn = false
@@ -17,7 +19,11 @@ const Router = () => {
           <Route path="/" element={<Welcome />} />
         </Routes>
       )}
-      {auth.isLogin && <div>a</div>}
+      {auth.isLogin && (
+        <Routes>
+          <Route path="/" element={<Settings />} />
+        </Routes>
+      )}
     </RouterProvider>
   )
 }
