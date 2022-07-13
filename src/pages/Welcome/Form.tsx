@@ -10,6 +10,7 @@ import { Loading } from "@/components/Icons"
 
 import setNotify from "@/utils/notify"
 import getUser from "@/utils/user"
+import { useStore } from "@/store"
 
 type messagesType = {
   [key: string]: string
@@ -23,6 +24,8 @@ const messages: messagesType = {
 }
 
 const Form: React.FC = () => {
+  const { auth } = useStore()
+
   const [loading, setLoading] = useState(false)
   const [key, setKey] = useState("")
 
@@ -42,8 +45,8 @@ const Form: React.FC = () => {
           figmaData: userData,
         })
         .then((response) => {
-          console.log(messages[response.data.message])
           // setNotify(messages[response.data.message])
+          auth.setIsLogin(true)
         })
         .catch((error) => {
           setNotify(messages[error.response.data.message], {
