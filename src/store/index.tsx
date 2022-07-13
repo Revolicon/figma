@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react"
 
 import { AuthStore } from "@/store/auth"
+import { SettingsStore } from "@/store/settings"
 
 interface Props {
   children: React.ReactNode
@@ -8,9 +9,8 @@ interface Props {
 
 export const StoreData = () => {
   return {
-    auth: {
-      ...AuthStore(),
-    },
+    auth: AuthStore(),
+    settings: SettingsStore(),
   }
 }
 

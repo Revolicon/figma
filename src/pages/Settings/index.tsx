@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react"
-import { getMessage, postMessage } from "@/utils/message"
+import React, { useEffect, useMemo, useState } from "react"
+import { postMessage } from "@/utils/message"
 
 import Button from "@/components/Button"
 
@@ -9,25 +9,24 @@ const Settings: React.FC = () => {
 
   const setTestDataFunction = () => {
     postMessage("settings/setData", {
-      key: "setTestDataFunction",
+      key: "testDataFunction",
       value: "TEST!",
     })
+  }
+  const getTestDataFunction = () => {
+    postMessage("settings/getData", "testDataFunction", (data: any) => {
+      console.log(data)
+    })
+  }
+  const removeTestDataFunction = () => {
+    postMessage("settings/removeData", "testDataFunction")
+  }
+
+  const getMultipleDataFunction = () => {
     postMessage("settings/getMultipleData", (data: any) => {
       console.log(data)
     })
   }
-
-  // useMemo(() => {
-  //   postMessage("settings/getMultipleData")
-  //   getMessage("settings/getMultipleData", (data: any) => {
-  //     setState(data)
-  //     setLoading(false)
-  //   })
-  // }, [])
-  //
-  // if (loading) {
-  //   return <div>loading</div>
-  // }
 
   return (
     <div
@@ -40,6 +39,16 @@ const Settings: React.FC = () => {
     >
       <Button full={true} onClick={() => setTestDataFunction()}>
         Set Test Data
+      </Button>
+      <Button full={true} onClick={() => getTestDataFunction()}>
+        Get Test Data
+      </Button>
+      <Button full={true} onClick={() => removeTestDataFunction()}>
+        Remove Test Data
+      </Button>
+      <hr />
+      <Button full={true} onClick={() => getMultipleDataFunction()}>
+        Get Multiple Data
       </Button>
     </div>
   )
