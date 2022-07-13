@@ -2,7 +2,7 @@ interface Settings {
   [key: string]: SettingsOptions | string
 }
 interface SettingsOptions {
-  value: string
+  data: string
   type?: string
 }
 
@@ -26,14 +26,35 @@ const getMultipleData = () => {
 
   return dataValueList
 }
-// const setData = ({}: SettingsOptions) => {}
-// const getData = (slug: string) => {}
+
+const setData = ({
+  key,
+  value,
+}: {
+  key: string
+  value: SettingsOptions | string
+}) => {
+  if (!key) return
+  let optionsValue = value.toString()
+  if (typeof value === "object") optionsValue = JSON.stringify(value)
+
+  figma.root.setPluginData(
+    key,
+    JSON.stringify({
+      data: optionsValue,
+      type: typeof value,
+    })
+  )
+}
+const getData = (slug: string) => {}
 
 const Settings = ({ event, data }: ListenerOptions) => {
   let runnerName = event.split("/")[1]
   let runnerList: any = {
     setMultipleData,
     getMultipleData,
+    setData,
+    getData,
   }
 
   ;(runnerList[runnerName] as any)({ ...data })
