@@ -1,3 +1,5 @@
+import post from "@/utils/post"
+
 interface NotificationOptions {
   timeout?: number
   error?: boolean
@@ -5,21 +7,9 @@ interface NotificationOptions {
 
 const setNotify = (
   message: string,
-  { error = false, timeout = 4000 }: NotificationOptions = {}
+  { error, timeout }: NotificationOptions = {}
 ) => {
   if (!message) return
-  parent.postMessage(
-    {
-      pluginMessage: {
-        event: "notify",
-        data: {
-          message: message,
-          error,
-          timeout,
-        },
-      },
-    },
-    "*"
-  )
+  post("notify", { message, error, timeout })
 }
 export default setNotify

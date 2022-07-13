@@ -1,12 +1,7 @@
+import post from "@/utils/post"
+
 const getUser = (callback: Function) => {
-  parent.postMessage(
-    {
-      pluginMessage: {
-        event: "user",
-      },
-    },
-    "*"
-  )
+  post("user")
 
   onmessage = (result) => {
     let { event, data } = result.data.pluginMessage
