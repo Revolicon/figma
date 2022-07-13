@@ -85,6 +85,13 @@ const getItem = (key: any) => {
   }
 }
 
+const removeAllData = () => {
+  let dataKeyList = figma.root.getPluginDataKeys()
+  dataKeyList.map((key) => {
+    removeData(key)
+  })
+}
+
 const Settings = ({ event, data }: ListenerOptions) => {
   let runnerName = event.split("/")[1]
   let runnerList: any = {
@@ -95,6 +102,7 @@ const Settings = ({ event, data }: ListenerOptions) => {
     setMultipleData,
     getMultipleData,
     removeMultipleData,
+    removeAllData,
   }
 
   ;(runnerList[runnerName] as any)(data)

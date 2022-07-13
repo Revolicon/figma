@@ -82,6 +82,12 @@ const Settings: React.FC = () => {
       <Button full={true} onClick={() => removeMultipleDataFunction()}>
         Remove Multiple Data
       </Button>
+
+      <hr style={{ margin: "10px 0" }} />
+
+      <Button full={true} onClick={() => postMessage("settings/removeAllData")}>
+        Remove All Data
+      </Button>
     </div>
   )
 }
