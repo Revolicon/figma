@@ -1,4 +1,4 @@
-import post from "@/utils/post"
+import { postMessage } from "@/utils/message"
 
 interface NotificationOptions {
   timeout?: number
@@ -10,6 +10,6 @@ const setNotify = (
   { error, timeout }: NotificationOptions = {}
 ) => {
   if (!message) return
-  post("notify", { message, error, timeout })
+  postMessage("notify", { message, error, timeout })
 }
 export default setNotify

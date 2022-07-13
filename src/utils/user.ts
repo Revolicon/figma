@@ -1,11 +1,7 @@
-import post from "@/utils/post"
+import { getMessage, postMessage } from "@/utils/message"
 
 const getUser = (callback: Function) => {
-  post("user")
-
-  onmessage = (result) => {
-    let { event, data } = result.data.pluginMessage
-    if (event === "user") callback(data)
-  }
+  postMessage("user")
+  getMessage("user", callback)
 }
 export default getUser
