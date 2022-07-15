@@ -24,7 +24,7 @@ const messages: messagesType = {
 }
 
 const Form: React.FC = () => {
-  const { auth } = useStore()
+  const { settings } = useStore()
 
   const [loading, setLoading] = useState(false)
   const [key, setKey] = useState("")
@@ -46,7 +46,9 @@ const Form: React.FC = () => {
         })
         .then((response) => {
           // setNotify(messages[response.data.message])
-          auth.setIsLogin(true)
+          settings.setSettings({
+            betaKey: key,
+          })
         })
         .catch((error) => {
           setNotify(messages[error.response.data.message], {

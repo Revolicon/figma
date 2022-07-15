@@ -3,10 +3,10 @@
     "module": "ESNext",
     "target": "es6",
     "lib": ["es6", "ESNext"],
-    "strict": true,
+    "strict": false,
     "typeRoots": ["../node_modules/@figma", "../node_modules/@types"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false
+    "isolatedModules": false,
   }
 }

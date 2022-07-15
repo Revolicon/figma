@@ -5,21 +5,22 @@ import { useStore } from "@/store"
 // Pages
 import Welcome from "@/pages/Welcome"
 import Settings from "@/pages/Settings"
+import Loading from "@/pages/Loading"
 
 // Auth
-let isSingedIn = false
-
 const Router = () => {
-  let { auth } = useStore()
+  let { settings } = useStore()
+
+  if (!settings.isLoading) return <Loading />
 
   return (
     <RouterProvider>
-      {!auth.isLogin && (
+      {!settings.betaKey && (
         <Routes>
           <Route path="/" element={<Welcome />} />
         </Routes>
       )}
-      {auth.isLogin && (
+      {settings.betaKey && (
         <Routes>
           <Route path="/" element={<Settings />} />
         </Routes>

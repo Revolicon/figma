@@ -5,7 +5,7 @@ interface postMessageOptions {
 
 export const postMessage: postMessageOptions = (
   event: string,
-  data?: Object | Function,
+  data?: Object,
   callback?: Function
 ) => {
   if (!event) return
