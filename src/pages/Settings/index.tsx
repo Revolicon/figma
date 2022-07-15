@@ -1,17 +1,25 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useState } from "react"
+
 import { postMessage } from "@/utils/message"
+import { useStore } from "@/store"
 
 import Button from "@/components/Button"
 
 const Settings: React.FC = () => {
+  const { settings } = useStore()
+
   const [loading, setLoading] = useState(true)
   const [state, setState] = useState()
 
   const setTestDataFunction = () => {
-    postMessage("settings/setData", {
-      key: "testDataFunction",
-      value: "TEST!",
-    })
+    postMessage(
+      "settings/setData",
+      {
+        key: "testDataFunction",
+        value: "TEST!",
+      },
+      () => settings.getSettings()
+    )
   }
   const getTestDataFunction = () => {
     postMessage("settings/getData", "testDataFunction", (data: any) => {
@@ -19,7 +27,9 @@ const Settings: React.FC = () => {
     })
   }
   const removeTestDataFunction = () => {
-    postMessage("settings/removeData", "testDataFunction")
+    postMessage("settings/removeData", "testDataFunction", () =>
+      settings.getSettings()
+    )
   }
 
   const getMultipleDataFunction = () => {
@@ -28,28 +38,36 @@ const Settings: React.FC = () => {
     })
   }
   const setMultipleDataFunction = () => {
-    postMessage("settings/setMultipleData", [
-      { key: "setMultipleDataTest1", value: "TEST-1-!" },
-      { key: "setMultipleDataTest2", value: "TEST-2-!" },
-      { key: "setMultipleDataTest3", value: [1, 2, 3, 4, 5] },
-      { key: "setMultipleDataTest4", value: true },
-      { key: "setMultipleDataTest5", value: false },
-      { key: "setMultipleDataTest6", value: 23462364 },
-      { key: "setMultipleDataTest7", value: 1.4151 },
-      { key: "setMultipleDataTest8", value: { test: "a", test2: 2 } },
-    ])
+    postMessage(
+      "settings/setMultipleData",
+      [
+        { key: "setMultipleDataTest1", value: "TEST-1-!" },
+        { key: "setMultipleDataTest2", value: "TEST-2-!" },
+        { key: "setMultipleDataTest3", value: [1, 2, 3, 4, 5] },
+        { key: "setMultipleDataTest4", value: true },
+        { key: "setMultipleDataTest5", value: false },
+        { key: "setMultipleDataTest6", value: 23462364 },
+        { key: "setMultipleDataTest7", value: 1.4151 },
+        { key: "setMultipleDataTest8", value: { test: "a", test2: 2 } },
+      ],
+      () => settings.getSettings()
+    )
   }
   const removeMultipleDataFunction = () => {
-    postMessage("settings/removeMultipleData", [
-      "setMultipleDataTest1",
-      "setMultipleDataTest2",
-      "setMultipleDataTest3",
-      "setMultipleDataTest4",
-      "setMultipleDataTest5",
-      "setMultipleDataTest6",
-      "setMultipleDataTest7",
-      "setMultipleDataTest8",
-    ])
+    postMessage(
+      "settings/removeMultipleData",
+      [
+        "setMultipleDataTest1",
+        "setMultipleDataTest2",
+        "setMultipleDataTest3",
+        "setMultipleDataTest4",
+        "setMultipleDataTest5",
+        "setMultipleDataTest6",
+        "setMultipleDataTest7",
+        "setMultipleDataTest8",
+      ],
+      () => settings.getSettings()
+    )
   }
 
   return (
@@ -85,7 +103,12 @@ const Settings: React.FC = () => {
 
       <hr style={{ margin: "10px 0" }} />
 
-      <Button full={true} onClick={() => postMessage("settings/removeAllData")}>
+      <Button
+        full={true}
+        onClick={() =>
+          postMessage("settings/removeAllData", () => settings.getSettings())
+        }
+      >
         Remove All Data
       </Button>
     </div>

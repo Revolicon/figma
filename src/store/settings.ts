@@ -9,13 +9,13 @@ export const SettingsStore = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [settingsList, setSettingsList] = useState({})
 
-  useEffect(() => {
+  const getSettings = () => {
     postMessage("settings/getMultipleData", (data: any) => {
       if (!data) return
       setSettingsList(data)
       setIsLoading(true)
     })
-  }, [])
+  }
 
   const setSettings = (data: any) => {
     let list: any = []
@@ -31,9 +31,15 @@ export const SettingsStore = () => {
     setSettingsList(data)
   }
 
+  useEffect(() => {
+    getSettings()
+  }, [])
+
   return {
     isLoading,
     ...settingsList,
+
+    getSettings,
     setSettings,
     setIsLoading,
   }
