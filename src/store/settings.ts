@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react"
 import { postMessage } from "@/utils/message"
 
-interface SettingsItem {
-  [key: string]: any
-}
-
 export const SettingsStore = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [settingsList, setSettingsList] = useState({})
 
-  const getSettings = () => {
+  const syncSettings = () => {
     postMessage("settings/getMultipleData", (data: any) => {
       if (!data) return
       setSettingsList(data)
@@ -32,14 +28,14 @@ export const SettingsStore = () => {
   }
 
   useEffect(() => {
-    getSettings()
-  }, [])
+    syncSettings()
+  }, [settingsList])
 
   return {
     isLoading,
     ...settingsList,
 
-    getSettings,
+    syncSettings,
     setSettings,
     setIsLoading,
   }
