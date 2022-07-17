@@ -3,9 +3,12 @@ import { MemoryRouter as RouterProvider, Routes, Route } from "react-router-dom"
 import { useStore } from "@/store"
 
 // Pages
-import Welcome from "@/pages/Welcome"
-import Settings from "@/pages/Settings"
 import Loading from "@/pages/Loading"
+
+import Welcome from "@/pages/Welcome"
+
+import Test from "@/pages/Test"
+import Settings from "@/pages/Settings"
 
 // Auth
 const Router = () => {
@@ -22,7 +25,8 @@ const Router = () => {
       )}
       {settings.betaKey && (
         <Routes>
-          <Route path="/" element={<Settings />} />
+          <Route path="/" element={<Test />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       )}
     </RouterProvider>
