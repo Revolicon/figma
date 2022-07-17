@@ -1,4 +1,5 @@
 import "./events/listener"
+import "./events/parameters"
 
 figma.showUI(__html__, {
   title: "Revolicon",
