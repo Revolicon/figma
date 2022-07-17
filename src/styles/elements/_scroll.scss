@@ -1,0 +1,18 @@
+[data-simplebar] {
+  height: 100%;
+}
+
+.simplebar-scrollbar:before {
+  background: var(--figma-color-bg-tertiary);
+  border-radius: 100px;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 1;
+}
+
+// TODO: fix scrollbar content padding
