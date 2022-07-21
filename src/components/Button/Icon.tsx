@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-const Icon: React.FC<Props> = ({ icon, onClick, className, ...rest }) => {
+const Icon: React.FC<Props> = ({ icon, className, ...rest }) => {
   return (
     <button {...rest} className={classNames("button-icon", className)}>
       <Icons name={icon} size={16} />
