@@ -86,7 +86,7 @@ const Form: React.FC = () => {
           variant="secondary"
           type="outline"
           full={true}
-          onClick={(e) => {
+          onClick={(e: any) => {
             e.preventDefault()
             window.open("https://revolicon.com", "_blank")
           }}

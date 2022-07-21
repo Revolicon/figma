@@ -19,7 +19,10 @@ const Finder: React.FC = () => {
           <Tab active={true}>Icons</Tab>
           <Tab>Categories</Tab>
         </Tabs>
-        <IconButton icon="adjust" onClick={() => navigate("/settings")} />
+        <IconButton
+          icon="adjust"
+          onClick={() => navigate("/settings", { replace: true })}
+        />
       </Navigations>
     </div>
   )
