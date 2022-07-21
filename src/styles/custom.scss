@@ -1,3 +1,6 @@
+html {
+  height: calc(100% - 1px);
+}
 body {
   font-family: "Inter", sans-serif;
   font-feature-settings: "ss02" on, "liga" on, "calt" on;
@@ -11,8 +14,8 @@ body {
   color: var(--figma-color-text, #000000);
 }
 
-html,
 body,
-#root {
+#root,
+#app {
   height: 100%;
 }
