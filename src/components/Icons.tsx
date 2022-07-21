@@ -1,6 +1,11 @@
 import React from "react"
 
 type iconProps = JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+interface iconsProps {
+  [key: string]: any
+  name: string
+  size?: number
+}
 
 export const Loading = (props: iconProps) => {
   return (
@@ -30,7 +35,6 @@ export const Loading = (props: iconProps) => {
     </svg>
   )
 }
-
 export const Search = (props: iconProps) => {
   return (
     <svg
@@ -46,7 +50,6 @@ export const Search = (props: iconProps) => {
     </svg>
   )
 }
-
 export const Adjust = (props: iconProps) => {
   return (
     <svg
@@ -66,7 +69,6 @@ export const Adjust = (props: iconProps) => {
     </svg>
   )
 }
-
 export const Back = (props: iconProps) => {
   return (
     <svg
@@ -79,7 +81,6 @@ export const Back = (props: iconProps) => {
     </svg>
   )
 }
-
 export const Help = (props: iconProps) => {
   return (
     <svg
@@ -104,10 +105,17 @@ export const Help = (props: iconProps) => {
   )
 }
 
-export default {
-  Loading,
-  Search,
-  Adjust,
-  Back,
-  Help,
+const Icons = (props: iconsProps) => {
+  const { name, size } = props
+  const iconList: any = {
+    loading: Loading,
+    adjust: Adjust,
+    back: Back,
+    help: Help,
+    search: Search,
+  }
+
+  return iconList[name.toLowerCase()]({ ...props, width: size, height: size })
 }
+
+export default Icons

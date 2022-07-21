@@ -3,8 +3,9 @@ import React, { useState } from "react"
 import { postMessage } from "@/utils/message"
 
 import { Tabs, Tab } from "@/components/Tabs"
-import Button from "@/components/Button"
 import Icons from "@/components/Icons"
+import Button from "@/components/Button"
+import Navigations from "@/components/Navigations"
 
 const Database: React.FC = () => {
   const setTestDataFunction = () => {
@@ -95,11 +96,11 @@ const IconList: React.FC = () => {
           gap: 10,
         }}
       >
-        <Icons.Loading width={16} />
-        <Icons.Search width={16} />
-        <Icons.Adjust width={16} />
-        <Icons.Back width={16} />
-        <Icons.Help width={16} />
+        <Icons name="loading" size={16} />
+        <Icons name="search" size={16} />
+        <Icons name="adjust" size={16} />
+        <Icons name="back" size={16} />
+        <Icons name="help" size={16} />
       </div>
     </>
   )
@@ -129,6 +130,29 @@ const TabList: React.FC = () => {
     </>
   )
 }
+const NavigationsTest: React.FC = () => {
+  return (
+    <>
+      <h2>Navigations Test</h2>
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+        }}
+      >
+        <Navigations>
+          <Tabs>
+            <Tab active={true}>Icons</Tab>
+            <Tab>Categories</Tab>
+          </Tabs>
+          <button>
+            <Icons name="adjust" size={16} />
+          </button>
+        </Navigations>
+      </div>
+    </>
+  )
+}
 
 const Test: React.FC = () => {
   return (
@@ -140,6 +164,8 @@ const Test: React.FC = () => {
         padding: 12,
       }}
     >
+      <NavigationsTest />
+      <br />
       <TabList />
       <br />
       <Database />
