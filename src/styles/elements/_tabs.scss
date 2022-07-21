@@ -1,0 +1,21 @@
+.tabs {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  align-items: center;
+  gap: 16px;
+}
+.tab {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--figma-color-text-secondary);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+
+  &--active {
+    color: var(--figma-color-text);
+  }
+}

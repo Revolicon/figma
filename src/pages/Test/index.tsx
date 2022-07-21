@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { postMessage } from "@/utils/message"
 
+import { Tabs, Tab } from "@/components/Tabs"
 import Button from "@/components/Button"
 import Icons from "@/components/Icons"
 
@@ -103,6 +104,31 @@ const IconList: React.FC = () => {
     </>
   )
 }
+const TabList: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(0)
+  return (
+    <>
+      <h2>Tab List</h2>
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+        }}
+      >
+        <Tabs>
+          {["Tab 1", "Tab 2", "Tab 3"].map((tab, index) => (
+            <Tab
+              onClick={() => setActiveTab(index)}
+              active={index === activeTab}
+            >
+              {tab}
+            </Tab>
+          ))}
+        </Tabs>
+      </div>
+    </>
+  )
+}
 
 const Test: React.FC = () => {
   return (
@@ -114,6 +140,8 @@ const Test: React.FC = () => {
         padding: 12,
       }}
     >
+      <TabList />
+      <br />
       <Database />
       <br />
       <IconList />
