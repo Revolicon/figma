@@ -1,12 +1,13 @@
 import React from "react"
+import SimpleBar from "simplebar-react"
 
 import styles from "./styles.module.scss"
 
 import { useNavigate } from "react-router-dom"
 
 import Button, { IconButton } from "@/components/Button"
-
 import Navigations from "@/components/Navigations"
+
 import { postMessage } from "@/utils/message"
 
 const Settings: React.FC = () => {
@@ -19,22 +20,20 @@ const Settings: React.FC = () => {
   return (
     <div className={styles.settings}>
       <Navigations>
-        <IconButton icon="back" onClick={() => navigate(-1)} />
+        <IconButton icon="back" onClick={() => navigate("/")} />
+        <div>Settings</div>
         <IconButton icon="help" />
       </Navigations>
-
-      <div className={styles.settings__content}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Button full={true} variant="destructive" onClick={() => logout()}>
-            Logout
-          </Button>
-        </div>
-      </div>
+      <SimpleBar className={styles.settings__content}>
+        <Button full={true} variant="primary" onClick={() => navigate("/test")}>
+          Test Page
+        </Button>
+        <br />
+        <br />
+        <Button full={true} variant="destructive" onClick={() => logout()}>
+          Logout
+        </Button>
+      </SimpleBar>
     </div>
   )
 }

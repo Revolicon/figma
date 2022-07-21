@@ -1,9 +1,12 @@
 .settings {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   height: 100%;
 
   &__content {
     overflow: auto;
     padding: 12px;
+    height: 100%;
   }
 }

@@ -1,4 +1,6 @@
 .navigations {
+  @extend .text-sm;
+  font-weight: 600;
   width: 100%;
   display: flex;
   align-items: center;

@@ -4,6 +4,7 @@
   overflow: auto;
   align-items: center;
   gap: 16px;
+  padding: 8px;
 }
 .tab {
   @extend .text-sm;
@@ -16,5 +17,6 @@
 
   &--active {
     color: var(--figma-color-text);
+    font-weight: 600;
   }
 }
