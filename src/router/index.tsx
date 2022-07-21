@@ -1,7 +1,6 @@
 import { MemoryRouter as RouterProvider, Routes, Route } from "react-router-dom"
 
 import { useStore } from "@/store"
-import { postMessage } from "@/utils/message"
 
 // Pages
 import Loading from "@/pages/Loading"
