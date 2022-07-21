@@ -6,9 +6,8 @@
   gap: 16px;
 }
 .tab {
+  @extend .text-md;
   font-weight: 500;
-  font-size: 11px;
-  line-height: 16px;
   color: var(--figma-color-text-secondary);
   background: transparent;
   border: none;

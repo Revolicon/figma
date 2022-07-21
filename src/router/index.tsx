@@ -7,8 +7,9 @@ import Loading from "@/pages/Loading"
 
 import Welcome from "@/pages/Welcome"
 
-import Test from "@/pages/Test"
+import Finder from "@/pages/Finder"
 import Settings from "@/pages/Settings"
+import Test from "@/pages/Test"
 
 // Auth
 const Router = () => {
@@ -25,8 +26,9 @@ const Router = () => {
       )}
       {settings.betaKey && (
         <Routes>
-          <Route path="/" element={<Test />} />
+          <Route path="/" element={<Finder />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       )}
     </RouterProvider>

@@ -2,6 +2,7 @@
   --border-width: 1px;
   --border-color: var(--figma-color-bg-secondary);
 
+  @extend .text-md;
   width: fit-content;
   display: flex;
   padding: 8px;
@@ -9,9 +10,6 @@
   height: 32px;
   background: var(--figma-color-bg);
   border-radius: 6px;
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 16px;
   color: var(--figma-color-text);
   box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
   border: 0;

@@ -25,3 +25,24 @@
   --figma-color-bg-secondary: #383838;
   --figma-color-bg-tertiary: #444444;
 }
+
+.text {
+  &-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  &-sm {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  &-md {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.005em;
+  }
+}

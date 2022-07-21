@@ -25,9 +25,7 @@
     margin-bottom: 4px;
   }
   &__text {
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 16px;
+    @extend .text-md;
     text-align: center;
     letter-spacing: 0.005em;
     color: var(--figma-color-text-secondary);
@@ -59,9 +57,7 @@
       pointer-events: none;
     }
     span {
-      font-weight: 400;
-      font-size: 11px;
-      line-height: 16px;
+      @extend .text-md;
       text-align: center;
       color: var(--figma-color-text-secondary);
     }

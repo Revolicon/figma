@@ -1,15 +1,22 @@
 import React from "react"
 
+import styles from "./styles.module.scss"
+
+import { useNavigate } from "react-router-dom"
+
+import { IconButton } from "@/components/Button"
+
+import Navigations from "@/components/Navigations"
+
 const Settings: React.FC = () => {
+  const navigate = useNavigate()
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 10,
-        padding: 12,
-      }}
-    ></div>
+    <div className={styles.settings}>
+      <Navigations>
+        <IconButton icon="back" onClick={() => navigate(-1)} />
+      </Navigations>
+    </div>
   )
 }
 
