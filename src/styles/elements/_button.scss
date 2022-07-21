@@ -89,3 +89,15 @@
     }
   }
 }
+.button-icon {
+  color: var(--figma-color-text);
+  background: transparent;
+  height: 32px;
+  width: 32px;
+  border-radius: 4px;
+  border: 0;
+
+  &:hover {
+    background: var(--figma-color-bg-secondary);
+  }
+}

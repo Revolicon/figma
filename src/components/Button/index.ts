@@ -1,3 +1,4 @@
 import Main from "./Main"
+import Icon from "./Icon"
 
-export default Main
+export { Main as default, Icon as IconButton }

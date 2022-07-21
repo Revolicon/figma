@@ -4,7 +4,7 @@ import { postMessage } from "@/utils/message"
 
 import { Tabs, Tab } from "@/components/Tabs"
 import Icons from "@/components/Icons"
-import Button from "@/components/Button"
+import Button, { IconButton } from "@/components/Button"
 import Navigations from "@/components/Navigations"
 
 const Database: React.FC = () => {
@@ -145,9 +145,7 @@ const NavigationsTest: React.FC = () => {
             <Tab active={true}>Icons</Tab>
             <Tab>Categories</Tab>
           </Tabs>
-          <button>
-            <Icons name="adjust" size={16} />
-          </button>
+          <IconButton icon="adjust" />
         </Navigations>
       </div>
     </>
