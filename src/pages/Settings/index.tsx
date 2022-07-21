@@ -6,7 +6,7 @@ import styles from "./styles.module.scss"
 import { useNavigate } from "react-router-dom"
 
 import Button, { IconButton } from "@/components/Button"
-import Navigations from "@/components/Navigations"
+import Navigations, { Accessory } from "@/components/Navigations"
 
 import { postMessage } from "@/utils/message"
 
@@ -20,8 +20,10 @@ const Settings: React.FC = () => {
   return (
     <div className={styles.settings}>
       <Navigations>
-        <IconButton icon="back" onClick={() => navigate("/")} />
-        <div>Settings</div>
+        <Accessory>
+          <IconButton icon="back" onClick={() => navigate("/")} />
+          <div>Settings</div>
+        </Accessory>
         <IconButton icon="help" />
       </Navigations>
       <SimpleBar className={styles.settings__content}>
