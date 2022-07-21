@@ -26,6 +26,6 @@ export const postMessage: postMessageOptions = (
 export const getMessage = (event: string, callback: Function) => {
   onmessage = (result) => {
     let { event: receivedEvent, data: receivedData } = result.data.pluginMessage
-    if (receivedEvent === event) callback(receivedData)
+    if (event !== "*" && event === receivedEvent) callback(receivedData)
   }
 }
