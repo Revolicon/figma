@@ -9,6 +9,23 @@ import { IconButton } from "@/components/Button"
 
 import Navigations from "@/components/Navigations"
 
+import algoliasearch from "algoliasearch/lite"
+import { Configure, InstantSearch } from "react-instantsearch-dom"
+
+import Search from "@/pages/Finder/Search"
+import Results from "@/pages/Finder/Results"
+
+const searchClient = algoliasearch(
+)
+
+const Algolia = () => (
+  <InstantSearch searchClient={searchClient} indexName="icons">
+    <Configure facetFilters={[["style:line", "style:brands"]]} />
+    <Search />
+    <Results />
+  </InstantSearch>
+)
+
 const Finder: React.FC = () => {
   const navigate = useNavigate()
 
@@ -24,6 +41,7 @@ const Finder: React.FC = () => {
           onClick={() => navigate("/settings", { replace: true })}
         />
       </Navigations>
+      <Algolia />
     </div>
   )
 }

@@ -15,11 +15,14 @@
     "dev": "concurrently -n tsc,build,vite 'npm:tsc:watch' 'npm:build:watch' 'vite'"
   },
   "dependencies": {
+    "algoliasearch": "^4.14.1",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-instantsearch-dom": "^6.30.2",
     "react-router-dom": "^6.3.0",
+    "react-window": "^1.8.7",
     "simplebar-react": "^2.4.1"
   },
   "devDependencies": {
@@ -27,6 +30,8 @@
     "@types/node": "^18.0.3",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-instantsearch-dom": "^6.12.3",
+    "@types/react-window": "^1.8.5",
     "@vitejs/plugin-react": "^1.3.0",
     "concurrently": "^7.2.2",
     "esbuild": "^0.14.49",
