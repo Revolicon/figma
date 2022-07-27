@@ -24,7 +24,7 @@ const Settings: React.FC = () => {
           <IconButton icon="back" onClick={() => navigate("/")} />
           <div>Settings</div>
         </Accessory>
-        <IconButton icon="help" />
+        <IconButton icon="help" href="https://revolicon.com/help" />
       </Navigations>
       <SimpleBar className={styles.settings__content}>
         <Button full={true} variant="primary" onClick={() => navigate("/test")}>
