@@ -6,6 +6,7 @@ import { Tabs, Tab } from "@/components/Tabs"
 import Icons from "@/components/Icons"
 import Button, { IconButton } from "@/components/Button"
 import Navigations from "@/components/Navigations"
+import Picker from "@/components/Picker"
 
 const Database: React.FC = () => {
   const setTestDataFunction = () => {
@@ -151,6 +152,24 @@ const NavigationsTest: React.FC = () => {
     </>
   )
 }
+const PickerTest: React.FC = () => {
+  return (
+    <>
+      <Picker type="icon">
+        <Picker.Option icon="test" onClick={() => console.log(1)} />
+      </Picker>
+      <Picker type="text">
+        <Picker.Option value={10}>10</Picker.Option>
+        <Picker.Option value={12}>12</Picker.Option>
+        <Picker.Option value={14}>14</Picker.Option>
+        <Picker.Option value={16}>16</Picker.Option>
+        <Picker.Option value={20}>20</Picker.Option>
+        <Picker.Option value={24}>24</Picker.Option>
+        <Picker.Option value={32}>32</Picker.Option>
+      </Picker>
+    </>
+  )
+}
 
 const Test: React.FC = () => {
   return (
@@ -162,13 +181,15 @@ const Test: React.FC = () => {
         padding: 12,
       }}
     >
+      <PickerTest />
+      <br />
       <NavigationsTest />
       <br />
       <TabList />
       <br />
       <Database />
       <br />
-      <IconList />
+      <IconList />,
     </div>
   )
 }

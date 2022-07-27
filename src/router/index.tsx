@@ -26,8 +26,8 @@ const Router = () => {
       )}
       {settings.betaKey && (
         <Routes>
-          <Route path="/" element={<Finder />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/finder" element={<Finder />} />
+          <Route path="/" element={<Settings />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       )}

@@ -1,0 +1,64 @@
+.picker {
+  width: fit-content;
+  padding: 2px;
+  border-radius: 6px;
+  background: var(--figma-color-bg-secondary);
+  height: 28px;
+  position: relative;
+
+  &__effect {
+    height: 24px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 0;
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  &--type-icon & {
+    &__options {
+      gap: 0;
+    }
+    &__effect {
+      background: var(--figma-color-bg);
+      min-width: 40px;
+    }
+  }
+  &--type-text & {
+    &__options {
+      gap: 6px;
+    }
+    &__effect {
+      background: var(--figma-color-bg-brand);
+      min-width: 24px;
+    }
+  }
+}
+.picker-option {
+  @extend .text-sm;
+  background: transparent;
+  border: none;
+  outline: none;
+  height: 24px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--figma-color-text);
+
+  &--type-icon {
+    padding: 4px 12px;
+    min-width: 40px;
+  }
+  &--type-text {
+    min-width: 24px;
+    padding: 4px 2px;
+  }
+  &--active {
+    color: var(--figma-color-bg);
+  }
+}
