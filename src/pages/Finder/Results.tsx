@@ -1,9 +1,8 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import styles from "@/pages/Finder/styles.module.scss"
 
 import { connectHits } from "react-instantsearch-dom"
-import { FixedSizeList as InnerList } from "react-window"
 
 import SimpleBar from "simplebar-react"
 
@@ -27,10 +26,12 @@ const List = connectHits(({ hits }) => {
       <SimpleBar>
         {({ scrollableNodeRef, contentNodeRef }) => (
           <div
+            // @ts-ignore
             ref={scrollableNodeRef}
             className={styles["results__list-wrapper"]}
           >
             <div
+              // @ts-ignore
               ref={contentNodeRef}
               className={classNames(
                 styles.results__list,
