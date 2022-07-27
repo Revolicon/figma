@@ -14,6 +14,7 @@ interface Props {
   full?: boolean
   className?: string
   loading?: boolean
+  href?: string
 }
 
 const Main: React.FC<Props> = ({
@@ -24,11 +25,16 @@ const Main: React.FC<Props> = ({
   full,
   className,
   loading,
+  href,
   ...rest
 }) => {
+  const ButtonTag = href ? "a" : "button"
+
   return (
-    <button
+    <ButtonTag
       {...rest}
+      href={href}
+      target={href && "_blank"}
       className={classNames(
         "button",
         `button--${type}`,
@@ -42,7 +48,7 @@ const Main: React.FC<Props> = ({
       )}
     >
       {children}
-    </button>
+    </ButtonTag>
   )
 }
 

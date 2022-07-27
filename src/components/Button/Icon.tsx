@@ -11,22 +11,17 @@ interface Props {
 }
 
 const Icon: React.FC<Props> = ({ href, icon, className, ...rest }) => {
-  if (href) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        {...rest}
-        className={classNames("button-icon", className)}
-      >
-        <Icons name={icon} size={16} />
-      </a>
-    )
-  }
+  const ButtonTag = href ? "a" : "button"
+
   return (
-    <button {...rest} className={classNames("button-icon", className)}>
+    <ButtonTag
+      href={href}
+      target={href && "_blank"}
+      {...rest}
+      className={classNames("button-icon", className)}
+    >
       <Icons name={icon} size={16} />
-    </button>
+    </ButtonTag>
   )
 }
 
