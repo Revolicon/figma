@@ -5,6 +5,7 @@
   height: 28px;
   position: relative;
   padding: 2px;
+  overflow: hidden;
 
   &__effect {
     height: 24px;
@@ -12,7 +13,8 @@
     position: absolute;
     z-index: 0;
     transition: all .15s ease-in-out;
-    margin: 0 2px;
+    margin: 2px;
+    pointer-events: none;
   }
   &__options {
     display: flex;
