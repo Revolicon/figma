@@ -155,7 +155,7 @@ const NavigationsTest: React.FC = () => {
 const PickerTest: React.FC = () => {
   return (
     <>
-      <Picker type="icon">
+      <Picker type="icon" onChange={(e) => console.log(e)}>
         <Picker.Option value="line">
           <svg
             width="16"

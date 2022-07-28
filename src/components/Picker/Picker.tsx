@@ -7,15 +7,20 @@ type PickerType = "icon" | "text"
 interface Props {
   children: React.ReactNode
   type: PickerType
+  onChange?: (value: Object) => void
 }
 
 interface SubComponent {
   Option: React.FC<any>
 }
 
-const Picker: React.FC<Props> & SubComponent = ({ type, children }) => {
-  const [active, setActive] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(1)
+const Picker: React.FC<Props> & SubComponent = ({
+  type,
+  onChange,
+  children,
+}) => {
+  const [activeValue, setActiveValue] = useState(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const [effectStyle, setEffectStyle]: any = useState([])
 
@@ -34,9 +39,14 @@ const Picker: React.FC<Props> & SubComponent = ({ type, children }) => {
   useEffect(() => {
     const setTabPosition = () => {
       const currentTab = optionRef.current[activeIndex]
+
+      setActiveValue(currentTab.value)
       setEffectStyle([currentTab?.offsetLeft, currentTab?.clientWidth])
     }
 
+    if (onChange) {
+      onChange({ value: activeValue, index: activeIndex })
+    }
     setTabPosition()
   }, [activeIndex])
 
@@ -45,10 +55,7 @@ const Picker: React.FC<Props> & SubComponent = ({ type, children }) => {
       ...child.props,
       type,
       isActive: activeIndex === index,
-      onClick: () => {
-        setActive(child.props.value)
-        setActiveIndex(index)
-      },
+      onClick: () => setActiveIndex(index),
     }
 
     childrenList.push(child)

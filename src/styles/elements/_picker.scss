@@ -15,6 +15,8 @@
     transition: all .15s ease-in-out;
     margin: 2px;
     pointer-events: none;
+    top: 0;
+    bottom: 0;
   }
   &__options {
     display: flex;
