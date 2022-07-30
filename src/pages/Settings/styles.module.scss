@@ -1,3 +1,5 @@
+@import "@/styles/variables.scss";
+
 .settings {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,37 @@
 
   &__content {
     overflow: auto;
-    padding: 12px;
     height: 100%;
+  }
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 8px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+    &-title {
+      @extend .text-sm;
+      font-weight: 500;
+      color: var(--figma-color-text);
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--figma-color-bg-secondary);
   }
 }

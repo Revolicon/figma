@@ -9,6 +9,7 @@ import Button, { IconButton } from "@/components/Button"
 import Navigations, { Accessory } from "@/components/Navigations"
 
 import { postMessage } from "@/utils/message"
+import Section from "@/pages/Settings/Section"
 
 const Settings: React.FC = () => {
   const navigate = useNavigate()
@@ -27,14 +28,36 @@ const Settings: React.FC = () => {
         <IconButton icon="help" href="https://revolicon.com/help" />
       </Navigations>
       <SimpleBar className={styles.settings__content}>
-        <Button full={true} variant="primary" onClick={() => navigate("/test")}>
-          Test Page
-        </Button>
-        <br />
-        <br />
-        <Button full={true} variant="destructive" onClick={() => logout()}>
-          Logout
-        </Button>
+        <Section title="Size" icon="size">
+          d
+        </Section>
+        <Section title="Frame" icon="frame">
+          d
+        </Section>
+        <Section title="Color" icon="color">
+          d
+        </Section>
+        <Section title="Finder" icon="finder">
+          d
+        </Section>
+        <Section title="Quick actions" icon="quickactions">
+          d
+        </Section>
+        <Section title="Appearance" icon="appearance">
+          d
+        </Section>
+        <Section title="Other" icon="">
+          <Button
+            full={true}
+            variant="primary"
+            onClick={() => navigate("/test")}
+          >
+            Test Page
+          </Button>
+          <Button full={true} variant="destructive" onClick={() => logout()}>
+            Logout
+          </Button>
+        </Section>
       </SimpleBar>
     </div>
   )
