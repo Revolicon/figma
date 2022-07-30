@@ -99,6 +99,9 @@
   align-items: center;
   justify-content: center;
 
+  svg {
+    color: var(--figma-color-text);
+  }
   &:hover {
     background: var(--figma-color-bg-secondary);
   }
