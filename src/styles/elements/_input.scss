@@ -7,7 +7,6 @@
   display: flex;
   padding: 8px;
   transition: all 0.1s ease-in-out;
-  height: 32px;
   background: var(--figma-color-bg);
   border-radius: 6px;
   color: var(--figma-color-text);
@@ -34,5 +33,13 @@
   }
   &--full {
     width: 100%;
+  }
+  &--size {
+    &-small {
+      height: 28px;
+    }
+    &-default {
+      height: 32px;
+    }
   }
 }
