@@ -104,6 +104,21 @@ export const Help = (props: iconProps) => {
     </svg>
   )
 }
+export const Plus = (props: iconProps) => {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M7.5 8.5V12H8.5V8.5H12V7.5H8.5V4H7.5V7.5H4V8.5H7.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
 
 const Icons = (props: iconsProps) => {
   const { name, size } = props
@@ -113,6 +128,7 @@ const Icons = (props: iconsProps) => {
     back: Back,
     help: Help,
     search: Search,
+    plus: Plus,
   }
 
   return iconList[name.toLowerCase()]({ ...props, width: size, height: size })

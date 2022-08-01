@@ -2,14 +2,25 @@ import React, { useState } from "react"
 
 import styles from "./styles.module.scss"
 
+import Icon from "@/components/Icons"
 import Section from "@/pages/Settings/Section"
+import classNames from "classnames"
 
-const Input: React.FC = () => {
-  const [color, setColor] = useState("000000")
-  const [opacity, setOpacity] = useState(100)
+interface ColorProps {
+  [key: string]: any
+  color: any
+  opacity: any
+  active?: boolean
+}
 
-  const [colorInput, setColorInput] = useState("#000000")
-  const [opacityInput, setOpacityInput] = useState("100%")
+const Input: React.FC<ColorProps> = (props) => {
+  console.log(props)
+
+  const [color, setColor] = useState(props.color)
+  const [opacity, setOpacity] = useState(props.opacity)
+
+  const [colorInput, setColorInput] = useState(`#${color}`)
+  const [opacityInput, setOpacityInput] = useState(`${opacity}%`)
 
   const colorNameToHex = (colorName: string) => {
     let colorList: { [key: string]: string } = {
@@ -209,9 +220,101 @@ const Input: React.FC = () => {
 }
 
 const Color: React.FC = () => {
+  const [settingColorList, setSettingColorList] = useState([
+    {
+      color: "000000",
+      opacity: "100",
+      active: true,
+    },
+    {
+      color: "FF2F64",
+      opacity: "100",
+      active: false,
+    },
+    {
+      color: "FFA800",
+      opacity: "100",
+      active: false,
+    },
+    {
+      color: "00CC64",
+      opacity: "100",
+      active: false,
+    },
+    {
+      color: "1696FF",
+      opacity: "100",
+      active: false,
+    },
+    {
+      color: "1696FF",
+      opacity: "50",
+      active: false,
+    },
+    {
+      color: "F5F5F5",
+      opacity: "100",
+      active: false,
+    },
+  ])
+
+  const activeColor: any = settingColorList.find((color) => color.active)
+
+  const selectColor = (index: number) => {
+    let newSettingColorList: any = settingColorList.map((color, i) => {
+      return { ...color, active: i === index }
+    })
+
+    setSettingColorList(newSettingColorList)
+  }
+  const newColor = () => {
+    let newSettingColor = {
+      color: "#000000",
+      opacity: "100%",
+      active: true,
+    }
+    let oldSettingColorList = settingColorList.map((color, i) => {
+      return { ...color, active: false }
+    })
+    let newSettingColorList: any = [...oldSettingColorList, newSettingColor]
+
+    setSettingColorList(newSettingColorList)
+  }
+
+  // const getColorByBgColor = (bgColor: string) => {
+  //   if (!bgColor) {
+  //     return ""
+  //   }
+  //   return parseInt(bgColor.replace("#", ""), 16) > 0xffffff / 2
+  //     ? "#000"
+  //     : "#fff"
+  // }
+  //
+  // console.log(getColorByBgColor("#bbbbbb"))
+
   return (
-    <Section title="Color" icon="color" actions={<Input />}>
-      d
+    <Section title="Color" icon="color" actions={<Input {...activeColor} />}>
+      <div className={styles.list}>
+        {settingColorList.map((option, index) => (
+          <button
+            onClick={() => selectColor(index)}
+            className={classNames(styles.color, {
+              [styles["color--active"]]: option.active,
+            })}
+            style={{
+              // @ts-ignore
+              "--color": `#${option.color}`,
+              "--opacity": `${option.opacity}%`,
+            }}
+          >
+            <div className={styles.color__hex} />
+            <div className={styles.color__opacity} />
+          </button>
+        ))}
+        <button onClick={() => newColor()} className={styles.new}>
+          <Icon name="plus" size={16} />
+        </button>
+      </div>
     </Section>
   )
 }
