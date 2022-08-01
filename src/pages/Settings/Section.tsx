@@ -26,7 +26,7 @@ interface Props {
 }
 
 const Section: React.FC<Props> = ({ title, icon, children }) => {
-  const icons = {
+  const icons: { [key: string]: any } = {
     dark: {
       size: DarkSize,
       appearance: DarkAppearance,
