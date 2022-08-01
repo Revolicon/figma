@@ -8,6 +8,7 @@
 
   &__content {
     overflow: auto;
+    overflow-x: hidden;
     height: 100%;
   }
 }
@@ -25,17 +26,25 @@
     &-icon {
       width: 20px;
       height: 20px;
+      flex: none;
     }
     &-title {
       @extend .text-sm;
       font-weight: 500;
       color: var(--figma-color-text);
     }
+    &-actions {
+      margin-left: auto;
+    }
   }
   &__content {
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  &--actions {
+    gap: 12px;
   }
 
   &:not(:last-child) {

@@ -23,30 +23,35 @@ interface Props {
   children?: React.ReactNode
   icon: string
   title: string
+  actions?: React.ReactNode
 }
 
-const Section: React.FC<Props> = ({ title, icon, children }) => {
-  const icons: { [key: string]: any } = {
-    dark: {
-      size: DarkSize,
-      appearance: DarkAppearance,
-      color: DarkColor,
-      finder: DarkFinder,
-      frame: DarkFrame,
-      quickactions: DarkQuickActions,
-    },
-    light: {
-      size: LightSize,
-      appearance: LightAppearance,
-      color: LightColor,
-      finder: LightFinder,
-      frame: LightFrame,
-      quickactions: LightQuickActions,
-    },
-  }
+const icons: { [key: string]: any } = {
+  dark: {
+    size: DarkSize,
+    appearance: DarkAppearance,
+    color: DarkColor,
+    finder: DarkFinder,
+    frame: DarkFrame,
+    quickactions: DarkQuickActions,
+  },
+  light: {
+    size: LightSize,
+    appearance: LightAppearance,
+    color: LightColor,
+    finder: LightFinder,
+    frame: LightFrame,
+    quickactions: LightQuickActions,
+  },
+}
 
+const Section: React.FC<Props> = ({ title, icon, children, actions }) => {
   return (
-    <div className={classNames(styles.section)}>
+    <div
+      className={classNames(styles.section, {
+        [styles["section--actions"]]: actions,
+      })}
+    >
       <div className={classNames(styles.section__header)}>
         <div
           className={classNames(styles["section__header-icon"])}
@@ -55,6 +60,11 @@ const Section: React.FC<Props> = ({ title, icon, children }) => {
         <div className={classNames(styles["section__header-title"])}>
           {title}
         </div>
+        {actions && (
+          <div className={classNames(styles["section__header-actions"])}>
+            {actions}
+          </div>
+        )}
       </div>
       <div className={classNames(styles.section__content)}>{children}</div>
     </div>
