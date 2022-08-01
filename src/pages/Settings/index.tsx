@@ -9,7 +9,9 @@ import Button, { IconButton } from "@/components/Button"
 import Navigations, { Accessory } from "@/components/Navigations"
 
 import { postMessage } from "@/utils/message"
+
 import Section from "@/pages/Settings/Section"
+import Color from "@/pages/Settings/Color"
 
 const Settings: React.FC = () => {
   const navigate = useNavigate()
@@ -34,9 +36,7 @@ const Settings: React.FC = () => {
         <Section title="Frame" icon="frame">
           d
         </Section>
-        <Section title="Color" icon="color">
-          d
-        </Section>
+        <Color />
         <Section title="Finder" icon="finder">
           d
         </Section>
