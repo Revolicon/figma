@@ -12,11 +12,13 @@ const Input: React.FC = () => {
   const [opacityInput, setOpacityInput] = useState("100%")
 
   const colorHandler = (inputColor: string) => {
+    let colorInput = inputColor.replace("#", "")
     let colorRegex = /^([A-Fa-f\d]{1,6})$/i
-    let colorTest = colorRegex.test(inputColor)
-    let colorExec = colorRegex.exec(inputColor)
+    let colorTest = colorRegex.test(colorInput)
+    let colorExec = colorRegex.exec(colorInput)
+
     let colorValue = colorTest
-      ? colorExec?.[0].padStart(6, colorExec?.[0])
+      ? colorExec?.[0].padEnd(6, colorExec?.[0])
       : color
 
     setColor(colorValue ?? color)
@@ -39,7 +41,7 @@ const Input: React.FC = () => {
         value={colorInput}
         onFocus={(e) => e.target.select()}
         onBlur={(e) => colorHandler(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && colorHandler(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && e.target.blur()}
         onChange={(e) => setColorInput(e.target.value)}
         style={{ flex: 1 }}
       />
@@ -48,7 +50,7 @@ const Input: React.FC = () => {
         value={opacityInput}
         onFocus={(e) => e.target.select()}
         onBlur={(e) => opacityHandler(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && opacityHandler(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && e.target.blur()}
         onChange={(e) => setOpacityInput(e.target.value)}
         style={{ width: 40, flex: "none" }}
       />
