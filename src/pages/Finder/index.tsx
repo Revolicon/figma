@@ -16,6 +16,8 @@ import Search from "@/pages/Finder/Search"
 import Results from "@/pages/Finder/Results"
 
 const searchClient = algoliasearch(
+  "VOW5LML328",
+  "22f7f3f67abdc32c66b9c672a931b2d7"
 )
 
 const Algolia = () => (

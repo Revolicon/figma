@@ -1,26 +1,52 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import styles from "./styles.module.scss"
 
 import Icon from "@/components/Icons"
 import Section from "@/pages/Settings/Section"
 import classNames from "classnames"
+import { useStore } from "@/store"
+import { postMessage } from "@/utils/message"
 
 interface ColorProps {
   [key: string]: any
-  color: any
-  opacity: any
+  color: string
+  opacity: number
   active?: boolean
 }
 
 const Input: React.FC<ColorProps> = (props) => {
-  console.log(props)
+  const { settings } = useStore()
 
   const [color, setColor] = useState(props.color)
   const [opacity, setOpacity] = useState(props.opacity)
 
   const [colorInput, setColorInput] = useState(`#${color}`)
   const [opacityInput, setOpacityInput] = useState(`${opacity}%`)
+
+  useEffect(() => {
+    setColorInput(`#${props.color.toUpperCase()}`)
+    setOpacityInput(`${props.opacity}%`)
+  }, [props])
+
+  useEffect(() => {
+    let newColorList = settings.colors.map((color: ColorProps) => {
+      return {
+        ...color,
+        active: false,
+      }
+    })
+    newColorList[props.index] = {
+      color,
+      opacity,
+      active: true,
+    }
+
+    postMessage("settings/setData", {
+      key: "colors",
+      value: newColorList,
+    })
+  }, [color, opacity])
 
   const colorNameToHex = (colorName: string) => {
     let colorList: { [key: string]: string } = {
@@ -172,6 +198,7 @@ const Input: React.FC<ColorProps> = (props) => {
 
     return false
   }
+
   const colorHandler = (inputColor: string) => {
     let colorInput = (colorNameToHex(inputColor) || inputColor).replace("#", "")
     let colorRegex = /^([A-Fa-f\d]{1,6})$/i
@@ -220,45 +247,52 @@ const Input: React.FC<ColorProps> = (props) => {
 }
 
 const Color: React.FC = () => {
-  const [settingColorList, setSettingColorList] = useState([
-    {
-      color: "000000",
-      opacity: "100",
-      active: true,
-    },
-    {
-      color: "FF2F64",
-      opacity: "100",
-      active: false,
-    },
-    {
-      color: "FFA800",
-      opacity: "100",
-      active: false,
-    },
-    {
-      color: "00CC64",
-      opacity: "100",
-      active: false,
-    },
-    {
-      color: "1696FF",
-      opacity: "100",
-      active: false,
-    },
-    {
-      color: "1696FF",
-      opacity: "50",
-      active: false,
-    },
-    {
-      color: "F5F5F5",
-      opacity: "100",
-      active: false,
-    },
-  ])
+  const { settings } = useStore()
 
-  const activeColor: any = settingColorList.find((color) => color.active)
+  if (!settings.colors) {
+    postMessage("settings/setData", {
+      key: "colors",
+      value: [
+        {
+          color: "000000",
+          opacity: 100,
+          active: true,
+        },
+        {
+          color: "FF2F64",
+          opacity: 100,
+          active: false,
+        },
+        {
+          color: "FFA800",
+          opacity: 100,
+          active: false,
+        },
+        {
+          color: "00CC64",
+          opacity: 100,
+          active: false,
+        },
+        {
+          color: "1696FF",
+          opacity: 100,
+          active: false,
+        },
+      ],
+    })
+  }
+
+  const [settingColorList, setSettingColorList] = useState(
+    settings.colors as Array<ColorProps>
+  )
+  const [settingActiveColor, setSettingActiveColor] = useState(
+    settingColorList.findIndex((color) => color.active)
+  )
+
+  useEffect(() => {
+    if (settings.color !== settingColorList)
+      setSettingColorList(settings.colors)
+  }, [settings.colors])
 
   const selectColor = (index: number) => {
     let newSettingColorList: any = settingColorList.map((color, i) => {
@@ -266,19 +300,31 @@ const Color: React.FC = () => {
     })
 
     setSettingColorList(newSettingColorList)
+    setSettingActiveColor(index)
+
+    postMessage("settings/setData", {
+      key: "colors",
+      value: newSettingColorList,
+    })
   }
   const newColor = () => {
     let newSettingColor = {
-      color: "#000000",
-      opacity: "100%",
+      color: "000000",
+      opacity: 100,
       active: true,
     }
-    let oldSettingColorList = settingColorList.map((color, i) => {
+    let oldSettingColorList = settingColorList.map((color) => {
       return { ...color, active: false }
     })
     let newSettingColorList: any = [...oldSettingColorList, newSettingColor]
 
     setSettingColorList(newSettingColorList)
+    setSettingActiveColor(settingColorList.length)
+
+    postMessage("settings/setData", {
+      key: "colors",
+      value: newSettingColorList,
+    })
   }
 
   // const getColorByBgColor = (bgColor: string) => {
@@ -293,7 +339,16 @@ const Color: React.FC = () => {
   // console.log(getColorByBgColor("#bbbbbb"))
 
   return (
-    <Section title="Color" icon="color" actions={<Input {...activeColor} />}>
+    <Section
+      title="Color"
+      icon="color"
+      actions={
+        <Input
+          {...settingColorList[settingActiveColor]}
+          index={settingActiveColor}
+        />
+      }
+    >
       <div className={styles.list}>
         {settingColorList.map((option, index) => (
           <button
@@ -306,6 +361,7 @@ const Color: React.FC = () => {
               "--color": `#${option.color}`,
               "--opacity": `${option.opacity}%`,
             }}
+            key={index}
           >
             <div className={styles.color__hex} />
             <div className={styles.color__opacity} />
