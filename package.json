@@ -1,42 +1,27 @@
 {
-  "name": "revolicon-figma",
-  "version": "1.0.0",
-  "license": "GPL-3.0",
+  "name": "figma-vite-plugin-tmp1",
+  "version": "0.0.0",
   "scripts": {
-    "format": "prettier --write .",
-    "tsc": "yarn tsc:main && yarn tsc:ui",
-    "tsc:main": "tsc --noEmit -p api",
-    "tsc:ui": "tsc --noEmit -p src",
-    "tsc:watch": "concurrently -n widget,iframe \"yarn tsc:main --watch --preserveWatchOutput\" \"yarn tsc:ui --watch --preserveWatchOutput\"",
-    "build": "yarn build:ui && yarn build:main",
-    "build:main": "esbuild api/index.ts --bundle --minify --outfile=dist/code.js",
-    "build:ui": "npx vite build --minify esbuild --emptyOutDir=false",
-    "build:watch": "concurrently -n widget,iframe \"yarn build:main --watch\" \"yarn build:ui --watch\"",
-    "dev": "concurrently -n tsc,build,vite 'npm:tsc:watch' 'npm:build:watch' 'vite'"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "algoliasearch": "^4.14.1",
-    "axios": "^0.27.2",
-    "classnames": "^2.3.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-instantsearch-dom": "^6.30.2",
-    "react-router-dom": "^6.3.0",
-    "simplebar-react": "^2.4.1"
+    "pinia": "^2.0.17",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.3"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.49.0",
-    "@types/node": "^18.0.3",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@types/react-instantsearch-dom": "^6.12.3",
-    "@vitejs/plugin-react": "^1.3.0",
-    "concurrently": "^7.2.2",
-    "esbuild": "^0.14.49",
+    "@types/node": "^18.6.3",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vue/tsconfig": "^0.1.3",
+    "esbuild": "^0.14.51",
     "prettier": "^2.7.1",
-    "sass": "^1.53.0",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.9",
-    "vite-plugin-singlefile": "^0.10.0"
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-singlefile": "^0.11.0",
+    "vue-tsc": "^0.39.4"
   }
 }

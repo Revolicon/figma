@@ -1,8 +1,8 @@
-import "./events/listener"
-import "./events/parameters"
+// import "./events/listener"
+// import "./events/parameters"
 
 figma.showUI(__html__, {
-  title: "Revolicon",
+  title: 'Revolicon',
   height: 512,
   width: 280,
   themeColors: true,

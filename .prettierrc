@@ -1,4 +1,8 @@
 {
+  "semi": false,
+  "singleQuote": true,
   "tabWidth": 2,
-  "semi": false
+  "vueIndentScriptAndStyle": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "printWidth": 120
 }
