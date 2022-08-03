@@ -9,4 +9,6 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+app.config.globalProperties.$post = () => console.log('post')
+
 app.mount('#app')

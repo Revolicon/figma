@@ -2,11 +2,12 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "es6",
-    "lib": ["es6", "ESNext"],
+    "skipLibCheck": true,
+    "lib": ["es6", "dom", "es2017", "ESNext"],
     "strict": false,
     "typeRoots": ["../node_modules/@figma", "../node_modules/@types"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": false
   }
 }
