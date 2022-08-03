@@ -1,56 +1,30 @@
 <template>
-  <br />
-  <hr />
-
-  <Test :myprop="message" />
-
-  <div>
-    Original Props:
-    {{ message }}
-  </div>
-
-  <hr />
-  <br />
-
-  <button @click="clickTestButton()">Tıkla ve Test Et</button>
-
-  <pre>
-    {{ settings.$state }}
-  </pre>
-
-  <RouterView />
+  <RouterView v-if="isLoading" />
 </template>
 
 <script setup>
+  import { onMounted, ref } from 'vue'
   import { RouterView } from 'vue-router'
-  import { useSettingsStore } from '@/stores/settings'
 
-  import Test from '@/components/Test.vue'
-  import { reactive } from 'vue'
+  import { useSettingsStore } from '@/stores/settings'
+  import { $post, $listen } from '@/utils/message'
 
   const settings = useSettingsStore()
 
-  const clickTestButton = () => {
-    settings.$patch({
-      betaKey: '123456789',
+  const isLoading = ref(false)
+
+  onMounted(() => {
+    $post('settings/getMultipleData')
+    $listen('*', (data, event) => {
+      if (event === 'settings/getMultipleData') {
+        console.log('[Revolicon Store] Update settings store')
+        settings.$patch(data)
+
+        isLoading.value = true
+      } else {
+        $post('settings/getMultipleData')
+        console.log('[Revolicon Store] Get settings store signal')
+      }
     })
-  }
-
-  const message = reactive({
-    test: 'Hello World!',
   })
-
-  parent.postMessage(
-    {
-      pluginMessage: {
-        event: 'settings/getMultipleData',
-      },
-    },
-    '*'
-  )
-
-  onmessage = (result) => {
-    let { event: receivedEvent, data: receivedData } = result.data.pluginMessage
-    if (receivedEvent === 'settings/getMultipleData') settings.$patch(receivedData)
-  }
 </script>
