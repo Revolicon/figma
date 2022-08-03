@@ -1,0 +1,26 @@
+* {
+  outline: none;
+}
+html {
+  height: calc(100% - 1px);
+}
+body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'ss02' on, 'liga' on, 'calt' on;
+
+  padding: 0;
+  margin: 0;
+
+  user-select: none;
+
+  background: var(--figma-color-bg, #ffffff);
+  color: var(--figma-color-text, #000000);
+
+  overflow-x: hidden;
+}
+
+body,
+#root,
+#app {
+  height: 100%;
+}
