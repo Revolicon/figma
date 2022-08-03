@@ -1,0 +1,104 @@
+<template>
+  <div class="welcome">
+    <div class="content">x</div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+  @import '../styles/variables.scss';
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+  .content {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+      margin-bottom: 16px;
+    }
+    &__title {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: -0.006em;
+      color: var(--figma-color-text);
+      margin-bottom: 4px;
+    }
+    &__text {
+      @extend .text-sm;
+      text-align: center;
+      letter-spacing: 0.005em;
+      color: var(--figma-color-text-secondary);
+      margin-bottom: 16px;
+    }
+  }
+  .feature {
+    padding: 24px;
+    flex: none;
+    display: flex;
+    gap: 8px;
+    position: relative;
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      outline: none;
+
+      img {
+        height: 36px;
+        width: 36px;
+        pointer-events: none;
+      }
+      span {
+        @extend .text-sm;
+        text-align: center;
+        color: var(--figma-color-text-secondary);
+      }
+
+      &:focus-within {
+        span {
+          color: var(--figma-color-text);
+        }
+      }
+    }
+    &__effect {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 200px;
+      display: flex;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

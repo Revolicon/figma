@@ -4,12 +4,13 @@
 
 <script setup>
   import { onMounted, ref } from 'vue'
-  import { RouterView } from 'vue-router'
+  import { useRouter, RouterView } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
   import { $post, $listen } from '@/utils/message'
 
   const settings = useSettingsStore()
+  const router = useRouter()
 
   const isLoading = ref(false)
 

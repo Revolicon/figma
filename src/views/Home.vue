@@ -8,9 +8,9 @@
 </template>
 
 <script setup>
-  import { useSettingsStore } from '../stores/settings'
   import { ref, watch } from 'vue'
-  import { $post } from '../utils/message'
+  import { useSettingsStore } from '@/stores/settings'
+  import { $post } from '@/utils/message'
 
   const settings = useSettingsStore()
 
