@@ -38,7 +38,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '../src/styles/variables';
+  @import '/src/styles/variables';
 
   .button {
     @extend .text-sm;
