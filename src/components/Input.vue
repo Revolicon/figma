@@ -1,6 +1,8 @@
 <template>
   <input
     v-bind="props"
+    v-model="input"
+    ref="inputRef"
     :class="[
       'input',
       `input--size-${variant}`,
@@ -9,13 +11,11 @@
         'input--full': full,
       },
     ]"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
 
   type Variant = 'small' | 'default'
 
@@ -27,11 +27,24 @@
   }
 
   const props = defineProps<Props>()
+  const emit = defineEmits<{
+    (e: 'update:modelValue', value: any): void
+  }>()
 
-  // const input = computed({
-  //   get: () => modelValue,
-  //   set: (value) => emit('update:modelValue', value),
-  // })
+  const input = computed({
+    get: () => props.modelValue,
+    set: (value) => {
+      emit('update:modelValue', value)
+    },
+  })
+
+  const inputRef: any = ref(null)
+
+  defineExpose({
+    setFocus: () => inputRef.value.focus(),
+    setBlur: () => inputRef.value.blur(),
+    innerRef: () => inputRef.value,
+  })
 </script>
 
 <style scoped lang="scss">

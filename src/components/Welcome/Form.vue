@@ -2,20 +2,18 @@
   <form class="form" onSubmit="{handleSubmit}">
     <label for="key">
       <Input
-        autoFocus
         full
         center
         type="text"
         name="key"
         id="key"
+        ref="input"
         placeholder="Private Beta Key"
         maxLength="19"
         minLength="19"
         :disabled="loading"
         v-model="key"
       />
-      -
-      {{ key }}
     </label>
     <div class="form__actions">
       <Button full variant="primary" type="solid" :loading="loading">Continue</Button>
@@ -25,7 +23,8 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
+  import { onMounted, ref } from 'vue'
+  import { useRouter } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
 
@@ -33,9 +32,15 @@
   import Input from '@/components/Input.vue'
 
   const settings = useSettingsStore()
+  const router = useRouter()
 
   const loading = ref(false)
+  const input = ref(null)
   const key = ref('')
+
+  onMounted(() => {
+    input.value.innerRef().focus()
+  })
 </script>
 
 <style scoped lang="scss">
