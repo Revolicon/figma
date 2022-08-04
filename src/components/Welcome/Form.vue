@@ -1,5 +1,5 @@
 <template>
-  <form class="form" onSubmit="{handleSubmit}">
+  <form class="form" @submit.prevent="handleSubmit">
     <label for="key">
       <Input
         full
@@ -11,7 +11,7 @@
         placeholder="Private Beta Key"
         maxLength="19"
         minLength="19"
-        :disabled="loading"
+        v-bind="{ disabled: loading }"
         v-model="key"
       />
     </label>
@@ -38,13 +38,17 @@
   const input = ref(null)
   const key = ref('')
 
+  const handleSubmit = () => {
+    loading.value = true
+  }
+
   onMounted(() => {
     input.value.innerRef().focus()
   })
 </script>
 
 <style scoped lang="scss">
-  @import '../src/styles/variables';
+  @import '/src/styles/variables';
 
   .form {
     display: flex;
