@@ -13,12 +13,15 @@
   </div>
   <Button variant="destructive" full @click="removeBetaKey">Logout</Button>
   <hr />
+  <router-link to="/settings">Settings Page</router-link>
+  <hr />
 
   <pre>{{ settings.state }}</pre>
 </template>
 
 <script setup>
   import { ref, watch } from 'vue'
+  import { RouterLink } from 'vue-router'
   import { useSettingsStore } from '@/stores/settings'
   import { $post } from '@/utils/message'
 

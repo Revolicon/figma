@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { RouterView, useRouter } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
