@@ -1,102 +1,16 @@
 <template>
   <SimpleBar data-simplebar-auto-hide="false">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus eum facere fugiat fugit ipsum iste iure
-    laudantium magnam maxime natus officiis perferendis possimus quaerat, quibusdam quidem temporibus voluptate
-    voluptatibus!
+    <Section icon="size" title="Size"></Section>
+    <Section icon="frame" title="Frame"></Section>
+    <Section icon="color" title="Color"></Section>
+    <Section icon="finder" title="Finder"></Section>
+    <Section icon="quickactions" title="Quick actions"></Section>
+    <Section icon="appearance" title="Appearance"></Section>
   </SimpleBar>
 </template>
 
 <script setup>
   import { SimpleBar } from 'simplebar-vue3'
+
+  import Section from '@/components/Settings/Section.vue'
 </script>
