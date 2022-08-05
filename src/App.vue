@@ -1,5 +1,8 @@
 <template>
   <RouterView v-if="isLoading" />
+  <div class="loading" v-else>
+    <Icons name="Loading" size="16" />
+  </div>
 </template>
 
 <script setup>
@@ -8,6 +11,8 @@
 
   import { useSettingsStore } from '@/stores/settings'
   import { $post, $listen } from '@/utils/message'
+
+  import Icons from '@/components/Icons'
 
   const settings = useSettingsStore()
 
@@ -28,3 +33,26 @@
     })
   })
 </script>
+
+<style scoped lang="scss">
+  .loading {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    svg {
+      animation: spin 1s linear infinite;
+    }
+  }
+</style>
