@@ -20,10 +20,10 @@ export const postMessage: postMessageOptions = (event: string, data?: Object, ca
   if (callback) getMessage(event, callback)
 }
 export const getMessage = (event: string, callback: Function) => {
-  onmessage = (result) => {
+  addEventListener('message', (result) => {
     let { event: receivedEvent, data: receivedData } = result.data.pluginMessage
     if (event === '*' || event === receivedEvent) callback(receivedData, receivedEvent, result)
-  }
+  })
 }
 
 export const $post = postMessage

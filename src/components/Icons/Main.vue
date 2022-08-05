@@ -1,5 +1,5 @@
 <template>
-  <component :is="List[name]" v-bind="iconProps" />
+  <component :is="List[name]" v-bind="iconProps" :class="{ spin }" />
 </template>
 
 <script setup>
@@ -14,6 +14,7 @@
       type: Number,
       default: 16,
     },
+    spin: Boolean,
   })
   const iconProps = {
     width: props.size,
@@ -22,4 +23,17 @@
   }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+</style>

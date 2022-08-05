@@ -16,7 +16,10 @@
       />
     </label>
     <div class="form__actions">
-      <Button full variant="primary" type="solid" :loading="loading">Continue</Button>
+      <Button full variant="primary" type="solid" :loading="loading">
+        <template v-if="!loading">Continue</template>
+        <Icons name="Loading" size="16" spin v-else />
+      </Button>
       <Button full variant="secondary" type="outline" href="https://revolicon.com">Join the waitlist</Button>
     </div>
   </form>
@@ -26,24 +29,59 @@
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
 
-  import { useSettingsStore } from '@/stores/settings'
+  import axios from 'axios'
 
+  import { useSettingsStore } from '@/stores/settings'
+  import setNotify from '@/utils/notify'
+  import { $post } from '@/utils/message'
+
+  import Icons from '@/components/Icons'
   import Button from '@/components/Button'
   import Input from '@/components/Input.vue'
 
-  const settings = useSettingsStore()
+  const { settings } = useSettingsStore()
   const router = useRouter()
 
   const loading = ref(false)
   const input = ref(null)
   const key = ref('')
 
+  const messages = {
+    KEY_NOT_FOUND: 'Your key is invalid, please try again.',
+    FORM_NOT_VALIDATE: 'An error occurred while submitting your data.',
+    DATABASE_ERROR: 'An unexpected error occurred in the database.',
+    LOGIN_SUCCESS: 'Beta key activation was successful.',
+  }
+
   const handleSubmit = () => {
+    if (!key || key.value.length !== 19) return input.value.setFocus()
     loading.value = true
+    $post('user', (userData) => {
+      axios
+        .post('https://api.revolicon.com/invite', {
+          key: key.value,
+          figmaId: userData.id,
+          figmaName: userData.name,
+          figmaData: userData,
+        })
+        .then((response) => {
+          // setNotify(messages[response.data.message])
+          $post('settings/setData', {
+            key: 'betaKey',
+            value: key.value,
+          })
+        })
+        .catch((error) => {
+          setNotify(messages[error.response.data.message], {
+            error: true,
+          })
+        })
+        .finally(() => (loading.value = false))
+    })
   }
 
   onMounted(() => {
-    input.value.innerRef().focus()
+    input.value.setFocus()
   })
 </script>
 

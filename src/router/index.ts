@@ -7,14 +7,14 @@ const router = createRouter({
   history: createMemoryHistory(),
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: Home,
-    },
-    {
       path: '/',
       name: 'welcome',
       component: Welcome,
+    },
+    {
+      path: '/home',
+      name: 'finder',
+      component: Home,
     },
   ],
 })

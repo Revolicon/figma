@@ -24,15 +24,18 @@
 
   interface Props {
     [key: string]: any
-    type?: Type
-    variant?: Variant
+    type: Type
+    variant: Variant
     disabled?: boolean
     full?: boolean
     loading?: boolean
     href?: string
   }
 
-  const props = defineProps<Props>()
+  const props = withDefaults(defineProps<Props>(), {
+    type: 'solid',
+    variant: 'primary',
+  })
 
   const ButtonTag = props.href ? 'a' : 'button'
 </script>
