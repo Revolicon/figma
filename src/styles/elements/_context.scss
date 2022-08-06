@@ -1,0 +1,43 @@
+.vue-simple-context-menu {
+  background: #1e1e1e;
+  //border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15), 0 5px 17px rgba(0, 0, 0, 0.2), inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  display: none;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1000000;
+  padding: 6px 0;
+  min-width: 140px;
+
+  &__item {
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.005em;
+
+    &:hover {
+      background: var(--figma-color-bg-brand);
+    }
+  }
+  &__divider {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 1px;
+    width: 100%;
+    margin: 8px 0;
+    pointer-events: none;
+  }
+
+  &--active {
+    display: block;
+  }
+}

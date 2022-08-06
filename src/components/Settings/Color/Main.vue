@@ -6,8 +6,8 @@
     <div class="list">
       <button
         v-for="(option, index) in color.list"
-        @click="selectColor(option.id)"
-        @contextmenu="removeColor(index)"
+        @click="selectColor(index)"
+        @contextmenu.prevent.stop="contextRef.showMenu($event, index)"
         class="list-color"
         :class="{
           'list-color--active': option.id === color.active,
@@ -25,11 +25,18 @@
         <Icons name="Plus" size="16" />
       </button>
     </div>
+    <vue-simple-context-menu
+      element-id="myFirstMenu"
+      ref="contextRef"
+      :options="contextOptions"
+      @option-clicked="contextHandle"
+    />
   </Section>
 </template>
 
 <script setup>
-  import { computed, reactive, watch } from 'vue'
+  import { reactive, ref, watch } from 'vue'
+  import VueSimpleContextMenu from 'vue-simple-context-menu'
   import { v4 as uuidv4 } from 'uuid'
 
   import { $post, $raw } from '@/utils/message'
@@ -47,8 +54,8 @@
     active: settings.state.activeColor,
   })
 
-  const selectColor = (id) => {
-    color.active = id
+  const selectColor = (index) => {
+    color.active = color.list[index].id
   }
   const removeColor = (index) => {
     let list = color.list
@@ -65,6 +72,21 @@
       color: (~~(Math.random() * 2 ** 24)).toString(16).padStart(6, '0'),
       opacity: 100,
     })
+  }
+
+  const contextRef = ref(null)
+  const contextOptions = ref([
+    {
+      name: 'Select Color',
+      slug: selectColor,
+    },
+    {
+      name: 'Delete Color',
+      slug: removeColor,
+    },
+  ])
+  const contextHandle = ({ item, option }) => {
+    option.slug(item)
   }
 
   watch(color, () => {

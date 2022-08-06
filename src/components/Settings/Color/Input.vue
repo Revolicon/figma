@@ -20,19 +20,14 @@
 </template>
 
 <script setup>
-  import { reactive, ref, watch, watchEffect } from 'vue'
+  import { reactive, computed, watchEffect } from 'vue'
 
   const props = defineProps({
-    active: {
-      type: String,
-    },
-    list: {
-      type: Array,
-    },
+    active: String,
+    list: Array,
   })
-  const { active, list } = props
 
-  let item = ref(list.find((option) => option.id === active))
+  let item = computed(() => props.list.find((option) => option.id === props.active))
   let input = reactive({
     color: `#${item.value.color}`.toUpperCase(),
     opacity: `${item.value.opacity}%`.toUpperCase(),
@@ -210,8 +205,6 @@
   }
 
   watchEffect(() => {
-    item.value = props.list.find((option) => option.id === props.active)
-
     colorHandler(item.value.color.toString())
     opacityHandler(item.value.opacity.toString())
   })
