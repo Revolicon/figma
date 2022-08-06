@@ -38,6 +38,7 @@
   import { reactive, ref, watch } from 'vue'
   import { copyText } from 'vue3-clipboard'
   import { v4 as uuidv4 } from 'uuid'
+  import tinycolor from 'tinycolor2'
 
   import VueSimpleContextMenu from 'vue-simple-context-menu'
 
@@ -57,25 +58,23 @@
     active: settings.state.activeColor,
   })
 
-  const HexToRgba = (hexColor, alpha) => {
-    let rgb = {
-      red: (hexColor >> 16) & 0xff,
-      green: (hexColor >> 8) & 0xff,
-      blue: hexColor & 0xff,
-    }
-    return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${alpha}%)`
-  }
   const copyColor = (index) => {
     const item = color.list[index]
-    copyText(HexToRgba(item.color, item.opacity), undefined, (error, event) => {
-      if (error) {
-        $notify('An error occurred in color copying', {
-          error: true,
-        })
-      } else {
-        $notify('Color copied successfully')
+    copyText(
+      tinycolor(item.color)
+        .setAlpha(item.opacity / 100)
+        .toRgbString(),
+      undefined,
+      (error, event) => {
+        if (error) {
+          $notify('An error occurred in color copying', {
+            error: true,
+          })
+        } else {
+          $notify('Color copied successfully')
+        }
       }
-    })
+    )
   }
   const selectColor = (index) => {
     color.active = color.list[index].id
