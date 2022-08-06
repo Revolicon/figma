@@ -13,6 +13,8 @@
           'list-color--active': option.id === color.active,
         }"
         :style="{
+          '--dot-color': tinycolor(option.color).getLuminance() > 0.75 ? '#808080CC' : '#ffffffCC',
+          '--border-width': tinycolor(option.color).getLuminance() > 0.75 ? '1px' : '0',
           '--color': `#${option.color}`,
           '--opacity': `${option.opacity}%`,
         }"
@@ -137,6 +139,8 @@
   }
   .list-color {
     --border-width: 0;
+    --dot-color: #fff;
+
     cursor: pointer;
     width: 18px;
     height: 18px;
@@ -144,11 +148,10 @@
     border-radius: 50%;
     background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H4V4H0V0Z' fill='%23E1E1E1'/%3E%3Cpath d='M4 0H8V4H4V0Z' fill='white'/%3E%3Cpath d='M0 4H4V8H0V4Z' fill='white'/%3E%3Cpath d='M4 4H8V8H4V4Z' fill='%23E1E1E1'/%3E%3C/svg%3E%0A");
     background-repeat: repeat;
-    box-shadow: inset 0 0 0 var(--border-width, 0) var(--figma-color-bg-secondary);
+    border: var(--border-width, 0) solid var(--figma-color-bg-secondary);
     position: relative;
     overflow: hidden;
     outline: none;
-    border: none;
     padding: 0;
 
     &__hex {
@@ -181,7 +184,7 @@
         margin: auto;
         width: 6px;
         height: 6px;
-        background: #ffffff;
+        background: var(--dot-color);
         z-index: 10;
         display: block;
         border-radius: 50%;
