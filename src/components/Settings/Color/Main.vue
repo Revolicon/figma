@@ -36,10 +36,13 @@
 
 <script setup>
   import { reactive, ref, watch } from 'vue'
-  import VueSimpleContextMenu from 'vue-simple-context-menu'
+  import { copyText } from 'vue3-clipboard'
   import { v4 as uuidv4 } from 'uuid'
 
+  import VueSimpleContextMenu from 'vue-simple-context-menu'
+
   import { $post, $raw } from '@/utils/message'
+  import $notify from '@/utils/notify'
 
   import { useSettingsStore } from '@/stores/settings'
 
@@ -54,6 +57,26 @@
     active: settings.state.activeColor,
   })
 
+  const HexToRgba = (hexColor, alpha) => {
+    let rgb = {
+      red: (hexColor >> 16) & 0xff,
+      green: (hexColor >> 8) & 0xff,
+      blue: hexColor & 0xff,
+    }
+    return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${alpha}%)`
+  }
+  const copyColor = (index) => {
+    const item = color.list[index]
+    copyText(HexToRgba(item.color, item.opacity), undefined, (error, event) => {
+      if (error) {
+        $notify('An error occurred in color copying', {
+          error: true,
+        })
+      } else {
+        $notify('Color copied successfully')
+      }
+    })
+  }
   const selectColor = (index) => {
     color.active = color.list[index].id
   }
@@ -77,11 +100,15 @@
   const contextRef = ref(null)
   const contextOptions = ref([
     {
-      name: 'Select Color',
+      name: 'Copy color',
+      slug: copyColor,
+    },
+    {
+      name: 'Select color',
       slug: selectColor,
     },
     {
-      name: 'Delete Color',
+      name: 'Delete color',
       slug: removeColor,
     },
   ])
@@ -95,6 +122,7 @@
       { key: 'activeColor', value: color.active },
     ])
   })
+
   // $post('settings/removeMultipleData', ['color', 'activeColor'])
 </script>
 
