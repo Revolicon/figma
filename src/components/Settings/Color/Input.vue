@@ -20,23 +20,22 @@
 </template>
 
 <script setup>
-  import { reactive, ref, watch } from 'vue'
+  import { reactive, ref, watch, watchEffect } from 'vue'
 
-  let props = defineProps({
-    color: {
+  const props = defineProps({
+    active: {
       type: String,
-      value: '000000',
     },
-    opacity: {
-      type: Number,
-      value: 100,
+    list: {
+      type: Array,
     },
   })
-  let { color, opacity } = props
+  const { active, list } = props
 
-  const input = reactive({
-    color: `#${color}`,
-    opacity: `${opacity}%`,
+  let item = ref(list.find((option) => option.id === active))
+  let input = reactive({
+    color: `#${item.value.color}`.toUpperCase(),
+    opacity: `${item.value.opacity}%`.toUpperCase(),
   })
 
   const colorNameToHex = (colorName) => {
@@ -195,24 +194,26 @@
     let colorTest = colorRegex.test(colorInput)
     let colorExec = colorRegex.exec(colorInput)
 
-    let colorValue = colorTest ? colorExec?.[0].padEnd(6, colorExec?.[0]) : color
+    let colorValue = colorTest ? colorExec?.[0].padEnd(6, colorExec?.[0]) : item.value.color
 
-    color = colorValue
+    item.value.color = colorValue
     input.color = `#${colorValue}`.toUpperCase()
   }
   const opacityHandler = (inputOpacity) => {
     let opacityValue = parseInt(inputOpacity.replace(/^\D*$/, ''))
-    if (isNaN(opacityValue)) opacityValue = opacity
+    if (isNaN(opacityValue)) opacityValue = item.value.opacity
     if (opacityValue > 100) opacityValue = 100
     if (opacityValue < 0) opacityValue = 0
 
-    opacity = opacityValue
+    item.value.opacity = opacityValue
     input.opacity = `${opacityValue}%`
   }
 
-  watch(props, () => {
-    colorHandler(color)
-    opacityHandler(opacity)
+  watchEffect(() => {
+    item.value = props.list.find((option) => option.id === props.active)
+
+    colorHandler(item.value.color.toString())
+    opacityHandler(item.value.opacity.toString())
   })
 </script>
 

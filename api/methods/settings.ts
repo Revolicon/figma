@@ -1,6 +1,7 @@
 interface SettingsItem {
   key: string
   value: SettingsValue | any
+  isCallback?: boolean
 }
 interface SettingsValue {
   data: string
@@ -14,12 +15,23 @@ const callback = (event: string, data: any) => {
   })
 }
 
+/**
+ * Set Mutliple Data
+ *
+ * ```js
+ * $post('settings/setMultipleData', [
+ *   { key: 'key1', value: 'value1' },
+ *   { key: 'key2', value: 'value2' },
+ * ])
+ * ```
+ * */
 const setMultipleData = (settings: Array<SettingsItem>) => {
   settings.map((value) => {
+    value.isCallback = false
     setData(value)
   })
 
-  callback("settings/setMultipleData", true)
+  callback('settings/setMultipleData', true)
 }
 const getMultipleData = () => {
   let dataKeyList = figma.root.getPluginDataKeys()
@@ -29,7 +41,7 @@ const getMultipleData = () => {
     ;(dataValueList as any)[key] = getItem(key)
   })
 
-  callback("settings/getMultipleData", dataValueList)
+  callback('settings/getMultipleData', dataValueList)
 
   return dataValueList
 }
@@ -37,13 +49,13 @@ const removeMultipleData = (keys: Array<string>) => {
   if (!keys) return
   keys.map((key) => removeData(key))
 
-  callback("settings/removeMultipleData", true)
+  callback('settings/removeMultipleData', true)
 }
 
-const setData = ({ key, value }: SettingsItem) => {
+const setData = ({ key, value, isCallback = true }: SettingsItem) => {
   if (!key) return
   let optionsValue = value.toString()
-  if (typeof value === "object") optionsValue = JSON.stringify(value)
+  if (typeof value === 'object') optionsValue = JSON.stringify(value)
 
   figma.root.setPluginData(
     key,
@@ -53,19 +65,19 @@ const setData = ({ key, value }: SettingsItem) => {
     })
   )
 
-  callback("settings/setData", true)
+  isCallback && callback('settings/setData', true)
 }
 const getData = (key: any) => {
   if (!key) return
   let data = getItem(key)
 
-  callback("settings/getData", data)
+  callback('settings/getData', data)
 }
 const removeData = (key: any) => {
   if (!key) return
-  figma.root.setPluginData(key, "")
+  figma.root.setPluginData(key, '')
 
-  callback("settings/removeData", true)
+  callback('settings/removeData', true)
 }
 
 const getItem = (key: any) => {
@@ -77,13 +89,13 @@ const getItem = (key: any) => {
     let dataValue = dataObject.data
 
     switch (dataObject.type) {
-      case "object":
+      case 'object':
         dataValue = JSON.parse(dataValue)
         break
-      case "boolean":
-        dataValue = dataValue === "true"
+      case 'boolean':
+        dataValue = dataValue === 'true'
         break
-      case "number":
+      case 'number':
         dataValue = Number(dataValue)
         break
     }
@@ -100,11 +112,11 @@ const removeAllData = () => {
     removeData(key)
   })
 
-  callback("settings/removeAllData", true)
+  callback('settings/removeAllData', true)
 }
 
 const Settings = ({ event, data }: ListenerOptions) => {
-  let runnerName = event.split("/")[1]
+  let runnerName = event.split('/')[1]
   let runnerList: any = {
     getItem,
     setData,

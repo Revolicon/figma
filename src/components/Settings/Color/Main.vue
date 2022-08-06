@@ -1,15 +1,16 @@
 <template>
   <Section icon="color" title="Color">
     <template #actions>
-      <Input v-bind="getActiveColor" />
+      <Input v-bind="color" />
     </template>
     <div class="list">
       <button
         v-for="(option, index) in color.list"
-        @click="selectColor(index)"
+        @click="selectColor(option.id)"
+        @contextmenu="removeColor(index)"
         class="list-color"
         :class="{
-          'list-color--active': option.active,
+          'list-color--active': option.id === color.active,
         }"
         :style="{
           '--color': `#${option.color}`,
@@ -29,6 +30,7 @@
 
 <script setup>
   import { computed, reactive, watch } from 'vue'
+  import { v4 as uuidv4 } from 'uuid'
 
   import { $post, $raw } from '@/utils/message'
 
@@ -42,36 +44,36 @@
 
   let color = reactive({
     list: settings.state.color,
-    active: settings.state.color.findIndex((item) => item.active),
+    active: settings.state.activeColor,
   })
 
-  const selectColor = (index) => {
-    color.list[color.active].active = false
-    color.list[index].active = true
-    color.active = index
+  const selectColor = (id) => {
+    color.active = id
+  }
+  const removeColor = (index) => {
+    let list = color.list
+    if (list[index].id === color.active) {
+      color.active = 'NULL'
+    }
+
+    list.splice(index, 1)
+    color.list = list
   }
   const createColor = () => {
-    let newColor = {
-      color: '000000',
+    color.list.push({
+      id: uuidv4(),
+      color: (~~(Math.random() * 2 ** 24)).toString(16).padStart(6, '0'),
       opacity: 100,
-      active: true,
-    }
-    let oldColorList = color.list.map((color) => {
-      return { ...color, active: false }
     })
-    color.list = [...oldColorList, newColor]
   }
 
-  const getActiveColor = computed(() => {
-    return color.list.find((color) => color.active)
-  })
-
   watch(color, () => {
-    $post('settings/setData', {
-      key: 'color',
-      value: $raw(color.list),
-    })
+    $post('settings/setMultipleData', [
+      { key: 'color', value: $raw(color.list) },
+      { key: 'activeColor', value: color.active },
+    ])
   })
+  // $post('settings/removeMultipleData', ['color', 'activeColor'])
 </script>
 
 <style scoped lang="scss">

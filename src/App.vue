@@ -26,10 +26,10 @@
         settings.setState(data)
         isLoading.value = true
 
-        console.log('[Revolicon Store] Update settings store', { ...settings.state })
+        // console.log('[Revolicon Store] Update settings store', { ...settings.state })
       } else {
         $post('settings/getMultipleData')
-        console.log('[Revolicon Store] Update signal')
+        // console.log(`[Revolicon Store] Update signal (${event})`)
       }
     })
   })

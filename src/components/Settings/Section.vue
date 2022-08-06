@@ -3,6 +3,7 @@
     class="section"
     :class="{
       'section--actions': slots.actions,
+      'section--error': props.error,
     }"
   >
     <div class="section__header">
@@ -23,8 +24,9 @@
 
   const slots = useSlots()
   const props = defineProps<{
-    icon?: string
     title: string
+    icon?: string
+    error?: boolean
   }>()
 
   const getIcon: any = (icon: string) => {

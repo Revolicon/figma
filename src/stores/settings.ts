@@ -5,31 +5,37 @@ export const useSettingsStore = defineStore('settings', () => {
   const defaultState = {
     color: [
       {
+        id: 'DEFAULT_COLOR_1',
         color: '000000',
         opacity: 100,
-        active: true,
       },
       {
+        id: 'DEFAULT_COLOR_2',
         color: 'FF2F64',
         opacity: 100,
-        active: false,
       },
       {
+        id: 'DEFAULT_COLOR_3',
         color: 'FFA800',
         opacity: 100,
-        active: false,
       },
       {
+        id: 'DEFAULT_COLOR_4',
         color: '00CC64',
         opacity: 100,
-        active: false,
       },
       {
+        id: 'DEFAULT_COLOR_5',
+        color: '1696FF',
+        opacity: 100,
+      },
+      {
+        id: 'DEFAULT_COLOR_6',
         color: '1696FF',
         opacity: 50,
-        active: false,
       },
     ],
+    activeColor: 'DEFAULT_COLOR_1',
   }
   const state = ref({})
 
