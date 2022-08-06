@@ -35,7 +35,7 @@
   })
   settings.$subscribe((data) => {
     if (settings.state.betaKey) {
-      router.push({ name: 'finder' })
+      router.push({ name: 'settings' })
     } else {
       router.push({ name: 'welcome' })
     }

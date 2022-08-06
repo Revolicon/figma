@@ -25,6 +25,10 @@ export const getMessage = (event: string, callback: Function) => {
     if (event === '*' || event === receivedEvent) callback(receivedData, receivedEvent, result)
   })
 }
+export const getRaw = (data: Object | Array<any>) => {
+  return JSON.parse(JSON.stringify(data))
+}
 
 export const $post = postMessage
 export const $listen = getMessage
+export const $raw = getRaw
