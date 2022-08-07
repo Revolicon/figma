@@ -8,7 +8,7 @@
   </Navigations>
   <div class="content">
     <SimpleBar data-simplebar-auto-hide="false">
-      <Section icon="size" title="Size"></Section>
+      <Size />
       <Section icon="frame" title="Frame"></Section>
       <Color />
       <Section icon="finder" title="Finder"></Section>
@@ -37,7 +37,9 @@
 
   import Navigations from '@/components/Navigations.vue'
   import Section from '@/components/Settings/Section.vue'
+
   import Color from '@/components/Settings/Color'
+  import Size from '@/components/Settings/Size'
 
   const sure = ref(false)
 

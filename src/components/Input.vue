@@ -5,8 +5,9 @@
     ref="inputRef"
     :class="[
       'input',
-      `input--size-${variant}`,
+
       {
+        [`input--size-${variant}`]: variant,
         'input--center': center,
         'input--full': full,
       },
