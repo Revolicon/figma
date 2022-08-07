@@ -13,8 +13,8 @@
           'list-color--active': option.id === color.active,
         }"
         :style="{
-          '--dot-color': tinycolor(option.color).getLuminance() > 0.75 ? '#808080CC' : '#ffffffCC',
-          '--border-width': tinycolor(option.color).getLuminance() > 0.75 ? '1px' : '0',
+          '--dot-color': tinycolor(option.color).getLuminance() > 0.8 ? '#808080CC' : '#ffffffCC',
+          '--border-width': tinycolor(option.color).getLuminance() > 0.8 ? '1px' : '0',
           '--color': `#${option.color}`,
           '--opacity': `${option.opacity}%`,
         }"
