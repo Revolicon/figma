@@ -27,13 +27,8 @@
         <Icons name="Plus" size="16" />
       </button>
     </div>
-    <vue-simple-context-menu
-      element-id="myFirstMenu"
-      ref="contextRef"
-      :options="contextOptions"
-      @option-clicked="contextHandle"
-    />
   </Section>
+  <Context element-id="myFirstMenu" ref="contextRef" :options="contextOptions" @option-clicked="contextHandle" />
 </template>
 
 <script setup>
@@ -42,13 +37,12 @@
   import { v4 as uuidv4 } from 'uuid'
   import tinycolor from 'tinycolor2'
 
-  import VueSimpleContextMenu from 'vue-simple-context-menu'
-
   import { $post, $raw } from '@/utils/message'
   import $notify from '@/utils/notify'
 
   import { useSettingsStore } from '@/stores/settings'
 
+  import Context from '@/components/Context.vue'
   import Section from '@/components/Settings/Section.vue'
   import Input from '@/components/Settings/Color/Input.vue'
   import Icons from '@/components/Icons'
@@ -171,6 +165,7 @@
       border-width: 18px 0 0 18px;
       border-color: transparent transparent transparent var(--color);
       display: flex;
+      pointer-events: none;
     }
     &__opacity {
       width: 100%;
@@ -181,11 +176,13 @@
       background: var(--color);
       opacity: var(--opacity);
       bottom: 0;
+      pointer-events: none;
     }
 
     &--active {
       &::before {
         content: '';
+        pointer-events: none;
         position: absolute;
         top: 0;
         left: 0;
