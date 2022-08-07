@@ -34,6 +34,11 @@ export const useSettingsStore = defineStore('settings', () => {
         color: '1696FF',
         opacity: 50,
       },
+      {
+        id: 'DEFAULT_COLOR_7',
+        color: 'F5F5F5',
+        opacity: 100,
+      },
     ],
     activeColor: 'DEFAULT_COLOR_1',
   }
