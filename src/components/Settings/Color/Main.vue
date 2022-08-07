@@ -23,7 +23,7 @@
         <span class="list-color__hex" />
         <span class="list-color__opacity" />
       </button>
-      <button class="list-new" @click="createColor">
+      <button class="list-new" @click="createColor()">
         <Icons name="Plus" size="16" />
       </button>
     </div>
@@ -83,18 +83,28 @@
   }
   const removeColor = (index) => {
     let list = color.list
+
+    // Remove active item
     if (list[index].id === color.active) {
-      color.active = 'NULL'
+      if (index !== 0) {
+        color.active = list[0].id
+      } else {
+        if (list.length > 1) color.active = list[1].id
+        if (list.length === 1) {
+          createColor('000000')
+          color.active = list[1].id
+        }
+      }
     }
 
     list.splice(index, 1)
     color.list = list
   }
-  const createColor = () => {
+  const createColor = (hex = null, opacity = 100) => {
     color.list.push({
       id: uuidv4(),
-      color: (~~(Math.random() * 2 ** 24)).toString(16).padStart(6, '0'),
-      opacity: 100,
+      color: hex || (~~(Math.random() * 2 ** 24)).toString(16).padStart(6, '0'),
+      opacity: opacity,
     })
   }
 
