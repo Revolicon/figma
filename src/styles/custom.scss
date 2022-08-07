@@ -24,3 +24,14 @@ body,
 #app {
   height: 100%;
 }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .content {
+    flex: 1;
+    overflow: auto;
+  }
+}
