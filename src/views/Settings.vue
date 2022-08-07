@@ -15,13 +15,18 @@
       <Section icon="quickactions" title="Quick actions"></Section>
       <Section icon="appearance" title="Appearance"></Section>
       <Section title="Other">
-        <Button variant="destructive" full @click="removeBetaKey">Logout</Button>
+        <Button full @click="removeBetaKey">Logout</Button>
+        <Button variant="destructive" full @click="removeAllData">
+          <template v-if="!sure">Reset All Settings</template>
+          <template v-else>Are You Sure</template>
+        </Button>
       </Section>
     </SimpleBar>
   </div>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
   import { SimpleBar } from 'simplebar-vue3'
 
   import { $post } from '@/utils/message'
@@ -32,7 +37,11 @@
   import Section from '@/components/Settings/Section.vue'
   import Color from '@/components/Settings/Color'
 
-  const removeBetaKey = () => {
-    $post('settings/removeData', 'betaKey')
+  const sure = ref(false)
+
+  const removeBetaKey = () => $post('settings/removeData', 'betaKey')
+  const removeAllData = () => {
+    if (sure.value) $post('settings/removeAllData')
+    sure.value = !sure.value
   }
 </script>
