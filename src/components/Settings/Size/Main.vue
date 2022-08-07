@@ -1,6 +1,7 @@
 <template>
   <Section icon="size" title="Size">
     <div class="size">
+      <Picker class="size__picker" type="text" :options="options" :active="size" @change="inputHandler($event)" />
       <Input
         class="size__input"
         variant="small"
@@ -14,7 +15,7 @@
 </template>
 
 <script setup>
-  import { reactive, ref, watch } from 'vue'
+  import { computed, reactive, ref, watch } from 'vue'
 
   import { $post, $raw } from '@/utils/message'
 
@@ -22,6 +23,7 @@
 
   import Section from '@/components/Settings/Section.vue'
   import Input from '@/components/Input.vue'
+  import Picker from '@/components/Picker.vue'
 
   const settings = useSettingsStore()
 
@@ -29,6 +31,12 @@
   const input = reactive({
     size: `${size.value}px`,
   })
+  const options = computed(() =>
+    [10, 12, 14, 16, 20, 24, 32].map((i) => ({
+      label: i.toString(),
+      value: i.toString(),
+    }))
+  )
 
   const inputHandler = (inputSize) => {
     let sizeValue = inputSize
@@ -57,15 +65,17 @@
 </script>
 
 <style scoped lang="scss">
-  @import '/src/styles/variables';
-
   .size {
     display: flex;
     align-items: center;
+    gap: 4px;
 
-    &__input {
+    &__picker {
       flex: 1;
-      min-width: 1px;
+    }
+    &__input {
+      flex: none;
+      width: 44px;
       text-align: center;
     }
   }
