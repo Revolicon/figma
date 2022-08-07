@@ -15,6 +15,7 @@
       <Section icon="quickactions" title="Quick actions"></Section>
       <Section icon="appearance" title="Appearance"></Section>
       <Section title="Other">
+        <Button full @click="downloadAllData">Export All Data</Button>
         <Button full @click="removeBetaKey">Logout</Button>
         <Button variant="destructive" full @click="removeAllData">
           <template v-if="!sure">Reset All Settings</template>
@@ -28,6 +29,7 @@
 <script setup>
   import { ref } from 'vue'
   import { SimpleBar } from 'simplebar-vue3'
+  import FileSaver from 'file-saver'
 
   import { $post } from '@/utils/message'
 
@@ -43,5 +45,12 @@
   const removeAllData = () => {
     if (sure.value) $post('settings/removeAllData')
     sure.value = !sure.value
+  }
+  const downloadAllData = () => {
+    $post('settings/getMultipleData', function (data) {
+      FileSaver.saveAs(
+        new File([JSON.stringify(data, undefined, 2)], 'Revolicon Backup.json', { type: 'text/plain;charset=utf-8' })
+      )
+    })
   }
 </script>
