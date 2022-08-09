@@ -4,8 +4,8 @@
   "api": "1.0.0",
   "editorType": ["figma"],
   "permissions": ["currentuser"],
-  "main": "dist/code.js",
-  "ui": "dist/index.html",
+  "main": "code.js",
+  "ui": "index.html",
   "parameterOnly": false,
   "enableProposedApi": true,
   "parameters": [
