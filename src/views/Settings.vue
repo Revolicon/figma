@@ -13,7 +13,7 @@
       <Color />
       <Section icon="finder" title="Finder"></Section>
       <Section icon="quickactions" title="Quick actions"></Section>
-      <Section icon="appearance" title="Appearance"></Section>
+      <Appearance />
       <Section title="Other">
         <Button full @click="downloadAllData">Export All Data</Button>
         <Button full @click="removeBetaKey">Logout</Button>
@@ -38,8 +38,9 @@
   import Navigations from '@/components/Navigations.vue'
   import Section from '@/components/Settings/Section.vue'
 
-  import Color from '@/components/Settings/Color'
   import Size from '@/components/Settings/Size'
+  import Color from '@/components/Settings/Color'
+  import Appearance from '@/components/Settings/Appearance'
 
   const sure = ref(false)
 

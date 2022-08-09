@@ -59,7 +59,7 @@
     width: fit-content;
     display: flex;
     padding: 8px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0s;
     background: var(--figma-color-bg);
     border-radius: 6px;
     color: var(--figma-color-text);

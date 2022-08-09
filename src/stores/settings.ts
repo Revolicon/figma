@@ -3,6 +3,12 @@ import { ref } from 'vue'
 
 export const useSettingsStore = defineStore('settings', () => {
   const defaultState = {
+    // App Settings
+    app: {
+      // dark or light
+      theme: null,
+    },
+
     // Icon Size
     size: 16,
 
@@ -45,6 +51,9 @@ export const useSettingsStore = defineStore('settings', () => {
       },
     ],
     activeColor: 'DEFAULT_COLOR_1',
+
+    // Appearance
+    appearance: 'auto',
   }
   const state = ref({})
 

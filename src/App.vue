@@ -6,18 +6,19 @@
 </template>
 
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, watch } from 'vue'
   import { RouterView, useRouter } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
-  import { $post, $listen } from '@/utils/message'
+  import { useColorMode } from '@/utils/theme'
+  import { $listen, $post } from '@/utils/message'
 
   import Icons from '@/components/Icons'
 
   let settings = useSettingsStore()
-  const router = useRouter()
+  let router = useRouter()
 
-  const isLoading = ref(false)
+  let isLoading = ref(false)
 
   onMounted(() => {
     $post('settings/getMultipleData')
@@ -33,11 +34,23 @@
       }
     })
   })
-  settings.$subscribe((data) => {
+  settings.$subscribe(() => {
+    // Login Actions
     if (settings.state.betaKey) {
       router.push({ name: 'settings' })
     } else {
       router.push({ name: 'welcome' })
+    }
+
+    if (isLoading.value) {
+      // Get HTML Tag Elements
+      let htmlElement = document.getElementsByTagName('html')[0]
+
+      // Save color figma
+      settings.state.app.theme = htmlElement.className.split('-')[1]
+
+      // Save color mode
+      htmlElement.setAttribute('data-theme', useColorMode(settings))
     }
   })
 </script>

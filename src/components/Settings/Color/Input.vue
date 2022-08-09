@@ -236,6 +236,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       &:not(:last-child) {
         box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
       }

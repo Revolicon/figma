@@ -58,17 +58,17 @@
   }
   const selectOption = (value, index) => {
     emit('change', value)
-    optionsEffect.left = optionsRef.value[index].offsetLeft
-    optionsEffect.width = optionsRef.value[index].offsetWidth
+    optionsEffect.left = optionsRef.value[index]?.offsetLeft
+    optionsEffect.width = optionsRef.value[index]?.offsetWidth
   }
 
   watchEffect(() => {
-    optionsEffect.left = optionsRef.value[activeIndex.value].offsetLeft
-    optionsEffect.width = optionsRef.value[activeIndex.value].offsetWidth
+    optionsEffect.left = optionsRef.value[activeIndex.value]?.offsetLeft
+    optionsEffect.width = optionsRef.value[activeIndex.value]?.offsetWidth
   })
   watch(activeIndex, () => {
-    optionsEffect.left = optionsRef.value[activeIndex.value].offsetLeft
-    optionsEffect.width = optionsRef.value[activeIndex.value].offsetWidth
+    optionsEffect.left = optionsRef.value[activeIndex.value]?.offsetLeft
+    optionsEffect.width = optionsRef.value[activeIndex.value]?.offsetWidth
   })
 </script>
 

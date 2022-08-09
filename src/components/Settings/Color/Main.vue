@@ -54,23 +54,23 @@
     active: settings.state.activeColor,
   })
 
-  const copyColor = (index) => {
-    const item = color.list[index]
-    copyText(
-      tinycolor(item.color)
-        .setAlpha(item.opacity / 100)
-        .toRgbString(),
-      undefined,
-      (error, event) => {
-        if (error) {
-          $notify('An error occurred in color copying', {
-            error: true,
-          })
-        } else {
-          $notify('Color copied successfully')
-        }
+  const copyColor = (index, colorType) => {
+    let item = color.list[index]
+    let processColor = tinycolor(item.color).setAlpha(item.opacity / 100)
+
+    // TODO: fix hex code ff opacity
+    if (colorType === 'hex') processColor = processColor.toHex8String()
+    if (colorType === 'rgb') processColor = processColor.toRgbString()
+
+    copyText(processColor, undefined, (error, event) => {
+      if (error) {
+        $notify('An error occurred in color copying', {
+          error: true,
+        })
+      } else {
+        $notify('Color copied successfully')
       }
-    )
+    })
   }
   const selectColor = (index) => {
     color.active = color.list[index].id
@@ -105,8 +105,12 @@
   const contextRef = ref(null)
   const contextOptions = ref([
     {
-      name: 'Copy color',
-      slug: copyColor,
+      name: 'Copy Hex',
+      slug: (index) => copyColor(index, 'hex'),
+    },
+    {
+      name: 'Copy RGB',
+      slug: (index) => copyColor(index, 'rgb'),
     },
     {
       name: 'Select color',
@@ -197,6 +201,9 @@
         border-radius: 50%;
       }
     }
+  }
+  [data-theme='dark'] .list-color {
+    border: none;
   }
   .list-new {
     height: 18px;
