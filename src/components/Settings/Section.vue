@@ -72,8 +72,6 @@
 
   watch(settings, () => {
     theme.value = useColorMode(settings)
-
-    console.log(theme.value)
   })
 </script>
 

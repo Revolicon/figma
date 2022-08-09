@@ -43,14 +43,20 @@
     }
 
     if (isLoading.value) {
-      // Get HTML Tag Elements
-      let htmlElement = document.getElementsByTagName('html')[0]
+      const htmlElement = document.getElementsByTagName('html')[0]
+      const htmlTheme = () => {
+        settings.state.app.theme = htmlElement.className.split('-')[1]
 
-      // Save color figma
-      settings.state.app.theme = htmlElement.className.split('-')[1]
+        htmlElement.setAttribute('data-theme', useColorMode(settings))
+      }
 
-      // Save color mode
-      htmlElement.setAttribute('data-theme', useColorMode(settings))
+      htmlTheme()
+
+      let mutation = new MutationObserver(() => htmlTheme())
+      mutation.observe(htmlElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      })
     }
   })
 </script>
