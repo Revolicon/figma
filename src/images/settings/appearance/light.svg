@@ -1,0 +1,22 @@
+<svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1249_1438)">
+<rect width="40" height="32" rx="4" fill="white"/>
+<rect width="40" height="32" rx="4" fill="url(#paint0_angular_1249_1438)" fill-opacity="0.08"/>
+<rect x="4" y="4" width="14" height="3" rx="1.5" fill="black" fill-opacity="0.12"/>
+<rect x="4" y="11" width="24" height="17" rx="2" fill="#0D99FF" fill-opacity="0.08"/>
+<rect x="4.5" y="11.5" width="23" height="16" rx="1.5" stroke="#0D99FF" stroke-opacity="0.4"/>
+<rect x="30.5" y="11.5" width="23" height="16" rx="1.5" stroke="black" stroke-opacity="0.12"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular_1249_1438" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(20 32) rotate(47.1378) scale(8.57543 10.7886)">
+<stop stop-color="white"/>
+<stop offset="0.307292" stop-color="white"/>
+<stop offset="0.427083" stop-color="#00B2FF"/>
+<stop offset="0.625" stop-color="#E8EEF0"/>
+<stop offset="0.723958" stop-color="#FF8000"/>
+</radialGradient>
+<clipPath id="clip0_1249_1438">
+<rect width="40" height="32" rx="4" fill="white"/>
+</clipPath>
+</defs>
+</svg>

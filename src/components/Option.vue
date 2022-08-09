@@ -30,8 +30,10 @@
   .option {
     --border-width: 1px;
     --border-color: var(--figma-color-bg-secondary);
+    --background-color: var(--figma-color-bg);
+    --text-color: var(--figma-color-text);
 
-    background: var(--figma-color-bg);
+    background: var(--background-color);
     box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
     padding: 6px 0;
     border: none;
@@ -39,6 +41,10 @@
     flex: 1;
     border-radius: 6px;
     gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &__icon {
       display: flex;
@@ -49,7 +55,7 @@
     &__title {
       @extend .text-sm;
       font-weight: 400;
-      color: var(--figma-color-text);
+      color: var(--text-color);
       text-transform: capitalize;
     }
 
@@ -59,6 +65,8 @@
     &--active {
       --border-width: 2px;
       --border-color: var(--figma-color-bg-brand);
+      --background-color: var(--figma-color-bg-selected);
+      --text-color: var(--figma-color-bg-brand);
     }
   }
 </style>

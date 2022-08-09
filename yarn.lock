@@ -366,6 +366,11 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@trysound/sax@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
+  integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
+
 "@types/node@^18.6.4":
   version "18.6.4"
   resolved "https://registry.npmjs.org/@types/node/-/node-18.6.4.tgz"
@@ -474,7 +479,7 @@
     "@vue/compiler-core" "3.2.37"
     "@vue/shared" "3.2.37"
 
-"@vue/compiler-sfc@3.2.37", "@vue/compiler-sfc@^3.2.37":
+"@vue/compiler-sfc@3.2.37", "@vue/compiler-sfc@^3.2.20", "@vue/compiler-sfc@^3.2.37":
   version "3.2.37"
   resolved "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-3.2.37.tgz"
   integrity sha512-+7i/2+9LYlpqDv+KTtWhOZH+pa8/HnX/905MdVmAcI/mPQOBwkHHIzrsEsucyOIZQYMkXUiTkmZq5am/NyXKkg==
@@ -784,6 +789,11 @@ commander@^2.20.0:
   resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
+commander@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
+  integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
+
 commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
@@ -831,7 +841,7 @@ core-js@^3.0.1:
   resolved "https://registry.npmjs.org/core-js/-/core-js-3.24.1.tgz"
   integrity sha512-0QTBSYSUZ6Gq21utGzkfITDylE8jWC9Ne1D2MrhvlsZBI1x39OdDIVbzSqtgMndIy6BlHxBXpMGqzZmnztg2rg==
 
-css-select@^4.2.1:
+css-select@^4.1.3, css-select@^4.2.1:
   version "4.3.0"
   resolved "https://registry.npmjs.org/css-select/-/css-select-4.3.0.tgz"
   integrity sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==
@@ -842,10 +852,25 @@ css-select@^4.2.1:
     domutils "^2.8.0"
     nth-check "^2.0.1"
 
+css-tree@^1.1.2, css-tree@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.1.3.tgz#eb4870fb6fd7707327ec95c2ff2ab09b5e8db91d"
+  integrity sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==
+  dependencies:
+    mdn-data "2.0.14"
+    source-map "^0.6.1"
+
 css-what@^6.0.1:
   version "6.1.0"
   resolved "https://registry.npmjs.org/css-what/-/css-what-6.1.0.tgz"
   integrity sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==
+
+csso@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/csso/-/csso-4.2.0.tgz#ea3a561346e8dc9f546d6febedd50187cf389529"
+  integrity sha512-wvlcdIbf6pwKEk7vHj8/Bkc0B4ylXZruLvOgs9doS5eOsOpuodOV2zJChSpkp+pRpYQLQMeF04nr3Z68Sta9jA==
+  dependencies:
+    css-tree "^1.1.2"
 
 csstype@^2.6.8:
   version "2.6.20"
@@ -1472,6 +1497,11 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
+mdn-data@2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"
+  integrity sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==
+
 merge2@^1.3.0:
   version "1.4.1"
   resolved "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
@@ -1750,6 +1780,11 @@ spawn-command@^0.0.2-1:
   resolved "https://registry.npmjs.org/spawn-command/-/spawn-command-0.0.2-1.tgz"
   integrity sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==
 
+stable@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
+  integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
+
 string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz"
@@ -1796,6 +1831,19 @@ svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/svg-tags/-/svg-tags-1.0.0.tgz"
   integrity sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==
+
+svgo@^2.7.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.8.0.tgz#4ff80cce6710dc2795f0c7c74101e6764cfccd24"
+  integrity sha512-+N/Q9kV1+F+UeWYoSiULYo4xYSDQlTgb+ayMobAXPwMnLvop7oxKMo9OzIrX5x3eS4L4f2UHhc9axXwY8DpChg==
+  dependencies:
+    "@trysound/sax" "0.2.0"
+    commander "^7.2.0"
+    css-select "^4.1.3"
+    css-tree "^1.1.3"
+    csso "^4.2.0"
+    picocolors "^1.0.0"
+    stable "^0.1.8"
 
 terser@^5.10.0:
   version "5.14.2"
@@ -1886,6 +1934,14 @@ vite-plugin-singlefile@^0.11.0:
   integrity sha512-NLGe8SJ/SrnUVP6sTnvg4RBaobmcmqYusNhK3la8Bux0WA8IV9ebUkSNIcWLhVdjgAtQiCx1gSiZsS3Xd9+mjw==
   dependencies:
     micromatch "^4.0.5"
+
+vite-svg-loader@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/vite-svg-loader/-/vite-svg-loader-3.4.0.tgz#4638827fe86b85ecfcea1ad61dd972c351d5befd"
+  integrity sha512-xD3yb1FX+f4l9/TmsYIqyki8ncpcVsZ2gEJFh/wLuNNqt55C8OJ+JlcMWOA/Z9gRA+ylV/TA1wmJLxzZkCRqlA==
+  dependencies:
+    "@vue/compiler-sfc" "^3.2.20"
+    svgo "^2.7.0"
 
 vite@^3.0.4:
   version "3.0.4"

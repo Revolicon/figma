@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import { viteSingleFile } from 'vite-plugin-singlefile'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import svgLoader from 'vite-svg-loader'
 
 import { resolve } from 'path'
 
@@ -14,6 +15,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     viteSingleFile(),
+    svgLoader(),
     createHtmlPlugin({
       minify: true,
     }),
