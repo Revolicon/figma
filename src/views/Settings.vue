@@ -9,7 +9,7 @@
   <div class="content">
     <SimpleBar data-simplebar-auto-hide="false">
       <Size />
-      <Section icon="frame" title="Frame"></Section>
+      <Frame />
       <Color />
       <Section icon="finder" title="Finder"></Section>
       <Section icon="quickactions" title="Quick actions"></Section>
@@ -39,6 +39,7 @@
   import Section from '@/components/Settings/Section.vue'
 
   import Size from '@/components/Settings/Size'
+  import Frame from '@/components/Settings/Frame'
   import Color from '@/components/Settings/Color'
   import Appearance from '@/components/Settings/Appearance'
 

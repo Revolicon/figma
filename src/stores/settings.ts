@@ -12,6 +12,9 @@ export const useSettingsStore = defineStore('settings', () => {
     // Icon Size
     size: 16,
 
+    // Frame Mode
+    frame: 'fixed',
+
     // Icon Color
     color: [
       {
