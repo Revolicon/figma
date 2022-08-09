@@ -1,17 +1,15 @@
 <template>
   <Section icon="appearance" title="Appearance">
-    <button @click="changeAppearance('light')">
-      Light
-      <span v-if="activeAppearance === 'light'">(Active)</span>
-    </button>
-    <button @click="changeAppearance('dark')">
-      Dark
-      <span v-if="activeAppearance === 'dark'">(Active)</span>
-    </button>
-    <button @click="changeAppearance('auto')">
-      Auto
-      <span v-if="activeAppearance === 'auto'">(Active)</span>
-    </button>
+    <div class="appearance">
+      <Option
+        v-for="(mode, index) in appearances"
+        :key="index"
+        :active="activeAppearance === mode"
+        @click="changeAppearance(mode)"
+      >
+        <template #title>{{ mode }}</template>
+      </Option>
+    </div>
   </Section>
 </template>
 
@@ -22,11 +20,15 @@
   import { useSettingsStore } from '@/stores/settings'
 
   import Section from '@/components/Settings/Section.vue'
+  import Option from '@/components/Option.vue'
 
   const settings = useSettingsStore()
 
+  const appearances = ['light', 'dark', 'auto']
+
   const activeAppearance = computed(() => settings.state.appearance)
   const changeAppearance = (appearance) => {
+    if (appearance === activeAppearance.value) return
     $post('settings/setData', {
       key: 'appearance',
       value: appearance,
@@ -39,8 +41,7 @@
 <style scoped lang="scss">
   .appearance {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
   }
 </style>
