@@ -6,9 +6,11 @@
         :key="index"
         :active="activeOption === mode.slug"
         @click="changeOption(mode.slug)"
+        @mouseover="hoverOption = mode.slug"
+        @mouseout="hoverOption = null"
       >
         <template #icon>
-          <component :is="mode.icon" class="frame__icon" />
+          <component :is="mode.icon" class="frame__icon" :hover="hoverOption === mode.slug" />
         </template>
         <template #title>{{ mode.slug }}</template>
       </Option>
@@ -17,7 +19,7 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import { $post } from '@/utils/message'
 
   import { useSettingsStore } from '@/stores/settings'
@@ -25,26 +27,27 @@
   import Section from '@/components/Settings/Section.vue'
   import Option from '@/components/Option.vue'
 
-  import ThemeDark from '@/images/settings/appearance/dark.svg?component'
-  import ThemeLight from '@/images/settings/appearance/light.svg?component'
-  import ThemeAuto from '@/images/settings/appearance/auto.svg?component'
+  import IconFixed from '@/components/Settings/Frame/Icons/Fixed.vue'
+  import IconHug from '@/components/Settings/Frame/Icons/Hug.vue'
+  import IconBounding from '@/components/Settings/Frame/Icons/Bounding.vue'
 
   const settings = useSettingsStore()
 
   const options = [
     {
       slug: 'fixed',
-      icon: ThemeLight,
+      icon: IconFixed,
     },
     {
       slug: 'hug',
-      icon: ThemeDark,
+      icon: IconHug,
     },
     {
       slug: 'bounding',
-      icon: ThemeAuto,
+      icon: IconBounding,
     },
   ]
+  const hoverOption = ref(null)
 
   const activeOption = computed(() => settings.state.frame)
   const changeOption = (frame) => {
