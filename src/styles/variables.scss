@@ -52,6 +52,9 @@
 :root {
   @extend %theme-light;
 }
+.figma-dark:not([data-theme]):root {
+  @extend %theme-dark;
+}
 [data-theme='dark']:root {
   @extend %theme-dark;
 }

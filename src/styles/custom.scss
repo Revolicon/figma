@@ -13,7 +13,7 @@ body {
 
   user-select: none;
 
-  background: var(--figma-color-bg, #ffffff) !important;
+  background: var(--figma-color-bg, #ffffff);
   color: var(--figma-color-text, #000000);
 
   overflow-x: hidden;
@@ -33,5 +33,10 @@ body,
   .content {
     flex: 1;
     overflow: auto;
+  }
+  @at-root {
+    [data-theme] & {
+      background: var(--figma-color-bg);
+    }
   }
 }
