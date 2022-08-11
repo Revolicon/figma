@@ -33,17 +33,16 @@ const setMultipleData = (settings: Array<SettingsItem>) => {
 
   callback('settings/setMultipleData', true)
 }
-const getMultipleData = () => {
-  let dataKeyList = figma.root.getPluginDataKeys()
-
+const getMultipleData = async () => {
+  const dataKeyList = await figma.clientStorage.keysAsync()
   let dataValueList = {}
-  dataKeyList.map((key) => {
-    ;(dataValueList as any)[key] = getItem(key)
-  })
+  await Promise.all(
+    dataKeyList.map(async (key) => {
+      dataValueList[key] = await getItem(key)
+    })
+  )
 
   callback('settings/getMultipleData', dataValueList)
-
-  return dataValueList
 }
 const removeMultipleData = (keys: Array<string>) => {
   if (!keys) return
@@ -52,12 +51,12 @@ const removeMultipleData = (keys: Array<string>) => {
   callback('settings/removeMultipleData', true)
 }
 
-const setData = ({ key, value, isCallback = true }: SettingsItem) => {
+const setData = async ({ key, value, isCallback = true }: SettingsItem) => {
   if (!key) return
   let optionsValue = value.toString()
   if (typeof value === 'object') optionsValue = JSON.stringify(value)
 
-  figma.root.setPluginData(
+  await figma.clientStorage.setAsync(
     key,
     JSON.stringify({
       data: optionsValue,
@@ -67,47 +66,48 @@ const setData = ({ key, value, isCallback = true }: SettingsItem) => {
 
   isCallback && callback('settings/setData', true)
 }
-const getData = (key: any) => {
+const getData = async (key: any) => {
   if (!key) return
-  let data = getItem(key)
+  let data = await getItem(key)
 
   callback('settings/getData', data)
 }
-const removeData = (key: any) => {
+const removeData = async (key: any) => {
   if (!key) return
-  figma.root.setPluginData(key, '')
+  await figma.clientStorage.deleteAsync(key)
 
   callback('settings/removeData', true)
 }
 
 const getItem = (key: any) => {
-  let data = figma.root.getPluginData(key)
-  if (!data) return
+  return Promise.resolve(figma.clientStorage.getAsync(key)).then((data) => {
+    if (!data) return
 
-  try {
-    let dataObject = JSON.parse(data)
-    let dataValue = dataObject.data
+    try {
+      let dataObject = JSON.parse(data)
+      let dataValue = dataObject.data
 
-    switch (dataObject.type) {
-      case 'object':
-        dataValue = JSON.parse(dataValue)
-        break
-      case 'boolean':
-        dataValue = dataValue === 'true'
-        break
-      case 'number':
-        dataValue = Number(dataValue)
-        break
+      switch (dataObject.type) {
+        case 'object':
+          dataValue = JSON.parse(dataValue)
+          break
+        case 'boolean':
+          dataValue = dataValue === 'true'
+          break
+        case 'number':
+          dataValue = Number(dataValue)
+          break
+      }
+
+      return dataValue ?? dataObject
+    } catch (error) {
+      return data
     }
-
-    return dataValue ?? dataObject
-  } catch (error) {
-    return data
-  }
+  })
 }
 
-const removeAllData = () => {
-  let dataKeyList = figma.root.getPluginDataKeys()
+const removeAllData = async () => {
+  let dataKeyList = await figma.clientStorage.keysAsync()
   dataKeyList.map((key) => {
     removeData(key)
   })
