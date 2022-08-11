@@ -6,8 +6,6 @@
         :key="index"
         :active="activeOption === mode.slug"
         @click="changeOption(mode.slug)"
-        @mouseover="hoverOption = mode.slug"
-        @mouseout="hoverOption = null"
       >
         <template #icon>
           <component :is="mode.icon" class="frame__icon" :hover="hoverOption === mode.slug" />
@@ -47,7 +45,6 @@
       icon: IconBounding,
     },
   ]
-  const hoverOption = ref(null)
 
   const activeOption = computed(() => settings.state.frame)
   const changeOption = (frame) => {
@@ -66,8 +63,5 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
-    &__icon {
-    }
   }
 </style>

@@ -2,10 +2,10 @@
   <Section icon="appearance" title="Appearance">
     <div class="appearance">
       <Option
-        v-for="(mode, index) in appearances"
+        v-for="(mode, index) in options"
         :key="index"
-        :active="activeAppearance === mode.slug"
-        @click="changeAppearance(mode.slug)"
+        :active="activeOption === mode.slug"
+        @click="changeOption(mode.slug)"
       >
         <template #icon>
           <component :is="mode.icon" class="appearance__icon" />
@@ -31,7 +31,7 @@
 
   const settings = useSettingsStore()
 
-  const appearances = [
+  const options = [
     {
       slug: 'light',
       icon: ThemeLight,
@@ -46,12 +46,12 @@
     },
   ]
 
-  const activeAppearance = computed(() => settings.state.appearance)
-  const changeAppearance = (appearance) => {
-    if (appearance === activeAppearance.value) return
+  const activeOption = computed(() => settings.state.appearance)
+  const changeOption = (option) => {
+    if (option === activeOption.value) return
     $post('settings/setData', {
       key: 'appearance',
-      value: appearance,
+      value: option,
     })
   }
 

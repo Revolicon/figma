@@ -55,6 +55,9 @@ export const useSettingsStore = defineStore('settings', () => {
     ],
     activeColor: 'DEFAULT_COLOR_1',
 
+    // Finder
+    finderLayout: 'medium',
+
     // Appearance
     appearance: 'auto',
   }

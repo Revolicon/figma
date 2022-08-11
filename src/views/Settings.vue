@@ -11,7 +11,7 @@
       <Size />
       <Frame />
       <Color />
-      <Section icon="finder" title="Finder"></Section>
+      <Finder />
       <Section icon="quickactions" title="Quick actions"></Section>
       <Appearance />
       <Section title="Other">
@@ -41,6 +41,7 @@
   import Size from '@/components/Settings/Size'
   import Frame from '@/components/Settings/Frame'
   import Color from '@/components/Settings/Color'
+  import Finder from '@/components/Settings/Finder'
   import Appearance from '@/components/Settings/Appearance'
 
   const sure = ref(false)
