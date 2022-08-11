@@ -1,5 +1,5 @@
 <template>
-  <div class="appearance">
+  <div class="layout">
     <Option
       v-for="(mode, index) in options"
       :key="index"
@@ -7,7 +7,7 @@
       @click="changeOption(mode.slug)"
     >
       <template #icon>
-        <component :is="mode.icon" class="appearance__icon" />
+        <component :is="mode.icon" :type="mode.slug" />
       </template>
       <template #title>{{ mode.slug }}</template>
     </Option>
@@ -21,21 +21,22 @@
   import { useSettingsStore } from '@/stores/settings'
 
   import Option from '@/components/Option.vue'
+  import Small from '@/components/Settings/Finder/Icon.vue'
 
   const settings = useSettingsStore()
 
   const options = [
     {
       slug: 'small',
-      icon: '',
+      icon: Small,
     },
     {
       slug: 'medium',
-      icon: '',
+      icon: Small,
     },
     {
       slug: 'large',
-      icon: '',
+      icon: Small,
     },
   ]
 
@@ -48,18 +49,13 @@
     })
   }
 
-  // $post('settings/removeMultipleData', ['appearance'])
+  // $post('settings/removeMultipleData', ['finderLayout'])
 </script>
 
 <style scoped lang="scss">
-  .appearance {
+  .layout {
     display: flex;
     align-items: center;
     gap: 8px;
-
-    &__icon {
-      border-radius: 4px;
-      box-shadow: 0 0.5px 2px 0.5px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.08);
-    }
   }
 </style>
