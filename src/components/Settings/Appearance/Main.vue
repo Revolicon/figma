@@ -25,9 +25,9 @@
   import Section from '@/components/Settings/Section.vue'
   import Option from '@/components/Option.vue'
 
-  import ThemeDark from '@/images/settings/appearance/dark.svg?component'
-  import ThemeLight from '@/images/settings/appearance/light.svg?component'
-  import ThemeAuto from '@/images/settings/appearance/auto.svg?component'
+  import ThemeLight from '@/components/Settings/Color/Icons/Light.vue'
+  import ThemeDark from '@/components/Settings/Color/Icons/Dark.vue'
+  import ThemeAuto from '@/components/Settings/Color/Icons/Auto.vue'
 
   const settings = useSettingsStore()
 
