@@ -12,7 +12,7 @@
       <Frame />
       <Color />
       <Finder />
-      <Section icon="quickactions" title="Quick actions"></Section>
+      <QuickActions />
       <Appearance />
       <Section title="Other">
         <Button full @click="downloadAllData">Export All Data</Button>
@@ -42,6 +42,7 @@
   import Frame from '@/components/Settings/Frame'
   import Color from '@/components/Settings/Color'
   import Finder from '@/components/Settings/Finder'
+  import QuickActions from '@/components/Settings/QuickActions'
   import Appearance from '@/components/Settings/Appearance'
 
   const sure = ref(false)

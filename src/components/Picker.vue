@@ -17,9 +17,8 @@
         :key="index"
         ref="optionsRef"
         @click="selectOption(option.value, index)"
-      >
-        {{ option.label }}
-      </button>
+        v-html="option.label"
+      />
     </div>
   </div>
 </template>
@@ -134,14 +133,14 @@
     color: var(--figma-color-text);
     transition: all 0.15s ease-in-out;
 
-    svg {
-      transition: all 0.15s ease-in-out;
+    ::v-deep(svg) {
+      transition: all 0.2s ease-in-out;
     }
     &--type-icon {
       padding: 4px 12px;
       min-width: 40px;
 
-      svg {
+      &::v-deep(svg) {
         color: var(--figma-color-text-secondary);
       }
     }
@@ -153,7 +152,7 @@
       // Dark and white theme always use the same color for the active option
       color: #ffffff;
 
-      svg {
+      &::v-deep(svg) {
         color: var(--figma-color-text);
       }
     }

@@ -37,7 +37,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '../../../styles/variables';
+  @import '/src/styles/variables';
 
   .icon {
     --grid-gap: 2px;
