@@ -1,12 +1,16 @@
 <template>
-  <RouterView v-if="isLoad" />
+  <RouterView v-if="isLoad" v-slot="{ Component }">
+    <keep-alive :exclude="['finder', 'setting']">
+      <component :is="Component" />
+    </keep-alive>
+  </RouterView>
   <div class="loading" v-else>
     <Icons name="Loading" size="16" spin />
   </div>
 </template>
 
 <script setup>
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
@@ -62,6 +66,8 @@
       })
     }
   })
+
+  // TODO: Add dynamic keep-alive https://stackoverflow.com/a/69026340
 </script>
 
 <style scoped lang="scss">

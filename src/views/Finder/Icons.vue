@@ -7,7 +7,7 @@
       </template>
     </ais-search-box>
 
-    <ais-hits>
+    <ais-hits style="height: 100%; overflow: auto">
       <template v-slot="{ items, sendEvent }">
         <div class="empty" v-show="items.length < 1">
           <svg
