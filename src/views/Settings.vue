@@ -1,7 +1,7 @@
 <template>
   <Navigations>
     <template #accessory>
-      <IconButton icon="Back" />
+      <IconButton icon="Back" @click="router.back()" />
       <div>Settings</div>
     </template>
     <IconButton icon="Help" href="https://revolicon.com/help" />
@@ -28,8 +28,10 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { SimpleBar } from 'simplebar-vue3'
+  import { useRouter } from 'vue-router'
+
   import FileSaver from 'file-saver'
+  import { SimpleBar } from 'simplebar-vue3'
 
   import { $post } from '@/utils/message'
 
@@ -44,6 +46,8 @@
   import Finder from '@/components/Settings/Finder'
   import QuickActions from '@/components/Settings/QuickActions'
   import Appearance from '@/components/Settings/Appearance'
+
+  const router = useRouter()
 
   const sure = ref(false)
 
