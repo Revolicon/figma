@@ -8,27 +8,41 @@
     </template>
     <IconButton icon="Adjust" @click="router.push({ name: 'settings' })" />
   </Navigations>
-  <div class="content">
-    <SimpleBar data-simplebar-auto-hide="false">
-      <RouterView />
-    </SimpleBar>
+  <div class="finder">
+    <KeepAlive>
+      <component :is="tabsComponent[tabs.active]" />
+    </KeepAlive>
   </div>
 </template>
 
 <script setup>
-  import { reactive, ref, watch } from 'vue'
+  import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
-
-  import { SimpleBar } from 'simplebar-vue3'
 
   import { IconButton } from '@/components/Button'
   import { Tabs, Tab } from '@/components/Tabs'
 
   import Navigations from '@/components/Navigations.vue'
+  import Icons from '@/views/Finder/Icons.vue'
+  import Categories from '@/views/Finder/Categories.vue'
 
   const router = useRouter()
 
   const tabs = reactive({
     active: 'icons',
   })
+  const tabsComponent = {
+    icons: Icons,
+    categories: Categories,
+  }
 </script>
+
+<style scoped lang="scss">
+  .finder {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 100%;
+    height: 100%;
+  }
+</style>

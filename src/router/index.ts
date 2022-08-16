@@ -1,6 +1,6 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-import Home from '@/views/Home.vue'
+import Finder from '@/views/Finder.vue'
 import Welcome from '@/views/Welcome.vue'
 import Settings from '@/views/Settings.vue'
 
@@ -15,7 +15,7 @@ const router = createRouter({
     {
       path: '/finder',
       name: 'finder',
-      component: Home,
+      component: Finder,
     },
     {
       path: '/settings',
