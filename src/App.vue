@@ -1,10 +1,8 @@
 <template>
-  <KeepAlive>
-    <RouterView v-if="isLoad" />
-    <div class="loading" v-else>
-      <Icons name="Loading" size="16" spin />
-    </div>
-  </KeepAlive>
+  <RouterView v-if="isLoad" />
+  <div class="loading" v-else>
+    <Icons name="Loading" size="16" spin />
+  </div>
 </template>
 
 <script setup>
