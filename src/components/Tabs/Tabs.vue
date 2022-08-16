@@ -4,19 +4,19 @@
       :is="tab"
       v-for="(tab, key) in tabs"
       :key="key"
-      :active="active === tab.props.value"
-      @click="active = tab.props.value"
+      :active="options.active === tab.props.value"
+      @click="options.active = tab.props.value"
     />
   </div>
 </template>
 
 <script setup>
-  import { computed, useSlots } from 'vue'
+  import { computed, ref, useSlots } from 'vue'
 
   const props = defineProps({
-    active: {
-      type: String,
-      default: '',
+    options: {
+      type: Object,
+      default: {},
     },
   })
 

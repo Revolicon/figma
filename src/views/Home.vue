@@ -1,7 +1,8 @@
 <template>
+  {{ tabs }}
   <Navigations>
     <template #accessory>
-      <Tabs active="icons">
+      <Tabs :options="tabs">
         <Tab value="icons">Icons</Tab>
         <Tab value="categories">Categories</Tab>
       </Tabs>
@@ -16,7 +17,7 @@
 </template>
 
 <script setup>
-  import { ref, watch } from 'vue'
+  import { reactive, ref, watch } from 'vue'
   import { useRouter } from 'vue-router'
 
   import { SimpleBar } from 'simplebar-vue3'
@@ -27,4 +28,8 @@
   import Navigations from '@/components/Navigations.vue'
 
   const router = useRouter()
+
+  const tabs = reactive({
+    active: 'icons',
+  })
 </script>

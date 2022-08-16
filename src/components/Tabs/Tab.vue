@@ -24,7 +24,6 @@
       type: Boolean,
     },
   })
-  console.log(props)
 </script>
 
 <style scoped lang="scss">
