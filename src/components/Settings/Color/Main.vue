@@ -28,6 +28,8 @@
       </button>
     </div>
   </Section>
+
+  <!-- TODO: Move App file  -->
   <Context element-id="myFirstMenu" ref="contextRef" :options="contextOptions" @option-clicked="contextHandle" />
 </template>
 
