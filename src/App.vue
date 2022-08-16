@@ -7,7 +7,7 @@
 
 <script setup>
   import { onMounted, ref, watch } from 'vue'
-  import { RouterView, useRouter } from 'vue-router'
+  import { useRouter } from 'vue-router'
 
   import { useSettingsStore } from '@/stores/settings'
   import { useColorMode } from '@/utils/theme'
@@ -37,7 +37,7 @@
   settings.$subscribe(() => {
     // Login Actions
     if (settings.state.betaKey) {
-      router.push({ name: 'settings' })
+      router.push({ name: 'finder' })
     } else {
       router.push({ name: 'welcome' })
     }

@@ -1,44 +1,30 @@
 <template>
-  <div
-    :style="{
-      display: 'flex',
-      alignItems: 'center',
-      gap: '4px',
-      fontSize: 10,
-    }"
-  >
-    <input type="text" v-model="betaKey" :style="{ flex: 1, minWidth: 1, textAlign: 'center' }" />
-    <div>-</div>
-    <div :style="{ flex: 1, textAlign: 'center' }">{{ betaKey }}</div>
+  <Navigations>
+    <template #accessory>
+      <Tabs active="icons">
+        <Tab value="icons">Icons</Tab>
+        <Tab value="categories">Categories</Tab>
+      </Tabs>
+    </template>
+    <IconButton icon="Adjust" @click="router.push({ name: 'settings' })" />
+  </Navigations>
+  <div class="content">
+    <SimpleBar data-simplebar-auto-hide="false">
+      <RouterView />
+    </SimpleBar>
   </div>
-  <Button variant="destructive" full @click="removeBetaKey">Logout</Button>
-  <hr />
-  <router-link to="/settings">Settings Page</router-link>
-  <hr />
-
-  <pre>{{ settings.state }}</pre>
 </template>
 
 <script setup>
   import { ref, watch } from 'vue'
-  import { RouterLink } from 'vue-router'
-  import { useSettingsStore } from '@/stores/settings'
-  import { $post } from '@/utils/message'
+  import { useRouter } from 'vue-router'
 
-  import Button from '@/components/Button'
+  import { SimpleBar } from 'simplebar-vue3'
 
-  const settings = useSettingsStore()
+  import { IconButton } from '@/components/Button'
+  import { Tabs, Tab } from '@/components/Tabs'
 
-  const removeBetaKey = () => {
-    $post('settings/removeData', 'betaKey')
-  }
+  import Navigations from '@/components/Navigations.vue'
 
-  const betaKey = ref(settings.state.betaKey)
-
-  watch(betaKey, (newValue) => {
-    $post('settings/setData', {
-      key: 'betaKey',
-      value: newValue,
-    })
-  })
+  const router = useRouter()
 </script>
