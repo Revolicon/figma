@@ -3,6 +3,9 @@ import { ref } from 'vue'
 
 export const useSettingsStore = defineStore('settings', () => {
   const defaultState = {
+    // Default Beta Key
+    betaKey: null,
+
     // App Settings
     app: {
       // dark or light

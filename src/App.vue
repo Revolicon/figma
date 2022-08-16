@@ -1,6 +1,6 @@
 <template>
   <KeepAlive>
-    <RouterView v-if="isLoading" />
+    <RouterView v-if="isLoad" />
     <div class="loading" v-else>
       <Icons name="Loading" size="16" spin />
     </div>
@@ -20,14 +20,15 @@
   let settings = useSettingsStore()
   let router = useRouter()
 
-  let isLoading = ref(false)
+  let isLoad = ref(false)
+  let isStart = ref(false)
 
   onMounted(() => {
     $post('settings/getMultipleData')
     $listen('*', (data, event) => {
       if (event === 'settings/getMultipleData') {
         settings.setState(data)
-        isLoading.value = true
+        isLoad.value = true
 
         console.log('[Revolicon Store] Update settings store', { ...settings.state })
       } else {
@@ -39,12 +40,14 @@
   settings.$subscribe(() => {
     // Login Actions
     if (settings.state.betaKey) {
-      router.push({ name: 'finder' })
+      !isStart.value && router.push({ name: 'finder' })
+      isStart.value = true
     } else {
       router.push({ name: 'welcome' })
+      isStart.value = false
     }
 
-    if (isLoading.value) {
+    if (isLoad.value) {
       const htmlElement = document.getElementsByTagName('html')[0]
       const htmlTheme = () => {
         settings.state.app.theme = htmlElement.className.split('-')[1]

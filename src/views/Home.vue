@@ -1,5 +1,4 @@
 <template>
-  {{ tabs }}
   <Navigations>
     <template #accessory>
       <Tabs :options="tabs">
