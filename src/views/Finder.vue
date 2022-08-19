@@ -17,7 +17,7 @@
       </RouterView>
     </div>
     <div class="finder__detail" v-if="icon">
-      {{ icon }}
+      <pre>{{ router.currentRoute.value.query }}</pre>
     </div>
   </div>
 </template>

@@ -42,9 +42,7 @@
   const iconActive = computed(() => router.currentRoute.value.query?.icon === props.name)
   const iconHandler = () => {
     router.push({
-      query: {
-        icon: !iconActive.value ? props.name : null,
-      },
+      query: !iconActive.value ? { icon: props.name } : undefined,
     })
   }
 
