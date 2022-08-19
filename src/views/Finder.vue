@@ -71,6 +71,7 @@
     &__detail {
       flex: 1;
       border-left: 1px solid var(--figma-color-bg-tertiary);
+      padding: 12px;
     }
     &__browse {
       height: 100%;
