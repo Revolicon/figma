@@ -1,5 +1,13 @@
 <template>
-  <div class="item" :title="label ?? name" draggable="true" @click="test">
+  <div
+    class="item"
+    :class="{
+      'item--selected': iconActive,
+    }"
+    :title="label ?? name"
+    draggable="true"
+    @click="iconHandler"
+  >
     <div class="item__icon">
       <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -31,10 +39,11 @@
     unicode: String,
   })
 
-  const test = () => {
+  const iconActive = computed(() => router.currentRoute.value.query?.icon === props.name)
+  const iconHandler = () => {
     router.push({
       query: {
-        icon: props.name,
+        icon: !iconActive.value ? props.name : null,
       },
     })
   }
@@ -73,9 +82,12 @@
   @import '/src/styles/variables';
 
   .item {
+    --border-width: 1px;
+    --border-color: var(--figma-color-bg-secondary);
+
     height: 56px;
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px var(--figma-color-bg-secondary);
+    box-shadow: inset 0 0 0 var(--border-width) var(--border-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,6 +113,10 @@
       text-align: center;
     }
 
+    &--selected {
+      --border-width: 2px;
+      --border-color: var(--figma-color-bg-brand);
+    }
     &:hover {
       background: var(--figma-color-bg-secondary);
     }

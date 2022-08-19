@@ -1,28 +1,30 @@
 <template>
-  <Navigations>
-    <template #accessory>
-      <IconButton icon="Back" @click="router.back()" />
-      <div>Settings</div>
-    </template>
-    <IconButton icon="Help" href="https://revolicon.com/help" />
-  </Navigations>
-  <div class="content">
-    <SimpleBar data-simplebar-auto-hide="false">
-      <Size />
-      <Frame />
-      <Color />
-      <Finder />
-      <QuickActions />
-      <Appearance />
-      <Section title="Other">
-        <Button full @click="downloadAllData">Export All Data</Button>
-        <Button full @click="removeBetaKey">Logout</Button>
-        <Button variant="destructive" full @click="removeAllData">
-          <template v-if="!sure">Reset All Settings</template>
-          <template v-else>Are You Sure</template>
-        </Button>
-      </Section>
-    </SimpleBar>
+  <div class="settings">
+    <Navigations>
+      <template #accessory>
+        <IconButton icon="Back" @click="router.back()" />
+        <div>Settings</div>
+      </template>
+      <IconButton icon="Help" href="https://revolicon.com/help" />
+    </Navigations>
+    <div class="content">
+      <SimpleBar data-simplebar-auto-hide="false">
+        <Size />
+        <Frame />
+        <Color />
+        <Finder />
+        <QuickActions />
+        <Appearance />
+        <Section title="Other">
+          <Button full @click="downloadAllData">Export All Data</Button>
+          <Button full @click="removeBetaKey">Logout</Button>
+          <Button variant="destructive" full @click="removeAllData">
+            <template v-if="!sure">Reset All Settings</template>
+            <template v-else>Are You Sure</template>
+          </Button>
+        </Section>
+      </SimpleBar>
+    </div>
   </div>
 </template>
 
@@ -64,3 +66,13 @@
     })
   }
 </script>
+
+<style scoped>
+  .settings {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 280px;
+  }
+</style>

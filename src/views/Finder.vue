@@ -8,7 +8,7 @@
             <Tab value="categories">Categories</Tab>
           </Tabs>
         </template>
-        <IconButton icon="Adjust" @click="router.push({ name: 'settings' })" />
+        <IconButton icon="Adjust" @click="goSettings" />
       </Navigations>
       <RouterView v-slot="{ Component }">
         <KeepAlive>
@@ -40,13 +40,20 @@
   })
   const icon = computed(() => router.currentRoute.value.query?.icon)
 
+  const goSettings = async () => {
+    $post('screen', 'default')
+    await router.push({ name: 'settings', query: undefined })
+  }
+
   watch(tabs, (newValue) => {
     router.push({ name: `finder-${newValue.active}` })
   })
   watch(icon, (newValue) => {
-    console.log(newValue)
-
-    newValue && $post('screen', 'wide')
+    if (newValue) {
+      $post('screen', 'wide')
+    } else {
+      $post('screen', 'default')
+    }
   })
 </script>
 
@@ -56,7 +63,7 @@
     height: 100%;
 
     &__content {
-      flex: 1;
+      flex: 0 0 280px;
       display: flex;
       flex-direction: column;
       height: 100%;

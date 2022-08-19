@@ -5,6 +5,10 @@ const Screen = ({ data }: ListenerOptions) => {
   }
 
   figma.ui.resize(size[data] ?? 'default', 512)
+  figma.ui.postMessage({
+    event: 'screen',
+    data: true,
+  })
 }
 
 export default Screen
