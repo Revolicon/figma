@@ -31,10 +31,11 @@
     let element = getCurrentInstance().subTree.el
     element.addEventListener('dragstart', (e) => {
       let dragElement = document.createElement('div')
-      dragElement.style.width = '18px'
+      dragElement.style.width = '20px'
       dragElement.style.height = '16px'
       dragElement.style.position = 'absolute'
       dragElement.style.top = '-100px'
+      dragElement.classList.add('drag-element')
 
       let dragIcon = document.createElement('svg')
       dragIcon.style.color = '#' + settingsColor.value.color
@@ -49,6 +50,9 @@
       dragElement.innerHTML = dragIcon.outerHTML
       document.body.appendChild(dragElement)
       e.dataTransfer.setDragImage(dragElement, 0, 0)
+    })
+    element.addEventListener('dragend', (e) => {
+      document.getElementsByClassName('drag-element')[0].remove()
     })
   })
 </script>
