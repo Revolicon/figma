@@ -12,7 +12,7 @@
       :autoFocus="true"
       @input="refine(inputValue)"
     />
-    <div class="search__content" v-if="slots.default">
+    <div class="search__actions" v-if="slots.default">
       <slot />
     </div>
   </div>
@@ -87,6 +87,7 @@
     &__actions {
       display: flex;
       flex: none;
+      align-items: center;
       gap: 6px;
     }
   }
