@@ -9,7 +9,7 @@
     <IconButton icon="Adjust" @click="router.push({ name: 'settings' })" />
   </Navigations>
   <KeepAlive>
-    <component :is="tabsComponent[tabs.active]" />
+    <component :is="tabsComponent[tabs.active]" class="finder" />
   </KeepAlive>
 </template>
 
@@ -34,3 +34,12 @@
     categories: Categories,
   }
 </script>
+
+<style scoped lang="scss">
+  .finder {
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+</style>
