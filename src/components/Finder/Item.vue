@@ -1,5 +1,5 @@
 <template>
-  <div class="item" :title="label ?? name" draggable="true">
+  <div class="item" :title="label ?? name" draggable="true" @click="test">
     <div class="item__icon">
       <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -13,10 +13,14 @@
 </template>
 
 <script setup>
-  import { computed, getCurrentInstance, onMounted, ref } from 'vue'
+  import { computed, getCurrentInstance, onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
+
   import { useSettingsStore } from '@/stores/settings'
 
+  const router = useRouter()
   const settings = useSettingsStore()
+
   const settingsColor = computed(() => settings.state.color.find((item) => item.id === settings.state.activeColor))
 
   const props = defineProps({
@@ -26,6 +30,14 @@
     type: String,
     unicode: String,
   })
+
+  const test = () => {
+    router.push({
+      query: {
+        icon: props.name,
+      },
+    })
+  }
 
   onMounted(() => {
     let element = getCurrentInstance().subTree.el
