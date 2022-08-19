@@ -8,13 +8,15 @@
     </template>
     <IconButton icon="Adjust" @click="router.push({ name: 'settings' })" />
   </Navigations>
-  <KeepAlive>
-    <component :is="tabsComponent[tabs.active]" class="finder" />
-  </KeepAlive>
+  <RouterView v-slot="{ Component }">
+    <KeepAlive>
+      <component :is="Component" class="finder" />
+    </KeepAlive>
+  </RouterView>
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
+  import { reactive, watch } from 'vue'
   import { useRouter } from 'vue-router'
 
   import { IconButton } from '@/components/Button'
@@ -29,10 +31,10 @@
   const tabs = reactive({
     active: 'icons',
   })
-  const tabsComponent = {
-    icons: Icons,
-    categories: Categories,
-  }
+
+  watch(tabs, (newValue) => {
+    router.push({ name: `finder-${newValue.active}` })
+  })
 </script>
 
 <style scoped lang="scss">

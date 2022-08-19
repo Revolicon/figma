@@ -42,7 +42,7 @@
           <div class="icons-empty__title">No icons found</div>
           <Button href="https://revolicon.com">Request icon</Button>
         </div>
-        <div class="icons-list" :class="`icons-list--${settings.state.finderLayout}`">
+        <div class="icons-list" :class="`icons-list--${settings.state.finderLayout}`" v-else>
           <Item v-for="item in items" v-bind="item" :type="item.style" :key="item.objectID" />
         </div>
       </template>

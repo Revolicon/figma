@@ -1,6 +1,6 @@
 <template>
   <RouterView v-if="isLoad" v-slot="{ Component }">
-    <keep-alive :exclude="['finder', 'setting']">
+    <keep-alive>
       <component :is="Component" />
     </keep-alive>
   </RouterView>
@@ -42,7 +42,7 @@
   settings.$subscribe(() => {
     // Login Actions
     if (settings.state.betaKey) {
-      !isStart.value && router.push({ name: 'finder' })
+      !isStart.value && router.push({ name: 'finder-icons' })
       isStart.value = true
     } else {
       router.push({ name: 'welcome' })
