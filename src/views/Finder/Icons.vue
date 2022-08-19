@@ -43,10 +43,7 @@
           <Button href="https://revolicon.com">Request icon</Button>
         </div>
         <div class="icons-list" :class="`icons-list--${settings.state.finderLayout}`">
-          <div class="icons-item" v-for="item in items" :key="item.objectID" :title="item.name">
-            <div class="icons-item__icon">{{ item.style }}</div>
-            <div class="icons-item__text">{{ item.name }}</div>
-          </div>
+          <Item v-for="item in items" v-bind="item" :type="item.style" :key="item.objectID" />
         </div>
       </template>
     </ais-hits>
@@ -62,6 +59,8 @@
   import SearchBox from '@/components/Finder/Search.vue'
   import Picker from '@/components/Picker.vue'
   import Button from '@/components/Button'
+
+  import Item from '@/components/Finder/Item.vue'
 
   const searchClient = algoliasearch('VOW5LML328', '22f7f3f67abdc32c66b9c672a931b2d7')
 
@@ -123,39 +122,6 @@
         @extend .text-md;
         font-weight: 500;
         color: var(--figma-color-text);
-      }
-    }
-    &-item {
-      height: 56px;
-      border-radius: 6px;
-      box-shadow: inset 0 0 0 1px var(--figma-color-bg-secondary);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 12px 6px 6px;
-      gap: 6px;
-      cursor: pointer;
-
-      &__icon {
-        height: 16px;
-      }
-      &__text {
-        @extend .text-sm;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        line-clamp: 1;
-        -webkit-box-orient: vertical;
-        color: var(--figma-color-text-secondary);
-        width: 100%;
-        text-align: center;
-      }
-
-      &:hover {
-        background: var(--figma-color-bg-secondary);
       }
     }
 
