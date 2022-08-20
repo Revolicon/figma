@@ -4,9 +4,7 @@
       <component :is="Component" />
     </keep-alive>
   </RouterView>
-  <div class="loading" v-else>
-    <Icons name="Loading" size="16" spin />
-  </div>
+  <Loader v-else />
 </template>
 
 <script setup>
@@ -17,7 +15,7 @@
   import { useColorMode } from '@/utils/theme'
   import { $listen, $post } from '@/utils/message'
 
-  import Icons from '@/components/Icons'
+  import Loader from '@/components/Loader.vue'
 
   let settings = useSettingsStore()
   let router = useRouter()
@@ -66,16 +64,4 @@
       })
     }
   })
-
-  // TODO: Add dynamic keep-alive https://stackoverflow.com/a/69026340
 </script>
-
-<style scoped lang="scss">
-  .loading {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <ais-instant-search :search-client="searchClient" index-name="icons">
+  <ais-instant-search v-show="isLoading" index-name="icons" :search-client="searchClient">
     <ais-configure :facetFilters="[[`style:${style}`, 'style:brands']]" />
     <ais-search-box>
       <template v-slot="{ currentRefinement, isSearchStalled, refine }">
@@ -11,6 +11,7 @@
 
     <ais-hits class="icons">
       <template v-slot="{ items, sendEvent }">
+        {{ setLoading() }}
         <div class="icons-empty" v-if="items.length < 1">
           <svg
             style="color: var(--figma-color-text-secondary)"
@@ -48,6 +49,7 @@
       </template>
     </ais-hits>
   </ais-instant-search>
+  <Loader v-if="!isLoading" />
 </template>
 
 <script setup>
@@ -58,9 +60,9 @@
 
   import SearchBox from '@/components/Finder/Search.vue'
   import Picker from '@/components/Picker.vue'
-  import Button from '@/components/Button'
-
   import Item from '@/components/Finder/Item.vue'
+  import Loader from '@/components/Loader.vue'
+  import Button from '@/components/Button'
 
   const searchClient = algoliasearch('VOW5LML328', '22f7f3f67abdc32c66b9c672a931b2d7')
 
@@ -76,9 +78,14 @@
       value: 'solid',
     },
   ])
+  const isLoading = ref(false)
   const style = ref(settings.state.quickActions)
+
   const pickerHandler = (value) => {
     style.value = value
+  }
+  const setLoading = () => {
+    isLoading.value = true
   }
 </script>
 
