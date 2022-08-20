@@ -1,5 +1,5 @@
 <template>
-  <ais-instant-search v-show="isLoading" index-name="icons" :search-client="searchClient">
+  <ais-instant-search v-show="isLoading" index-name="icons" :search-client="searchClient" class="icons">
     <ais-configure :facetFilters="[[`style:${style}`, 'style:brands']]" />
     <ais-search-box>
       <template v-slot="{ currentRefinement, isSearchStalled, refine }">
@@ -9,7 +9,7 @@
       </template>
     </ais-search-box>
 
-    <ais-hits class="icons">
+    <ais-infinite-hits class="icons-inner">
       <template v-slot="{ items, sendEvent }">
         {{ setLoading() }}
         <div class="icons-empty" v-if="items.length < 1">
@@ -43,11 +43,13 @@
           <div class="icons-empty__title">No icons found</div>
           <Button href="https://revolicon.com">Request icon</Button>
         </div>
-        <div class="icons-list" :class="`icons-list--${settings.state.finderLayout}`" v-else>
-          <Item v-for="item in items" v-bind="item" :type="item.style" :key="item.objectID" />
-        </div>
+        <template v-else>
+          <div class="icons-list" :class="`icons-list--${settings.state.finderLayout}`">
+            <Item v-for="item in items" v-bind="item" :type="item.style" :key="item.objectID" />
+          </div>
+        </template>
       </template>
-    </ais-hits>
+    </ais-infinite-hits>
   </ais-instant-search>
   <Loader v-if="!isLoading" />
 </template>
@@ -93,18 +95,30 @@
   @import '/src/styles/variables';
 
   .icons {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    overflow: hidden;
+    width: 100%;
 
+    &-inner {
+      height: 100%;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      display: grid;
+      padding: 6px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
     &-list {
       display: grid;
       align-content: baseline;
       height: 100%;
       width: 100%;
       gap: 8px;
-      padding: 6px 6px 0;
 
       &--small {
         grid-template-columns: repeat(5, 1fr);
@@ -130,10 +144,6 @@
         font-weight: 500;
         color: var(--figma-color-text);
       }
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
     }
   }
 </style>
