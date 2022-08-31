@@ -24,7 +24,7 @@
 
 <script setup>
   import { computed, reactive, watch } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
 
   import { $post } from '@/utils/message'
 
@@ -34,6 +34,7 @@
   import Navigations from '@/components/Navigations.vue'
 
   const router = useRouter()
+  const route = useRoute()
 
   const tabs = reactive({
     active: 'icons',
@@ -46,7 +47,7 @@
   }
 
   watch(tabs, (newValue) => {
-    router.push({ name: `finder-${newValue.active}` })
+    router.push({ name: `finder-${newValue.active}`, query: route.query })
   })
   watch(icon, (newValue) => {
     if (newValue) {
