@@ -51,6 +51,8 @@
 
   import Item from '@/components/Finder/Icons/Item.vue'
 
+  import Button from '@/components/Button'
+
   const settings = useSettingsStore()
   const router = useRouter()
   const route = useRoute()
